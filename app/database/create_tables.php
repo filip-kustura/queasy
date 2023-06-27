@@ -3,12 +3,32 @@
 // Stvaramo tablice u bazi (ako već ne postoje od ranije).
 require_once __DIR__ . '/db.class.php';
 
-create_table_users();
+$db = DB::getConnection();
+
+try {
+	$st = $db->prepare('SHOW TABLES');
+	$st->execute();
+	$tables = $st->fetchAll(PDO::FETCH_COLUMN);
+
+	$has_users_table = in_array('users', $tables);
+	$has_questions_table = in_array('questions', $tables);
+} catch( PDOException $e ) {
+	exit( "PDO error [show tables]: " . $e->getMessage() );
+}
+
+if (!$has_users_table)
+	create_table_users();
+
+if (!$has_questions_table)
+	create_table_questions();
+
+if ($has_users_table && $has_questions_table)
+	echo 'Sve potrebne tablice već postoje u bazi.';
 
 // ------------------------------------------
 function create_table_users()
 {
-	$db = DB::getConnection();
+	global $db;
 
 	// Stvaramo tablicu users.
 	// Svaki user ima svoj id (automatski će se povećati za svakog novoubačenog korisnika), username i password hash.
@@ -27,6 +47,37 @@ function create_table_users()
 	catch( PDOException $e ) { exit( "PDO error (create_table_users): " . $e->getMessage() ); }
 
 	echo "Napravio tablicu users.<br />";
+}
+
+function create_table_questions() {
+	global $db;
+
+	// Stvaramo tablicu questions.
+	/*
+	Svaki question ima:
+		- id (automatski će se povećati za svakog novoubačenog korisnika)
+		- kategoriju
+		- tekst pitanja
+		- točan odgovor
+		- tri ponuđena netočna odgovora (null ako se radi o pitanju gdje treba upisati odgovor)
+	*/
+
+	try {
+		$st = $db->prepare(
+			'CREATE TABLE IF NOT EXISTS questions (' .
+			'id int NOT NULL PRIMARY KEY AUTO_INCREMENT,' .
+			'category varchar(20) NOT NULL,' .
+			'question varchar(255) NOT NULL,' .
+			'answer varchar(50) NOT NULL,' .
+			'optionA varchar(50),' .
+			'optionB varchar(50),' .
+			'optionC varchar(50));'
+		);
+
+		$st->execute();
+	} catch( PDOException $e ) { exit( "PDO error (create_table_questions): " . $e->getMessage() ); }
+
+	echo "Napravio tablicu questions.<br>";
 }
 
 ?>
