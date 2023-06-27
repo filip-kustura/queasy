@@ -14,11 +14,12 @@ Za korisnika s korisničkim imenom _username_, odgovarajući password je pridjev
 - Tako i ovdje uspješan login postavlja samo `$_SESSION['id']`, gdje je `id` korisnikov identifikator iz tablice `users`.
 - Dosadašnji primjeri započinjanja/dohvaćanja sessiona u projektu su u datotekama:
   - `loginservice.class.php` u metodi `handleLoginAttempt()` -- započinjanje sessiona nakon uspješnog logina i pohrana korisnikovog identifikatora `id` u session
-  - `loginController.php` u metodi `handleAction()` -- dohvaćanje sessiona identifikatora `id` ulogiranog korisnika
+  - `loginController.php` u metodi `handleAction()` -- dohvaćanje sessiona (i identifikatora `id` ulogiranog korisnika)
 
 ## TODO
-- kreirati u bazi i popuniti tablicu s pitanjima, tipom pitanja, eventualnim ponuđenim odgovorima i točnim odgovorom
-- odgovaranje na pitanja u js (Vilim)
+- (Filip) kreirati u bazi i popuniti tablicu s pitanjima, tipom pitanja, eventualnim ponuđenim odgovorima i točnim odgovorom
+- (Filip) nadograditi datoteke `create_tables.php` i `seed_tables.php` tako da podržavaju i kreiranje/punjenje tablice `questions`
+- (Vilim) odgovaranje na pitanja u js
 - napraviti "homepage" (homepage se prikazuje nakon uspješnog logina) s opcijama
   - singleplayer (**prioritet**)
   - multiplayer (nakon što implementiramo opciju singleplayer)
