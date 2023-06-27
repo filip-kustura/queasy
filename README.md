@@ -14,7 +14,7 @@ Za korisnika s korisničkim imenom _username_, odgovarajući password je pridjev
 - Tako i ovdje uspješan login postavlja samo `$_SESSION['id']`, gdje je `id` korisnikov identifikator iz tablice `users`.
 - Dosadašnji primjeri započinjanja/dohvaćanja sessiona u projektu su u datotekama:
   - `loginservice.class.php` u metodi `handleLoginAttempt()` -- započinjanje sessiona nakon uspješnog logina i pohrana korisnikovog identifikatora `id` u session
-  - `loginController.php` u metodi `handleAction()` -- dohvaćanje sessiona identifikatora `id` ulogiranog korisnika
+  - `loginController.php` u metodi `handleAction()` -- dohvaćanje sessiona (i identifikatora `id` ulogiranog korisnika)
 
 ## TODO
 - kreirati u bazi i popuniti tablicu s pitanjima, tipom pitanja, eventualnim ponuđenim odgovorima i točnim odgovorom
