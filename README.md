@@ -19,7 +19,7 @@ Za korisnika s korisničkim imenom _username_, odgovarajući password je pridjev
 ## TODO
 - (Filip) kreirati u bazi i popuniti tablicu s pitanjima, tipom pitanja, eventualnim ponuđenim odgovorima i točnim odgovorom
 - (Filip) nadograditi datoteke `create_tables.php` i `seed_tables.php` tako da podržavaju i kreiranje/punjenje tablice `questions`
-- (Vilim) odgovaranje na pitanja u js
+- (Vilim) odgovaranje na pitanja u js - klijentski dio obavljen, potrebna integracija u view-u php, sa pravim pitanjima 
 - napraviti "homepage" (homepage se prikazuje nakon uspješnog logina) s opcijama
   - singleplayer (**prioritet**)
   - multiplayer (nakon što implementiramo opciju singleplayer)
