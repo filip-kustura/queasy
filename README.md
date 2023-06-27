@@ -17,9 +17,9 @@ Za korisnika s korisničkim imenom _username_, odgovarajući password je pridjev
   - `loginController.php` u metodi `handleAction()` -- dohvaćanje sessiona (i identifikatora `id` ulogiranog korisnika)
 
 ## TODO
-- (Filip) kreirati u bazi i popuniti tablicu s pitanjima, tipom pitanja, eventualnim ponuđenim odgovorima i točnim odgovorom
-- (Filip) nadograditi datoteke `create_tables.php` i `seed_tables.php` tako da podržavaju i kreiranje/punjenje tablice `questions`
-- (Vilim) odgovaranje na pitanja u js - klijentski dio obavljen, potrebna integracija u view-u php, sa pravim pitanjima 
+- ~~(Filip) kreirati u bazi i popuniti tablicu s pitanjima, kategorijom, točnim odgovorom i eventualnim ponuđenim odgovorima~~
+- ~~(Filip) nadograditi datoteke `create_tables.php` i `seed_tables.php` tako da podržavaju i kreiranje/punjenje tablice `questions`~~
+- (Vilim) odgovaranje na pitanja u js - klijentski dio obavljen, potrebna integracija u view-u php, sa pravim pitanjima
 - napraviti "homepage" (homepage se prikazuje nakon uspješnog logina) s opcijama
   - singleplayer (**prioritet**)
   - multiplayer (nakon što implementiramo opciju singleplayer)
@@ -29,3 +29,7 @@ Za korisnika s korisničkim imenom _username_, odgovarajući password je pridjev
 - implementirati mogućnost `Sign Up` (gumb već postoji)
 - CSS (nizak prioritet)
 - možda u JavaScript kodu, gdje bude potrebe, koristiti Ajax
+- (?) gdje je već potrebno dodati napomenu za pitanja gdje treba upisati odgovor:
+  - ako se traži broj, potrebno ga je upisati brojkama a ne riječima
+  - svaki odgovor potrebno je upisati bez "a/an/the" člana
+- dodati timer za pitanja
