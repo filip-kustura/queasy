@@ -18,6 +18,7 @@ Za korisnika s korisničkim imenom _username_, odgovarajući password je pridjev
 
 ## TODO
 - kreirati u bazi i popuniti tablicu s pitanjima, tipom pitanja, eventualnim ponuđenim odgovorima i točnim odgovorom
+- odgovaranje na pitanja u js (Vilim)
 - napraviti "homepage" (homepage se prikazuje nakon uspješnog logina) s opcijama
   - singleplayer (**prioritet**)
   - multiplayer (nakon što implementiramo opciju singleplayer)
