@@ -39,8 +39,10 @@ class LoginService {
 					//header('Location: my_quacks.php');
 					//exit();
 	
-					// Dohvati session
+					// Započni session
 					$ss = Session::getInstance();
+					
+					// Spremi korisnikov ID u session
 					$ss->id = $row['id'];
 					return true;
 				}/* else {
@@ -57,7 +59,6 @@ class LoginService {
 			echo $e->getMessage();
         }
 	}
-
 
 	function handleSignUpAttempt($username_input, $password_input) {
 		// TODO

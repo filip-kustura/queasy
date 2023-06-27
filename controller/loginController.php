@@ -18,8 +18,13 @@ class LoginController {
 		if (isset($_POST['login'])) {
 			$attempt_successful = $ls->handleLoginAttempt($_POST['username'], $_POST['password']);
 
-			if ($attempt_successful)
-				header('Location: index.php?rt=home');
+			if ($attempt_successful) {
+				// Dohvati session
+				$ss = Session::getInstance();
+
+				echo 'id ulogiranog korisnika: ' . $ss->id;
+				//header('Location: index.php?rt=home');
+			}
 			else
 				echo 'Login unsuccessful!';
 		} else if (isset($_POST['sign-up'])) {
