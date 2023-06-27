@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Mock page</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+  </head>
+<body>
+    <style>
+    
+    #container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h2 {
+        font-size: 24px;
+        font-weight: bold;
+        color: #333333;
+        margin-bottom: 10px;
+        font-family:  Arial, sans-serif;
+    }
+
+    #question-container {
+        position: relative;
+        width: 800px;
+        margin: 0 auto;
+        padding: 50px;
+        background-color: #F2F2F2;
+        text-align: center;
+    }
+    
+    #info {
+        border: 2px solid #6c0505;
+        border-radius: 10px;
+        background-color: #1f1058;
+        color: #b7e10e;
+        margin: 0 auto;
+        padding: 10px 20px;
+        width: 250px;
+        height: 30px; 
+        text-align: center;
+        font-size: 25px;
+    }
+
+    .answer-button {
+        display: inline-block;
+        width: 300px;
+        margin: 15px;
+        padding: 15px;
+        background-color: #E0E0E0;
+        border: none;
+        cursor: pointer;
+        color: white;
+        background-image: linear-gradient(to bottom, #00a8e8, #0077b5);
+        transition: background-color 0.3s;
+    }
+
+    .answer-button:hover {
+        background-image: linear-gradient(to bottom, #3ac0ea, #0077b5);
+    }
+    </style>
+
+    <div id="container">
+        <div id="question-container">
+        <h2 id="question"></h2>
+        <div id="answers"></div>
+        </div>
+        <div id="info"></div>
+    </div>
+
+<script>
+    //Ovaj dio koda u PHP-u
+    //------------------------------
+    //var questions = [];
+    // questions = GetQuestions(quizName);
+    //for question[i] answer = GetAnswer(question[i]);
+    //questionColor = GetColor --- boja je ovisno o kategoriji pitanje, znanost,povijest,sport...  
+    //------------------------------
+    
+    //Ovo isto ne treba, samo za mock test 
+    //jer ce to pokretati php najvjerojatnije
+    
+    
+    //dummy data
+    var questions = ["prvopitanje?","drugopitanje?","3.pitanje?","4.pitanje?","5.pitanje?","6.pitanjepitanjepitanjepitanjep pitanjepitanjepitanje itanje pitanjepit anjep itanjepitanjepitanje?"];
+    //neka uvijek prvi u nizu answers bude tocan odgovor, a random shuffle neka napravi funckija PresentAnswers(); 
+    var answers = ["prvi odgovor","drugi odgovor","treci odgovor","cetvrti odgovor"];
+    var questionColor = "#FFC0CB"; //morat ce bit u ovakvom zapisu jer cemo za svaku kategoriju koristiti razlicitu boju 
+    var quizName = "Ime kviza";
+    var numOfCorrectlyAnswered = 6;
+    var numOfAnswers = 12;
+    
+    $(document).ready(function () {
+        Start();
+    });
+
+    function Start(){
+        var i = 3; //isto dummy - kao redni broj pitanja 
+        PresentWholeQuestionContainer(i+1,questions[i],answers,questionColor,quizName,numOfCorrectlyAnswered,numOfAnswers);
+    }
+    
+    function PresentWholeQuestionContainer(number,question,answers,questionColor,quizName,numOfCorrectlyAnswered,numOfAnswers){
+        document.getElementById("info").innerHTML = quizName + "  \n  " + numOfCorrectlyAnswered + "/" + numOfAnswers;
+        PresentQuestion(number,question,questionColor);
+        for(let i = 0; i < answers.length; i++) PresentAnswer(answers[i]);
+    }
+
+    function PresentQuestion(number,question,questionColor) {
+        var questionContainer = document.getElementById("question-container");
+        questionContainer.innerHTML = "<h2>" + number + ". " + question + "</h2>";
+        questionContainer.style.backgroundColor = questionColor;
+    }
+    
+    function PresentAnswer(answer) {
+            var questionContainer = document.getElementById("question-container");
+            var answerButton = document.createElement("button");
+            answerButton.classList.add("answer-button");
+            answerButton.innerHTML = answer;
+            answerButton.addEventListener("click", IsAnswerCorrect);
+            questionContainer.appendChild(answerButton);
+    }
+
+    //vraca true/false
+    function IsAnswerCorrect(){
+        var answerText = $(event.target).text()
+        if(answerText === answers[i]) return true; 
+        else return false;
+    }
+</script>
+</body>
+</html>
