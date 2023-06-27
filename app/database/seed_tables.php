@@ -165,7 +165,7 @@ function seed_table_questions() {
 		$st->execute(
 			array(
 				'category' => 'science',
-				'question' => 'Approximately how long (in months) does the gestation period for cows last? (1 digit)',
+				'question' => 'Approximately how long (in months) does the cow gestation period last? (1 digit)',
 				'answer' => '9'
 			)
 		);
