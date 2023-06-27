@@ -21,8 +21,13 @@ Web-stranica omogućava korisnicima rješavanje jednog od ponuđenih kvizova. Kv
 
 ## TODO
 - ~~(Filip) kreirati u bazi i popuniti tablicu s pitanjima, kategorijom, točnim odgovorom i eventualnim ponuđenim odgovorima~~
-- ~~(Filip) nadograditi datoteke `create_tables.php` i `seed_tables.php` tako da podržavaju i kreiranje/punjenje tablice `questions`~~
+- ~~(Filip) nadograditi datoteke `create_tables.php` i `seed_tables.php` tako da podržavaju kreiranje/punjenje i tablice `questions`~~
 - (Vilim) odgovaranje na pitanja u js - klijentski dio obavljen, potrebna integracija u view-u php, sa pravim pitanjima
+- napraviti "homepage" (homepage se prikazuje nakon uspješnog logina) s opcijama
+  - singleplayer (**prioritet**)
+  - multiplayer (nakon što implementiramo opciju singleplayer)
+  - admin opcije (ukoliko je ulogirani korisnik admin)
+  - ... TODO opcije koje mogu obogatiti aplikaciju (npr. settings za korisnika, korisnikova statistika, ...)
 - (Filip) kreirati u bazi tablice:
   - `quizzes`
     - sadrži _custom_ kvizove stvorene od strane administratora
@@ -30,11 +35,7 @@ Web-stranica omogućava korisnicima rješavanje jednog od ponuđenih kvizova. Kv
   - `quizzes_questions`
     - kolone: `quiz_id`, `question_id`, bez primarnog ključa
     - svaki redak predstavlja pripadnost pitanja kvizu
-- napraviti "homepage" (homepage se prikazuje nakon uspješnog logina) s opcijama
-  - singleplayer (**prioritet**)
-  - multiplayer (nakon što implementiramo opciju singleplayer)
-  - admin opcije (ukoliko je ulogirani korisnik admin)
-  - ... TODO opcije koje mogu obogatiti aplikaciju (npr. settings za korisnika, korisnikova statistika, ...)
+- (Filip) dodati još pitanja u tablicu `questions`
 - dovršiti `Log In` opciju (handleati neuspješan login, odnosno nepostojeći username i/ili netočnu lozinku)
 - implementirati mogućnost `Sign Up` (gumb već postoji)
 - CSS (nizak prioritet)
