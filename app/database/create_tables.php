@@ -12,6 +12,8 @@ try {
 
 	$has_users_table = in_array('users', $tables);
 	$has_questions_table = in_array('questions', $tables);
+	$has_quizzes_table = in_array('quizzes', $tables);
+	$has_quizzes_questions_table = in_array('quizzes_questions', $tables);
 } catch( PDOException $e ) {
 	exit( "PDO error [show tables]: " . $e->getMessage() );
 }
@@ -22,7 +24,13 @@ if (!$has_users_table)
 if (!$has_questions_table)
 	create_table_questions();
 
-if ($has_users_table && $has_questions_table)
+if (!$has_quizzes_table)
+	create_table_quizzes();
+
+if (!$has_quizzes_questions_table)
+	create_table_quizzes_questions();
+
+if ($has_users_table && $has_questions_table && $has_quizzes_table && $has_quizzes_questions_table)
 	echo 'Sve potrebne tablice već postoje u bazi.';
 
 // ------------------------------------------
@@ -55,7 +63,7 @@ function create_table_questions() {
 	// Stvaramo tablicu questions.
 	/*
 	Svaki question ima:
-		- id (automatski će se povećati za svakog novoubačenog korisnika)
+		- id (automatski će se povećati za svako novoubačeno pitanje)
 		- kategoriju
 		- tekst pitanja
 		- točan odgovor
@@ -78,6 +86,54 @@ function create_table_questions() {
 	} catch( PDOException $e ) { exit( "PDO error (create_table_questions): " . $e->getMessage() ); }
 
 	echo "Napravio tablicu questions.<br>";
+}
+
+function create_table_quizzes() {
+	global $db;
+
+	// Stvaramo tablicu quizzes.
+	/*
+	Svaki quiz ima:
+		- id (automatski će se povećati za svaki novoubačeni kviz)
+		- naziv
+		- id autora kviza
+	*/
+
+	try {
+		$st = $db->prepare(
+			'CREATE TABLE IF NOT EXISTS quizzes (' .
+			'id int NOT NULL PRIMARY KEY AUTO_INCREMENT,' .
+			'name varchar(30) NOT NULL,' .
+			'author int NOT NULL);'
+		);
+
+		$st->execute();
+	} catch( PDOException $e ) { exit( "PDO error (create_table_quizzes): " . $e->getMessage() ); }
+
+	echo "Napravio tablicu quizzes.<br>";
+}
+
+function create_table_quizzes_questions() {
+	global $db;
+
+	// Stvaramo tablicu quizzes_questions koja povezuje kvizove s pitanjima koja sadrže.
+	/*
+	Svaki zapis u tablici quizzes_questions ima:
+		- id kviza
+		- id pitanja
+	*/
+
+	try {
+		$st = $db->prepare(
+			'CREATE TABLE IF NOT EXISTS quizzes_questions (' .
+			'quiz_id int NOT NULL,' .
+			'question_id int NOT NULL);'
+		);
+
+		$st->execute();
+	} catch( PDOException $e ) { exit( "PDO error (create_table_quizzes_questions): " . $e->getMessage() ); }
+
+	echo "Napravio tablicu quizzes_questions.<br>";
 }
 
 ?>

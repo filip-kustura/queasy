@@ -7,6 +7,8 @@ $db = DB::getConnection();
 
 $users_table_empty = isTableEmpty('users');
 $questions_table_empty = isTableEmpty('questions');
+$quizzes_table_empty = isTableEmpty('quizzes');
+$quizzes_questions_table_empty = isTableEmpty('quizzes_questions');
 
 if ($users_table_empty)
 	seed_table_users();
@@ -14,7 +16,13 @@ if ($users_table_empty)
 if ($questions_table_empty)
 	seed_table_questions();
 
-if (!$users_table_empty && !$questions_table_empty)
+if ($quizzes_table_empty)
+	seed_table_quizzes();
+
+if ($quizzes_questions_table_empty)
+	seed_table_quizzes_questions();
+
+if (!$users_table_empty && !$questions_table_empty && !$quizzes_table_empty)
 	echo 'Sve potrebne tablice već su popunjene podacima.';
 
 // ------------------------------------------
@@ -47,6 +55,43 @@ function seed_table_users()
 	catch( PDOException $e ) { exit( "PDO error (seed_table_users): " . $e->getMessage() ); }
 
 	echo "Ubacio korisnike u tablicu users.<br />";
+}
+
+function seed_table_quizzes() {
+	global $db;
+
+	// Ubaci neke kvizove u tablicu users.
+	// Uočimo da ne treba specificirati id koji se automatski poveća kod svakog ubacivanja.
+	try {
+		$st = $db->prepare( 'INSERT INTO quizzes(name, author) VALUES (:name, :author)' );
+
+		$st->execute(array('name' => 'First Quiz', 'author' => 2));
+	} catch( PDOException $e ) { exit( "PDO error (seed_table_quizzes): " . $e->getMessage() ); }
+
+	echo "Ubacio kvizove u tablicu quizzes.<br>";
+}
+
+function seed_table_quizzes_questions() {
+	global $db;
+
+	// Ubaci neke parove (kviz, pitanje) u tablicu users.
+	try {
+		$st = $db->prepare( 'INSERT INTO quizzes_questions(quiz_id, question_id) VALUES (:quiz_id, :question_id)' );
+
+		$st->execute(array('quiz_id' => '1', 'question_id' => 1));
+		$st->execute(array('quiz_id' => '1', 'question_id' => 2));
+		$st->execute(array('quiz_id' => '1', 'question_id' => 3));
+		$st->execute(array('quiz_id' => '1', 'question_id' => 4));
+		$st->execute(array('quiz_id' => '1', 'question_id' => 5));
+		$st->execute(array('quiz_id' => '1', 'question_id' => 6));
+		$st->execute(array('quiz_id' => '1', 'question_id' => 7));
+		$st->execute(array('quiz_id' => '1', 'question_id' => 8));
+		$st->execute(array('quiz_id' => '1', 'question_id' => 9));
+		$st->execute(array('quiz_id' => '1', 'question_id' => 10));
+		$st->execute(array('quiz_id' => '1', 'question_id' => 11));
+	} catch( PDOException $e ) { exit( "PDO error (seed_table_quizzes_questions): " . $e->getMessage() ); }
+
+	echo "Ubacio parove (kviz, pitanje) u tablicu quizzes_questions.<br>";
 }
 
 function seed_table_questions() {
