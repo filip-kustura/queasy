@@ -21,42 +21,33 @@ class LoginService {
             );
 			
 			$row = $statement->fetch();
+			
+			// Započni session
+			$ss = Session::getInstance();
 
 			if ($row === false) {
-				//displayLoginForm('Non-existent user.');
-				//return;
-
+				$ss->warning = 'Non-existent user.';
 				return false; // Login unsuccessful
 			} else {
-				/*if ($_POST['username'] !== $row['username']) {
-					displayLoginForm('Non-existent user.');
-					return;
-				}*/
+				if ($username_input !== $row['username']) {
+					$ss->warning = 'Non-existent user.';
+					return false; // Login unsuccessful
+				}
+				
 				$hash = $row['password'];
 	
 				if (password_verify($password_input, $hash)) {
-					//$_SESSION['id'] = $_POST['username'];
-					//header('Location: my_quacks.php');
-					//exit();
-	
-					// Započni session
-					$ss = Session::getInstance();
-					
-					// Spremi korisnikov ID u session
+					// Spremi korisnikov ID i username u session
 					$ss->id = $row['id'];
-					return true;
-				}/* else {
-					displayLoginForm('Invalid password.');
-					return;
-				}*/
-
-				return false; // Login unsuccessful
+					$ss->username = $row['username'];
+					return true; // Login successful
+				} else {
+					$ss->warning = 'Invalid password.';
+					return false; // Login unsuccessful
+				}
 			}
         } catch (PDOException $e) {
-            //displayLoginForm($e->getMessage());
-            //return;
-
-			echo $e->getMessage();
+            echo $e->getMessage();
         }
 	}
 

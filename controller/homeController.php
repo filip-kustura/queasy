@@ -1,10 +1,12 @@
 <?php
 
-require_once __DIR__ . '/../model/homeservice.class.php';
+require_once __DIR__ . '/../model/session.class.php';
 
 class HomeController {
 	public function index() {
-		// TODO
+		$ss = Session::getInstance();
+
+		require_once __DIR__ . '/../view/home_index.php';
 	}
 }; 
 
