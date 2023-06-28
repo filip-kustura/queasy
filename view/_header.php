@@ -14,7 +14,7 @@
         }
 
         .logo {
-            width: 200px; /* Adjust the width as needed */
+            width: 225px; /* Adjust the width as needed */
         }
 
         .menu {
@@ -32,13 +32,13 @@
             text-decoration: none;
             color: #da630e;
             padding: 8px 16px;
-            font-size: 16px;
+            font-size: 22px;
             font-weight: bold;
             font-family: "Arial", sans-serif;
         }
 
         .menu li a:hover {
-            font-size: 16px;
+            font-size: 22px;
             background-color: #da630e;
             color: #1f086c;
             font-weight: bold;
@@ -63,3 +63,4 @@
             <li><a href="../controller/WhateverController.php">Dodati sto nam padne napamet?</a></li>
         </ul>
     </div>
+
