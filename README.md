@@ -36,13 +36,14 @@ Web-stranica omogućava korisnicima rješavanje jednog od ponuđenih kvizova. Kv
 - (Filip) dodati još pitanja u tablicu `questions`
 - ~~(Filip) dovršiti `Log In` opciju (handleati neuspješan login, odnosno nepostojeći username i/ili netočnu lozinku)~~
   - ~~po uspješnom loginu onemogućiti povratak na unos korisničkog imena i lozinke bilo pritiskom na strelicu "back" u browseru, bilo upisivanjem url-a za unos korisničkog imena i lozinke~~
-  - (Filip) realizirati logout opciju
-- implementirati mogućnost `Sign Up` (gumb već postoji)
+  - ~~(Filip) realizirati logout opciju~~
+- (Filip) implementirati mogućnost `Sign Up` (gumb već postoji)
 - CSS (nizak prioritet)
 - možda u JavaScript kodu, gdje bude prilika, koristiti Ajax
 - (?) gdje je već potrebno dodati napomenu za pitanja gdje treba upisati odgovor:
   - ako se traži broj, potrebno ga je upisati brojkama a ne riječima
   - svaki odgovor potrebno je upisati bez "a/an/the" člana
+- popraviti animacije u footeru
 - dodati timer za pitanja
 - dodati kolonu creation_date u tablicu `quizzes` koja će se automatski popunjavati prilikom stvaranja novog kviza
 - profiniti login da obrađuje više raznih slučajeva i reagira na njih na odgovarajući način
