@@ -12,10 +12,7 @@ Web-stranica omogućava korisnicima rješavanje jednog od ponuđenih kvizova. Kv
 - Inače nije dobra ideja spremati puno podataka u `$_SESSION`.
 - U `$_SESSION` se obično samo spremi nekakav identifikator `$_SESSION['id']` koji serveru jednoznačno određuje korisnika/session.
 - Svi ostali podaci se tada spremaju u bazu podataka pomoću identifikatora.
-- Tako i ovdje uspješan login postavlja samo `$_SESSION['id']`, gdje je `id` korisnikov identifikator iz tablice `users`.
-- Dosadašnji primjeri započinjanja/dohvaćanja sessiona u projektu su u datotekama:
-  - `loginservice.class.php` u metodi `handleLoginAttempt()` -- započinjanje sessiona nakon uspješnog logina i pohrana korisnikovog identifikatora `id` u session
-  - `loginController.php` u metodi `handleAction()` -- dohvaćanje sessiona (i identifikatora `id` ulogiranog korisnika)
+- Tako i ovdje uspješan login postavlja samo `$_SESSION['id']` i `$_SESSION['username']`, gdje je `id` korisnikov identifikator iz tablice `users`.
 
 ## TODO
 - ~~(Filip) kreirati u bazi i popuniti tablicu s pitanjima, kategorijom, točnim odgovorom i eventualnim ponuđenim odgovorima~~
@@ -37,7 +34,10 @@ Web-stranica omogućava korisnicima rješavanje jednog od ponuđenih kvizova. Kv
 - ~~(Filip) dovršiti `Log In` opciju (handleati neuspješan login, odnosno nepostojeći username i/ili netočnu lozinku)~~
   - ~~po uspješnom loginu onemogućiti povratak na unos korisničkog imena i lozinke bilo pritiskom na strelicu "back" u browseru, bilo upisivanjem url-a za unos korisničkog imena i lozinke~~
   - ~~(Filip) realizirati logout opciju~~
-- (Filip) implementirati mogućnost `Sign Up` (gumb već postoji)
+- ~~(Filip) implementirati mogućnost `Sign Up` (gumb već postoji)~~
+- ~~(Filip) kreirati u bazi tablicu `users_quizzes` koja povezuje korisnike s _custom_ kvizovima koje su riješili.~~
+  - ~~kolone: `user_id`, `quiz_id`~~
+  - ~~nadograditi dattoeku `create_tables.php`~~
 - CSS (nizak prioritet)
 - možda u JavaScript kodu, gdje bude prilika, koristiti Ajax
 - (?) gdje je već potrebno dodati napomenu za pitanja gdje treba upisati odgovor:
@@ -46,4 +46,5 @@ Web-stranica omogućava korisnicima rješavanje jednog od ponuđenih kvizova. Kv
 - popraviti animacije u footeru
 - dodati timer za pitanja
 - dodati kolonu creation_date u tablicu `quizzes` koja će se automatski popunjavati prilikom stvaranja novog kviza
-- profiniti login da obrađuje više raznih slučajeva i reagira na njih na odgovarajući način
+- ograničiti duljinu usernamea/passworda prilikom sign-upa i odozdo i odozgo
+- profiniti login/signup da obrađuje više raznih slučajeva i reagira na njih na odgovarajući način, 
