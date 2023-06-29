@@ -41,12 +41,81 @@ class QuizSolving {
             return $row; 
         }
     }
-    
-    function GetQuestionsByQuizId($id){
 
+    function GetQuizNameByQuizId($id){
+        try
+		{
+			$db = DB::getConnection();
+			$st = $db->prepare('SELECT name FROM kustura.quizzes WHERE id=:id');
+			$st->execute(array('id' => $id));
+		}
+		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
+
+        $row = $st -> fetch(); 
+        if($row === false){
+            return null; 
+        } 
+        else{
+            //tu u nekom primjeru vraca klasu, ja cu zasad samo id-eve
+            return $row; 
+        }
     }
 
+    function GetRandomElement($array) {
+        $index = array_rand($array);
+        return $array[$index];
+    }
 
+    function GetRandomQuizId(){
+        try
+		{
+			$db = DB::getConnection();
+			$allQuizIds = GetAllQuizIds();
+		}
+		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
+
+        while(1){
+            $randomQuizId = GetRandomElement($allQuizIds);
+            //ako je igrac vec odigrao random odabrani kviz ponovo odaberi novi kviz, id cemo dohvatiti iz SESSION-a? 
+            if(true) break; // zasada ovako 
+        }
+        
+        return $randomQuizId;
+    }
+
+    function GetQuestionInfoFromQuestionId($id){
+        try
+		{
+			$db = DB::getConnection();
+			$st = $db->prepare('SELECT * FROM kustura.quizzes_questions WHERE id=:id');
+			$st->execute(array('id' => $id));
+		}
+		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
+        
+        $questionInfo = $st -> fetchAll();
+        return $questionInfo; 
+    }
+
+    function GetAnswersByQuestionId($id){
+        $answers = []; 
+        $wholeInfo = GetQuestionInfoFromQuestionId($id); 
+        array_push($answers, $wholeInfo[3],$wholeInfo[4],$wholeInfo[5],$wholeInfo[6]);
+        return $answers; 
+    }
+
+    function GetQuestionsIdsByQuizId($id){
+        //dohvati question ids koji su povezani sa tim id-em kviza
+        try
+		{
+			$db = DB::getConnection();
+			$st = $db->prepare('SELECT question_id FROM kustura.quizzes_questions WHERE quiz_id=:quiz_id');
+			$st->execute(array('quiz_id' => $id));
+		}
+		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
+        $questionIds = $st -> fetch();
+        
+        return $questionIds;        
+    }
 };
 
 
