@@ -70,12 +70,12 @@ class QuizSolving {
         try
 		{
 			$db = DB::getConnection();
-			$allQuizIds = GetAllQuizIds();
+			$allQuizIds = $this->GetAllQuizIds();
 		}
 		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
 
         while(1){
-            $randomQuizId = GetRandomElement($allQuizIds);
+            $randomQuizId = $this->GetRandomElement($allQuizIds);
             //ako je igrac vec odigrao random odabrani kviz ponovo odaberi novi kviz, id cemo dohvatiti iz SESSION-a? 
             if(true) break; // zasada ovako 
         }
@@ -87,7 +87,7 @@ class QuizSolving {
         try
 		{
 			$db = DB::getConnection();
-			$st = $db->prepare('SELECT * FROM kustura.quizzes_questions WHERE id=:id');
+			$st = $db->prepare('SELECT * FROM kustura.questions WHERE id=:id');
 			$st->execute(array('id' => $id));
 		}
 		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
@@ -96,10 +96,17 @@ class QuizSolving {
         return $questionInfo; 
     }
 
+    function GetQuestionByQuestionId($id){
+        $questionText = ""; 
+        $wholeInfo = $this->GetQuestionInfoFromQuestionId($id); 
+        $questionText = $wholeInfo[0][1];
+        return $questionText;
+    }
+
     function GetAnswersByQuestionId($id){
         $answers = []; 
-        $wholeInfo = GetQuestionInfoFromQuestionId($id); 
-        array_push($answers, $wholeInfo[3],$wholeInfo[4],$wholeInfo[5],$wholeInfo[6]);
+        $wholeInfo = $this->GetQuestionInfoFromQuestionId($id); 
+        array_push($answers, $wholeInfo[0][3],$wholeInfo[0][4],$wholeInfo[0][5],$wholeInfo[0][6]);
         return $answers; 
     }
 

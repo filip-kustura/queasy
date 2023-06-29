@@ -15,8 +15,8 @@
             if (isset($_SESSION['id']))
                 echo '
         <nav>
-            <li><a href="../controller/MyProfileController.php">My profile</a></li>
-            <li><a href="RandomQuizSolvingController.php">Play random quiz</a></li>
+            <li><a href="index.php?rt=RandomQuizSolving">My profile</a></li>
+            <li><a href="index.php?rt=RandomQuizSolving">Play random quiz</a></li>
             <li><a href="../controller/RandomQsController.php">Answer random questions</a></li>
             <li><a href="../controller/WhateverController.php">Dodati sto nam padne napamet?</a></li>
     	</nav>
