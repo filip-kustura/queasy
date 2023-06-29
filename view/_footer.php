@@ -1,11 +1,10 @@
-<footer class="footer">
-            <div class="quote-container">
-                <span id="quote-text">"Quizzes are not about being right or wrong; they're about learning and growth."</span>
-            </div>
-            <button class="logout-button">Log Out</button>
-        </footer>
+    <footer class="footer">
+        <div class="quote-container">
+            <span id="quote-text">"Quizzes are not about being right or wrong; they're about learning and growth."</span>
+        </div>
+        <?php if (isset($_SESSION['id'])) echo '<form action="index.php?rt=index" method="post"><input type="submit" value="Log Out" name="logout" id="logout-button">'?>
+    </footer>
 
-    
     <script>
         var quotes = [
             "The only way to learn is to test yourself.",
