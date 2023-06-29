@@ -22,7 +22,7 @@ if ($quizzes_table_empty)
 if ($quizzes_questions_table_empty)
 	seed_table_quizzes_questions();
 
-if (!$users_table_empty && !$questions_table_empty && !$quizzes_table_empty)
+if (!$users_table_empty && !$questions_table_empty && !$quizzes_table_empty && !$quizzes_questions_table_empty)
 	echo 'Sve potrebne tablice već su popunjene podacima.';
 
 // ------------------------------------------
@@ -84,11 +84,11 @@ function seed_table_quizzes_questions() {
 		$st->execute(array('quiz_id' => '1', 'question_id' => 4));
 		$st->execute(array('quiz_id' => '1', 'question_id' => 5));
 		$st->execute(array('quiz_id' => '1', 'question_id' => 6));
-		$st->execute(array('quiz_id' => '1', 'question_id' => 7));
-		$st->execute(array('quiz_id' => '1', 'question_id' => 8));
-		$st->execute(array('quiz_id' => '1', 'question_id' => 9));
-		$st->execute(array('quiz_id' => '1', 'question_id' => 10));
-		$st->execute(array('quiz_id' => '1', 'question_id' => 11));
+		$st->execute(array('quiz_id' => '1', 'question_id' => 32));
+		$st->execute(array('quiz_id' => '1', 'question_id' => 33));
+		$st->execute(array('quiz_id' => '1', 'question_id' => 34));
+		$st->execute(array('quiz_id' => '1', 'question_id' => 35));
+		$st->execute(array('quiz_id' => '1', 'question_id' => 36));
 	} catch( PDOException $e ) { exit( "PDO error (seed_table_quizzes_questions): " . $e->getMessage() ); }
 
 	echo "Ubacio parove (kviz, pitanje) u tablicu quizzes_questions.<br>";
@@ -169,6 +169,138 @@ function seed_table_questions() {
 				'optionC' => 'Teach himself how to fly'
 			)
 		);
+
+		$st->execute(
+			array(
+				'category' => 'history',
+				'question' => 'Who did Cambodia gain independence in 1953 from?',
+				'answer' => 'France',
+				'optionA' => 'United Kingdom',
+				'optionB' => 'Portugal',
+				'optionC' => 'The Netherlands'
+			)
+		);
+
+		$st->execute(
+			array(
+				'category' => 'geography',
+				'question' => 'Which countrie\'s flag consisted only of a green rectangle from 1977 to 2011?',
+				'answer' => 'Libya',
+				'optionA' => 'Liberia',
+				'optionB' => 'Lebanon',
+				'optionC' => 'Lesotho'
+			)
+		);
+		
+		$st->execute(
+			array(
+				'category' => 'sports',
+				'question' => 'Which country has won the most gold Oympic medals in water polo?',
+				'answer' => 'Hungary',
+				'optionA' => 'Italy',
+				'optionB' => 'Spain',
+				'optionC' => 'Croatia'
+			)
+		);
+
+		$st->execute(
+			array(
+				'category' => 'art',
+				'question' => 'What is Bob Fosse known for?',
+				'answer' => 'choreographies',
+				'optionA' => 'paintings',
+				'optionB' => 'fiction novels',
+				'optionC' => 'pottery'
+			)
+		);
+
+		$st->execute(
+			array(
+				'category' => 'science',
+				'question' => '1 meter per second equals how many kilometers per hour?',
+				'answer' => '3.6',
+				'optionA' => '7.2',
+				'optionB' => '6',
+				'optionC' => '10'
+			)
+		);
+
+		$st->execute(
+			array(
+				'category' => 'entertainment',
+				'question' => 'What was the road called in the movie "The Wizard of Oz"?',
+				'answer' => 'The Yellow Brick Road',
+				'optionA' => 'The Blue Cobblestone Road',
+				'optionB' => 'The Green Asphalt Road',
+				'optionC' => 'The Red Crystal Brick Road'
+			)
+		);
+
+		$st->execute(
+			array(
+				'category' => 'history',
+				'question' => 'The attack on Pearl Harbor was a surprise military strike by which army?',
+				'answer' => 'Japanese',
+				'optionA' => 'Italian',
+				'optionB' => 'American',
+				'optionC' => 'British'
+			)
+		);
+
+		$st->execute(
+			array(
+				'category' => 'geography',
+				'question' => 'Where is the biggest airport (by number of passengers) in the United States located?',
+				'answer' => 'Atlanta',
+				'optionA' => 'Los Angeles',
+				'optionB' => 'New York',
+				'optionC' => 'Dallas'
+			)
+		);
+		
+		$st->execute(
+			array(
+				'category' => 'sports',
+				'question' => 'Which of the following events is included in the decathlon?',
+				'answer' => '110 metres hurdles',
+				'optionA' => '400 metres hurdles',
+				'optionB' => '200 metres',
+				'optionC' => '800 metres'
+			)
+		);
+
+		$st->execute(
+			array(
+				'category' => 'art',
+				'question' => 'Who painted "The Starry Night"?',
+				'answer' => 'Vincent van Gogh',
+				'optionA' => 'Pablo Picasso',
+				'optionB' => 'Claude Monet',
+				'optionC' => 'Leonardo da Vinci'
+			)
+		);
+
+		$st->execute(
+			array(
+				'category' => 'science',
+				'question' => 'Visible light is usually defined as having wavelengths in the range of 400-700...',
+				'answer' => 'nanometres',
+				'optionA' => 'microometres',
+				'optionB' => 'picometres',
+				'optionC' => 'femtometres'
+			)
+		);
+
+		$st->execute(
+			array(
+				'category' => 'entertainment',
+				'question' => '"Pump Up the Jam" is the opening track on which Belgian act\'s first album?',
+				'answer' => 'Technotronic',
+				'optionA' => 'Daisy Dee',
+				'optionB' => 'Foster The People',
+				'optionC' => 'Global Deejays'
+			)
+		);
 	} catch( PDOException $e ) { exit( "PDO error (seed_table_questions): " . $e->getMessage() ); }
 
 	// Ubacimo pitanja gdje treba upisati odgovor
@@ -178,7 +310,7 @@ function seed_table_questions() {
 		$st->execute(
 			array(
 				'category' => 'history',
-				'question' => 'In which century did the Western Roman Empire fall? (1 digit)',
+				'question' => 'In which century did the Western Roman Empire fall? Enter a number only.',
 				'answer' => '5'
 			)
 		);
@@ -210,7 +342,7 @@ function seed_table_questions() {
 		$st->execute(
 			array(
 				'category' => 'science',
-				'question' => 'Approximately how long (in months) does the cow gestation period last? (1 digit)',
+				'question' => 'Approximately how long (in months) does the cow gestation period last? Enter a number only',
 				'answer' => '9'
 			)
 		);
@@ -218,16 +350,16 @@ function seed_table_questions() {
 		$st->execute(
 			array(
 				'category' => 'entertainment',
-				'question' => 'What species is SpongeBob SquarePants\' employer? (1 word, 4 letters)',
+				'question' => 'What species is SpongeBob SquarePants\' employer? Enter a noun only, without "a/an/the".',
 				'answer' => 'crab'
 			)
 		);
 
-		/*$st->execute(
+		$st->execute(
 			array(
 				'category' => 'history',
-				'question' => 'In which century did the Western Roman Empire fall? (1 digit)',
-				'answer' => '5'
+				'question' => 'In which century was the first Diesel engine built? Enter a number only.',
+				'answer' => '19'
 			)
 		);
 
@@ -242,34 +374,82 @@ function seed_table_questions() {
 		$st->execute(
 			array(
 				'category' => 'sports',
-				'question' => 'In what sport should you "float like a butterfly and sting like a bee"?',
-				'answer' => 'boxing'
+				'question' => 'Which country won the first ever FIFA World Cup in 1930?',
+				'answer' => 'uruguay'
 			)
 		);
 
 		$st->execute(
 			array(
 				'category' => 'art',
-				'question' => 'Who is the Roman god of freshwater and the sea in Roman religion?',
-				'answer' => 'neptune'
+				'question' => 'In the Marvel comics, what is the FIRST name of Luke Cage and Jessica Jones\' daughter?',
+				'answer' => 'danielle'
 			)
 		);
 
 		$st->execute(
 			array(
 				'category' => 'science',
-				'question' => 'Approximately how long (in months) does the gestation period for cows last? (1 digit)',
-				'answer' => '9'
+				'question' => 'One of two main female sex hormones is estrogen. What is the other one called?',
+				'answer' => 'progesterone'
 			)
 		);
 
 		$st->execute(
 			array(
 				'category' => 'entertainment',
-				'question' => 'What species is SpongeBob SquarePants\' employer? (1 word, 4 letters)',
-				'answer' => 'crab'
+				'question' => 'What Madonna\'s hit song is also a name of a magazine?',
+				'answer' => 'vogue'
 			)
-		);*/
+		);
+
+		$st->execute(
+			array(
+				'category' => 'history',
+				'question' => 'On July 4th of which year was the US Declaration of Independence issued? Enter a number only.',
+				'answer' => '1776'
+			)
+		);
+
+		$st->execute(
+			array(
+				'category' => 'geography',
+				'question' => 'What Tennessee city on the Mississippi river is famous for its Pyramid Arena?',
+				'answer' => 'memphis'
+			)
+		);
+
+		$st->execute(
+			array(
+				'category' => 'sports',
+				'question' => 'George Weah is the first African former professional footballer to become a president of their country. He was also voted as the best player in the world in 1995. Which country is he from?',
+				'answer' => 'liberia'
+			)
+		);
+
+		$st->execute(
+			array(
+				'category' => 'art',
+				'question' => 'Jazz is a music genre that originated in the African-American communities of which American city?',
+				'answer' => 'new orleans'
+			)
+		);
+
+		$st->execute(
+			array(
+				'category' => 'science',
+				'question' => 'The International System of Units is internationally known by which abbreviation?',
+				'answer' => 'si'
+			)
+		);
+
+		$st->execute(
+			array(
+				'category' => 'entertainment',
+				'question' => 'Situated in New York City\'s Greenwich Village, Central Perk is a coffeehouse frequently visited by the main protagonists in which TV show?',
+				'answer' => 'friends'
+			)
+		);
 	} catch( PDOException $e ) { exit( "PDO error (seed_table_questions): " . $e->getMessage() ); }
 
 	echo "Ubacio pitanja u tablicu questions.<br>";

@@ -14,6 +14,7 @@ try {
 	$has_questions_table = in_array('questions', $tables);
 	$has_quizzes_table = in_array('quizzes', $tables);
 	$has_quizzes_questions_table = in_array('quizzes_questions', $tables);
+	$has_users_quizzes_table = in_array('users_quizzes', $tables);
 } catch( PDOException $e ) {
 	exit( "PDO error [show tables]: " . $e->getMessage() );
 }
@@ -30,7 +31,10 @@ if (!$has_quizzes_table)
 if (!$has_quizzes_questions_table)
 	create_table_quizzes_questions();
 
-if ($has_users_table && $has_questions_table && $has_quizzes_table && $has_quizzes_questions_table)
+if (!$has_users_quizzes_table)
+	create_table_users_quizzes();
+
+if ($has_users_table && $has_questions_table && $has_quizzes_table && $has_quizzes_questions_table && $has_users_quizzes_table)
 	echo 'Sve potrebne tablice već postoje u bazi.';
 
 // ------------------------------------------
@@ -134,6 +138,29 @@ function create_table_quizzes_questions() {
 	} catch( PDOException $e ) { exit( "PDO error (create_table_quizzes_questions): " . $e->getMessage() ); }
 
 	echo "Napravio tablicu quizzes_questions.<br>";
+}
+
+function create_table_users_quizzes() {
+	global $db;
+
+	// Stvaramo tablicu users_quizzes koja povezuje korisnike s kvizovima koje su riješili.
+	/*
+	Svaki zapis u tablici users_quizzes ima:
+		- id korisnika
+		- id kviza
+	*/
+
+	try {
+		$st = $db->prepare(
+			'CREATE TABLE IF NOT EXISTS users_quizzes (' .
+			'user_id int NOT NULL,' .
+			'quiz_id int NOT NULL);'
+		);
+
+		$st->execute();
+	} catch( PDOException $e ) { exit( "PDO error (create_table_users_quizzes): " . $e->getMessage() ); }
+
+	echo "Napravio tablicu users_quizzes.<br>";	
 }
 
 ?>
