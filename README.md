@@ -21,7 +21,11 @@ Web-stranica omogućava korisnicima rješavanje jednog od ponuđenih kvizova. Kv
 - napraviti "homepage" (homepage se prikazuje nakon uspješnog logina) s opcijama
   - singleplayer (**prioritet**)
   - multiplayer (nakon što implementiramo opciju singleplayer)
-  - admin opcije (ukoliko je ulogirani korisnik admin)
+  - (Filip) admin opcije (ukoliko je ulogirani korisnik admin)
+    - dodati opcije:
+      - `Quizzes`
+      - `Questions`
+      - `Users`
   - ... TODO opcije koje mogu obogatiti aplikaciju (npr. settings za korisnika, korisnikova statistika, ...)
 - ~~(Filip) kreirati u bazi tablice:~~
   - ~~`quizzes`~~
@@ -47,4 +51,5 @@ Web-stranica omogućava korisnicima rješavanje jednog od ponuđenih kvizova. Kv
 - dodati timer za pitanja
 - dodati kolonu creation_date u tablicu `quizzes` koja će se automatski popunjavati prilikom stvaranja novog kviza
 - ograničiti duljinu usernamea/passworda prilikom sign-upa i odozdo i odozgo
+- nakon što odredimo koje ćemo opcije imati u headeru, obogatiti header/footer nekim informacijama, npr. datum/vrijeme, korisnikov username i sl.
 - profiniti login/signup da obrađuje više raznih slučajeva i reagira na njih na odgovarajući način, 
