@@ -10,7 +10,7 @@ class LoginService {
 
         try {
             $statement = $database->prepare(
-                'SELECT id, username, password
+                'SELECT id, username, password, admin
                 FROM users 
                 WHERE username = :username;'
             );
@@ -40,6 +40,10 @@ class LoginService {
 					// Spremi korisnikov ID i username u session
 					$_SESSION['id'] = $row['id'];
 					$_SESSION['username'] = $row['username'];
+
+					if ($row['admin'] === 1) // Korisnik je admin
+						$_SESSION['admin'] = true;
+
 					return true; // Login uspješan
 				} else {
 					$_SESSION['warning'] = 'Invalid password.';
