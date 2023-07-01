@@ -17,7 +17,12 @@ Web-stranica omogućava korisnicima rješavanje jednog od ponuđenih kvizova. Kv
 ## TODO
 - ~~(Filip) kreirati u bazi i popuniti tablicu s pitanjima, kategorijom, točnim odgovorom i eventualnim ponuđenim odgovorima~~
 - ~~(Filip) nadograditi datoteke `create_tables.php` i `seed_tables.php` tako da podržavaju kreiranje/punjenje i tablice `questions`~~
-- (Vilim) odgovaranje na pitanja u js - klijentski dio obavljen, potrebna integracija u view-u php, sa pravim pitanjima
+- (Vilim) DONE:odgovaranje na pitanja u js - klijentski dio obavljen, potrebna integracija u view-u php, sa pravim pitanjima 
+  -(Vilim) Odgovaranje pitanje za pitanjem 
+  -(Vilim) Detekcija zavrsetka kviza i popratni insertovi rezultata u bazu podataka
+  -(Vilim) Boje odgovarajucih kategorija pitanja
+  -(Vilim) Detekcija tipa pitanja(abcd ili text odgovor) te implementacija text pitanja
+-(Vilim) EndQuiz stranica
 - napraviti "homepage" (homepage se prikazuje nakon uspješnog logina) s opcijama
   - singleplayer (**prioritet**)
   - multiplayer (nakon što implementiramo opciju singleplayer)
