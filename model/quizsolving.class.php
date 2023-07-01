@@ -1,7 +1,6 @@
 <?php
 
 require_once __DIR__ . '/../app/database/db.class.php';
-require_once __DIR__ . '/session.class.php';
 
 class QuizSolving {
     function GetAllQuizIds(){
@@ -81,6 +80,13 @@ class QuizSolving {
         }
         
         return $randomQuizId;
+    }
+
+    function GetQuestionCategoryByQuestionId($id){
+        $questionCategory = ""; 
+        $wholeInfo = $this->GetQuestionInfoFromQuestionId($id); 
+        $questionCategory = $wholeInfo[0][1];
+        return $questionCategory;
     }
 
     function GetQuestionInfoFromQuestionId($id){

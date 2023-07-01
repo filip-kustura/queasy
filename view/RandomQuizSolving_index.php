@@ -73,36 +73,28 @@ echo '<script src="view/QuizSolvinglib.js"></script>';
     
 
     $(document).ready(function () {
-        console.log("Prije poziva PresentWholeQuestion funkcije");
-        //Ovo je krivi poziv, popravi
         var answers = []; 
         answers[0] = "<?php echo $_SESSION['answers'][0]; ?>";
         answers[1] = "<?php echo $_SESSION['answers'][1]; ?>";
         answers[2] = "<?php echo $_SESSION['answers'][2]; ?>";
         answers[3] = "<?php echo $_SESSION['answers'][3]; ?>";
-        var color = "<?php echo $_SESSION['color']; ?>";
+        var category = "<?php echo $_SESSION['questionCategory']; ?>";
         var quizName = "<?php echo $_SESSION['quizName']; ?>";
         var question = "<?php echo $_SESSION['question']; ?>";
-        for(let i = 0; i < answers.length; i++){
-            console.log("Odgovor = " + answers[i]); 
-        }
+
         PresentWholeQuestionContainer(
             <?php echo $_SESSION["orderNumberOfQuestion"]; ?>,
             question,
             answers,
-            color,
+            category,
             quizName,
             <?php echo $_SESSION["numOfCorrectlyAnswered"]; ?>,
             <?php echo $_SESSION["numOfAnsweredQuestions"]; ?>
         );
-        console.log("Nakon poziva PresentWholeQuestion funkcije");
     });
 
 
-    //Pomocne funkcije
-    function ConvertAnswersToJSArray(str1, str2, str3, str4) {
-        return [str1, str2, str3, str4];
-    }
+
 
 </script>
 

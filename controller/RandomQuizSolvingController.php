@@ -13,14 +13,12 @@ require_once __DIR__ . '/../model/quizsolving.class.php';
 
 class RandomQuizSolvingController{
     public function index() {
-        $colorOfQuestions = ["#FFA500","#FFFF00","#0000FF","#FF0000","#008000","#800080","#FFFF00","#0000FF","#FF0000","#008000","#800080","#FFFF00","#0000FF","#FF0000","#008000","#800080"]; // svaka boja treba odgovarati  
         $QuizService = new QuizSolving();
         if(!isset($_SESSION["numOfAnswers"])){
             //inicijalizacija kviza
             $quizId = $QuizService->GetRandomQuizId();
             $questionsIds = $QuizService->GetQuestionsIdsByQuizId($quizId);
             $_SESSION["quizName"] = $QuizService->GetQuizNameByQuizId($quizId);
-            echo $_SESSION["quizName"];
             $_SESSION["numOfQuestions"] = Count($questionsIds);
             //colorsOfQuestions = GetColors(); //jos ovo treba dodati 
             
@@ -34,11 +32,10 @@ class RandomQuizSolvingController{
             //pocetak, postavljanje prvog pitanja
             $_SESSION["answers"] = $QuizService->GetAnswersByQuestionId($questionsIds[0]);
             $_SESSION["question"] = $QuizService->GetQuestionByQuestionId($questionsIds[0]); // trenutno pitanje koje se postavlja  
-            $_SESSION["color"] = $colorOfQuestions[0]; 
+            $_SESSION["questionCategory"] = $QuizService->GetQuestionCategoryByQuestionId($questionsIds[0]); 
 
             //odlazak u view i izvrsavanje prvog pitanja
             //header('Location: index.php?rt=RandomQuizSolving');
-            echo "pocinje kviz";
             require_once __DIR__ . '/../view/RandomQuizSolving_index.php';
         }
         else{
@@ -52,15 +49,16 @@ class RandomQuizSolvingController{
             if($_SESSION["numOfAnsweredQuestions"] > Count($questions)){
                 //kviz gotov
                 //header("Location: ../view/EndQuizView.php");
+                //TODO: unsetaj sve potrebne session varijable !
                 echo "Kviz gotov, uredi ovo!";
                  
             }
             else{
                 $_SESSION["orderNumberOfQuestion"]++; 
                 
-                $_SESSION["question"] = $questions[$tmp]; 
+                $_SESSION["question"] = $QuizService->GetQuestionByQuestionId($questionsIds[$tmp]); 
                 $_SESSION["answers"] = $QuizService->GetAnswersByQuestionId($questionsIds[$tmp]); 
-                $_SESSION["color"] = $colorOfQuestions[$tmp]; 
+                $_SESSION["questionCategory"] =$QuizService->GetQuestionCategoryByQuestionId($questionsIds[$tmp]); 
                 header("Location: ../view/RandomQuizSolvingView.php");
             }
         }
