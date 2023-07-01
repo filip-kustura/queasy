@@ -58,6 +58,13 @@ class LoginService {
 	function handleSignUpAttempt($username_input, $password_input) {
 		// Ukoliko je sign-up neuspješan, postavlja warning za ispis korisniku i vraća false
 		// Inače vraća true
+
+		if (strlen($username_input) > $this->getMaximumAllowedUsernameLength()) {
+			session_start();
+			$_SESSION['warning'] = 'Username length can consist of 20 characters at most.';
+			return false;
+		}
+
 		$database = DB::getConnection();
 
         try {
@@ -134,6 +141,31 @@ class LoginService {
 		$_SESSION['id'] = $row['id'];
 		$_SESSION['username'] = $username_input;
 		$_SESSION['new-user'] = true;
+	}
+
+	function getMaximumAllowedUsernameLength() {
+		// Dohvaća maksimalnu dozvoljenu duljinu korisničkog imena
+
+		$database = DB::getConnection();
+		try {
+			$statement = $database->prepare("DESCRIBE users");
+    		$statement->execute();
+    		$columns = $statement->fetchAll(PDO::FETCH_ASSOC);
+		} catch (PDOException $e) {
+			echo $e->getMessage();
+		}
+
+		foreach($columns as $column) {
+			if ($column['Field'] === 'username') {
+				$column_type = $column['Type'];
+				return substr($column_type, strpos($column_type, '(') + 1, -1);
+			}
+		}
+
+		print_r($columns);
+		echo 'hello';
+
+		return ($columns !== '' ? $columns : 'empty');
 	}
 };
 

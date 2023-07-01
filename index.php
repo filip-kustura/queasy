@@ -10,10 +10,15 @@ else
 $parts = explode( '/', $route );
 
 $controllerName = $parts[0] . 'Controller';
+$className = ucfirst($controllerName);
 if( isset( $parts[1] ) )
 	$action = $parts[1];
 else
 	$action = 'index';
+
+// Provjeri je li postavljen poddirektorij subdir
+if (isset($_GET['subdir']))
+	$controllerName = $_GET['subdir'] . '/' . $controllerName;
 
 // Controller $controllerName se nalazi poddirektoriju controller
 $controllerFileName = 'controller/' . $controllerName . '.php';
@@ -22,7 +27,7 @@ $controllerFileName = 'controller/' . $controllerName . '.php';
 require_once $controllerFileName;
 
 // Stvori pripadni kontroler
-$con = new $controllerName; 
+$con = new $className; 
 
 // Pozovi odgovarajuću akciju
 $con->$action();

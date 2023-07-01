@@ -11,8 +11,8 @@ class IndexController {
 		
 		if (!isset($_SESSION['id'])) // Login nije obavljen -- preusmjeri na podstranicu za login
 			header('Location: index.php?rt=login');
-		else
-			header('Location: index.php?rt=???');  // Preusmjeri na ??? podstranicu
+		else // Login je obavljen -- preusmjeri na homepage
+			header('Location: index.php?rt=home');  // Preusmjeri na homepage
 	}
 }; 
 

@@ -66,6 +66,9 @@ function seed_table_quizzes() {
 		$st = $db->prepare( 'INSERT INTO quizzes(name, author) VALUES (:name, :author)' );
 
 		$st->execute(array('name' => 'First Quiz', 'author' => 2));
+		$st->execute(array('name' => 'Second Quiz', 'author' => 2));
+		$st->execute(array('name' => 'Third Quiz', 'author' => 2));
+		$st->execute(array('name' => 'Fourth Quiz', 'author' => 2));
 	} catch( PDOException $e ) { exit( "PDO error (seed_table_quizzes): " . $e->getMessage() ); }
 
 	echo "Ubacio kvizove u tablicu quizzes.<br>";
@@ -89,6 +92,29 @@ function seed_table_quizzes_questions() {
 		$st->execute(array('quiz_id' => '1', 'question_id' => 34));
 		$st->execute(array('quiz_id' => '1', 'question_id' => 35));
 		$st->execute(array('quiz_id' => '1', 'question_id' => 36));
+
+		$st->execute(array('quiz_id' => '2', 'question_id' => 7));
+		$st->execute(array('quiz_id' => '2', 'question_id' => 8));
+		$st->execute(array('quiz_id' => '2', 'question_id' => 9));
+		$st->execute(array('quiz_id' => '2', 'question_id' => 4));
+		$st->execute(array('quiz_id' => '2', 'question_id' => 5));
+		$st->execute(array('quiz_id' => '2', 'question_id' => 6));
+		$st->execute(array('quiz_id' => '2', 'question_id' => 30));
+		$st->execute(array('quiz_id' => '2', 'question_id' => 31));
+		$st->execute(array('quiz_id' => '2', 'question_id' => 32));
+
+		$st->execute(array('quiz_id' => '3', 'question_id' => 10));
+		$st->execute(array('quiz_id' => '3', 'question_id' => 11));
+		$st->execute(array('quiz_id' => '3', 'question_id' => 6));
+		$st->execute(array('quiz_id' => '3', 'question_id' => 30));
+		$st->execute(array('quiz_id' => '3', 'question_id' => 29));
+
+		$st->execute(array('quiz_id' => '4', 'question_id' => 12));
+		$st->execute(array('quiz_id' => '4', 'question_id' => 13));
+		$st->execute(array('quiz_id' => '4', 'question_id' => 14));
+		$st->execute(array('quiz_id' => '4', 'question_id' => 28));
+		$st->execute(array('quiz_id' => '4', 'question_id' => 27));
+		$st->execute(array('quiz_id' => '4', 'question_id' => 26));
 	} catch( PDOException $e ) { exit( "PDO error (seed_table_quizzes_questions): " . $e->getMessage() ); }
 
 	echo "Ubacio parove (kviz, pitanje) u tablicu quizzes_questions.<br>";
