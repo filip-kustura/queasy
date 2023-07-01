@@ -21,9 +21,13 @@ Web-stranica omogućava korisnicima rješavanje jednog od ponuđenih kvizova. Kv
 - napraviti "homepage" (homepage se prikazuje nakon uspješnog logina) s opcijama
   - singleplayer (**prioritet**)
   - multiplayer (nakon što implementiramo opciju singleplayer)
-  - (Filip) admin opcije (ukoliko je ulogirani korisnik admin)
-    - dodati opcije:
+  - (Filip) admin sekcija (~~ukoliko je ulogirani korisnik admin~~)
+    - dodati podsekcije:
       - `Quizzes`
+        - prikaz vlastitih i ostalih kvizova
+        - ~~brisanje kvizova~~
+        - uređivanje kvizova
+        - stvaranje kvizova
       - `Questions`
       - `Users`
   - ... TODO opcije koje mogu obogatiti aplikaciju (npr. settings za korisnika, korisnikova statistika, ...)
