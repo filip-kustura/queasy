@@ -20,6 +20,7 @@ class RandomQuizSolvingController{
             $quizId = $QuizService->GetRandomQuizId();
             $questionsIds = $QuizService->GetQuestionsIdsByQuizId($quizId);
             $_SESSION["quizName"] = $QuizService->GetQuizNameByQuizId($quizId);
+            echo $_SESSION["quizName"];
             $_SESSION["numOfQuestions"] = Count($questionsIds);
             //colorsOfQuestions = GetColors(); //jos ovo treba dodati 
             

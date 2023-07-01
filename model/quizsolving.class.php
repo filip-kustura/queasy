@@ -51,13 +51,13 @@ class QuizSolving {
 		}
 		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
 
-        $row = $st -> fetch(); 
+        $row = $st -> fetchAll(); 
         if($row === false){
             return null; 
         } 
         else{
             //tu u nekom primjeru vraca klasu, ja cu zasad samo id-eve
-            return $row; 
+            return $row[0][0]; 
         }
     }
 
@@ -99,7 +99,7 @@ class QuizSolving {
     function GetQuestionByQuestionId($id){
         $questionText = ""; 
         $wholeInfo = $this->GetQuestionInfoFromQuestionId($id); 
-        $questionText = $wholeInfo[0][1];
+        $questionText = $wholeInfo[0][2];
         return $questionText;
     }
 
