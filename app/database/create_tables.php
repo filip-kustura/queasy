@@ -49,7 +49,7 @@ function create_table_users()
 		$st = $db->prepare(
 			'CREATE TABLE IF NOT EXISTS users (' .
 			'id int NOT NULL PRIMARY KEY AUTO_INCREMENT,' .
-			'username varchar(20) NOT NULL,' .
+			'username varchar(20) NOT NULL UNIQUE,' .
 			'password varchar(255) NOT NULL,' .
 			'admin boolean NOT NULL)'
 		);

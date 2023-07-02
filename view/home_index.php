@@ -5,6 +5,6 @@
     unset($_SESSION['new-user']);
 } ?>
 
-<span>Welcome, <?php print_r($_SESSION['username']); ?>.</span>
+<span>Welcome, <?php echo($_SESSION['username']); ?>.</span>
 
 <?php require_once __DIR__ . '/_footer.php'; ?>

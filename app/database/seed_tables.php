@@ -67,8 +67,9 @@ function seed_table_quizzes() {
 
 		$st->execute(array('name' => 'First Quiz', 'author' => 2));
 		$st->execute(array('name' => 'Second Quiz', 'author' => 2));
-		$st->execute(array('name' => 'Third Quiz', 'author' => 2));
+		$st->execute(array('name' => 'Third Quiz', 'author' => 1));
 		$st->execute(array('name' => 'Fourth Quiz', 'author' => 2));
+		$st->execute(array('name' => 'Fifth Quiz', 'author' => 1));
 	} catch( PDOException $e ) { exit( "PDO error (seed_table_quizzes): " . $e->getMessage() ); }
 
 	echo "Ubacio kvizove u tablicu quizzes.<br>";
@@ -115,6 +116,11 @@ function seed_table_quizzes_questions() {
 		$st->execute(array('quiz_id' => '4', 'question_id' => 28));
 		$st->execute(array('quiz_id' => '4', 'question_id' => 27));
 		$st->execute(array('quiz_id' => '4', 'question_id' => 26));
+
+		$st->execute(array('quiz_id' => '5', 'question_id' => 14));
+		$st->execute(array('quiz_id' => '5', 'question_id' => 25));
+		$st->execute(array('quiz_id' => '5', 'question_id' => 24));
+		$st->execute(array('quiz_id' => '5', 'question_id' => 23));
 	} catch( PDOException $e ) { exit( "PDO error (seed_table_quizzes_questions): " . $e->getMessage() ); }
 
 	echo "Ubacio parove (kviz, pitanje) u tablicu quizzes_questions.<br>";

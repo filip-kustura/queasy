@@ -13,11 +13,17 @@ function sendJSONandExit($message)
 
 $qds = new QuizzesDatabaseService();
 
-if ($_GET['action'] === 'delete') {
+$action = $_GET['action'];
+if ($action === 'delete_quiz') {
     if ($qds->deleteQuiz($_GET['id'])) // Uspješan delete
         sendJSONandExit(true);
     else
         sendJSONandExit(false);
+} else if ($action === 'get_quizzes') {
+    if ($_GET['authorId'] === '0')
+        sendJSONandExit($qds->getAllQuizzes());
+    else
+        sendJSONandExit($qds->getQuizzesByAuthorId($_GET['authorId']));
 }
 
 ?>
