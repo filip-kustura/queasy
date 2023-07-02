@@ -84,7 +84,7 @@ class QuizSolving {
 
     function GetQuestionCategoryByQuestionId($id){
         $questionCategory = ""; 
-        $wholeInfo = $this->GetQuestionInfoFromQuestionId($id); 
+        $wholeInfo = $this->GetQuestionInfoFromQuestionId($id);
         $questionCategory = $wholeInfo[0][1];
         return $questionCategory;
     }
@@ -125,8 +125,7 @@ class QuizSolving {
 			$st->execute(array('quiz_id' => $id));
 		}
 		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
-        $questionIds = $st -> fetch();
-        
+        $questionIds = $st -> fetchAll();
         return $questionIds;        
     }
 };

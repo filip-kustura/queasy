@@ -2,7 +2,7 @@
 var globalAnswers = []; 
 var correctAnswer = "";  
 
-function PresentWholeQuestionContainer(number,question,answers,category,quizName,numOfCorrectlyAnswered,numOfAnswers){
+    function PresentWholeQuestionContainer(number,question,answers,category,quizName,numOfCorrectlyAnswered,numOfAnswers,isAnswerCorrect){
         document.getElementById("info").innerHTML = quizName + "  \n  " + numOfCorrectlyAnswered + "/" + numOfAnswers;
         PresentQuestion(number,question,category);
         for(let i = 0; i < answers.length; i++){
@@ -10,7 +10,7 @@ function PresentWholeQuestionContainer(number,question,answers,category,quizName
             if(i === 0) correctAnswer = answers[i]; 
         }
         ShuffleArray(globalAnswers);
-        for(let i = 0; i < globalAnswers.length; i++) PresentAnswer(globalAnswers[i]);
+        for(let i = 0; i < globalAnswers.length; i++) PresentAnswer(globalAnswers[i],isAnswerCorrect);
     }
 
     function PresentQuestion(number,question,category) {
@@ -19,23 +19,28 @@ function PresentWholeQuestionContainer(number,question,answers,category,quizName
         questionContainer.style.backgroundColor = GetColorByQuestionCategory(category);
     }
     
-    function PresentAnswer(answer) {
+    function PresentAnswer(answer,isAnswerCorrect) {
             var questionContainer = document.getElementById("question-container");
             var answerButton = document.createElement("button");
             answerButton.classList.add("answer-button");
             answerButton.innerHTML = answer;
-            answerButton.addEventListener("click", IsAnswerCorrect);
+            answerButton.addEventListener("click", function() {
+                AnswerButtonClickHandler(isAnswerCorrect);
+            });
             questionContainer.appendChild(answerButton);
     }
 
-    function IsAnswerCorrect(){
+    function AnswerButtonClickHandler(isAnswerCorrect){
+        console.log("AnswerButtonClickHandler funkcija!"); 
         var answerText = $(event.target).text()
-        if(answerText === correctAnswer){
-            return true;
-        }  
-        else { 
-            return false;
-        }
+        if(answerText === correctAnswer) {
+            console.log("tocan odgovor!"); 
+            isAnswerCorrect = true;  
+        }   
+        else {
+            console.log("netocan odgovor"); 
+            isAnswerCorrect = false;
+        }        
     }
 
     //Pomocne funkcije
