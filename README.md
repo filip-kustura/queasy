@@ -29,9 +29,9 @@ Web-stranica omogućava korisnicima rješavanje jednog od ponuđenih kvizova. Kv
   - (Filip) admin sekcija (~~ukoliko je ulogirani korisnik admin~~)
     - dodati podsekcije:
       - `Quizzes`
-        - prikaz vlastitih i ostalih kvizova
+        - ~~prikaz svih i vlastitih kvizova~~
         - ~~brisanje kvizova~~
-        - uređivanje kvizova
+        - pregled pojedinog kviza
         - stvaranje kvizova
       - `Questions`
       - `Users`
