@@ -8,6 +8,8 @@ class RandomQuizSolvingController{
         if(!isset($_SESSION["quizId"])){
             //inicijalizacija kviza
             $_SESSION["quizId"] = $QuizService->GetRandomQuizId();
+            echo "ispis"; 
+            echo $_SESSION["quizId"]; 
             $questionsIds = $QuizService->GetQuestionsIdsByQuizId($_SESSION["quizId"]);
             $_SESSION["questionIds"] = $questionsIds;
             $_SESSION["numberOfQuestions"] = Count($questionsIds); 
@@ -27,25 +29,6 @@ class RandomQuizSolvingController{
         }
         else{
 
-        }
-    }
-
-    public function handleAction() {
-        $QuizService = new QuizSolving();
-        if($_SESSION["isLastAnswerCorrect"] === true) $_SESSION["numOfCorrectlyAnswered"]++;
-        $_SESSION["numOfAnsweredQuestions"]++;
-        $tmp = $_SESSION["numOfAnsweredQuestions"]; 
-        if($_SESSION["numOfAnsweredQuestions"] > Count($_SESSION["questionIds"])){
-            //kviz gotov
-            require_once __DIR__ . '/../view/EndQuizView_index.php';
-        }
-        else{
-            //Kviz nije gotov prezentiraj iduce pitanje
-            $_SESSION["orderNumberOfQuestion"]++; 
-            $_SESSION["question"] = $QuizService->GetQuestionByQuestionId($_SESSION["questionIds"][$tmp][0]); 
-            $_SESSION["answers"] = $QuizService->GetAnswersByQuestionId($_SESSION["questionIds"][$tmp][0]); 
-            $_SESSION["questionCategory"] =$QuizService->GetQuestionCategoryByQuestionId($_SESSION["questionIds"][$tmp][0]); 
-            require_once __DIR__ . '/../view/RandomQuizSolving_index.php';
         }
     }
 };

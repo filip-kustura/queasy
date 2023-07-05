@@ -17,12 +17,15 @@ Web-stranica omogućava korisnicima rješavanje jednog od ponuđenih kvizova. Kv
 ## TODO
 - ~~(Filip) kreirati u bazi i popuniti tablicu s pitanjima, kategorijom, točnim odgovorom i eventualnim ponuđenim odgovorima~~
 - ~~(Filip) nadograditi datoteke `create_tables.php` i `seed_tables.php` tako da podržavaju kreiranje/punjenje i tablice `questions`~~
+-(Vilim) u play random kviz mora se stvarno odabrati random kviz kojeg korisnik jos nije igrao! -> TODO: vrsi ovo preko controllera, ne modela!
 - (Vilim) DONE:odgovaranje na pitanja u js - klijentski dio obavljen, potrebna integracija u view-u php, sa pravim pitanjima 
-  -(Vilim)DONE: Odgovaranje pitanje za pitanjem 
-  -(Vilim) Detekcija tipa pitanja(abcd ili text odgovor) te implementacija text pitanja
-  -(Vilim) Detekcija zavrsetka kviza i popratni insertovi rezultata u bazu podataka
-  -(Vilim)DONE: Boje odgovarajucih kategorija pitanja
--(Vilim) EndQuiz stranica
+  -(Vilim) DONE: Odgovaranje pitanje za pitanjem 
+  -(Vilim) DONE: Detekcija zavrsetka kviza 
+  -(Vilim) DONE: Boje odgovarajucih kategorija pitanja
+  -(Vilim) DONE: Detekcija tipa pitanja(abcd ili text odgovor) te implementacija text pitanja
+  -(Vilim) popratni insertovi rezultata u bazu podataka
+-(Vilim) DONE: EndQuiz stranica -> TODO: ako se stigne obogati
+-(Vilim) Brinuti se za statistike po svakoj kategoriji za igraca
 - napraviti "homepage" (homepage se prikazuje nakon uspješnog logina) s opcijama
   - singleplayer (**prioritet**)
   - multiplayer (nakon što implementiramo opciju singleplayer)
