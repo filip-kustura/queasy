@@ -127,13 +127,13 @@ require_once __DIR__ . '/_header.php';
         //prvo pitanje
         var answers = []; 
         numberOfQuestions =<?php echo $_SESSION['numberOfQuestions']; ?>;
-        answers[0] = "<?php echo $_SESSION['answers'][0]; ?>";
-        answers[1] = "<?php echo $_SESSION['answers'][1]; ?>";
-        answers[2] = "<?php echo $_SESSION['answers'][2]; ?>";
-        answers[3] = "<?php echo $_SESSION['answers'][3]; ?>";
-        var category = "<?php echo $_SESSION['questionCategory']; ?>";
-        quizName = "<?php echo $_SESSION['quizName']; ?>";
-        var question = "<?php echo $_SESSION['question']; ?>";
+        answers[0] = '<?php echo $_SESSION['answers'][0]; ?>';
+        answers[1] = '<?php echo $_SESSION['answers'][1]; ?>';
+        answers[2] = '<?php echo $_SESSION['answers'][2]; ?>';
+        answers[3] = '<?php echo $_SESSION['answers'][3]; ?>';
+        var category = '<?php echo $_SESSION['questionCategory']; ?>';
+        quizName = '<?php echo $_SESSION['quizName']; ?>';
+        var question = '<?php echo $_SESSION['question']; ?>';
 
         PresentWholeQuestionContainer(
             1,
