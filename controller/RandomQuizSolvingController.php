@@ -8,8 +8,6 @@ class RandomQuizSolvingController{
         if(!isset($_SESSION["quizId"])){
             //inicijalizacija kviza
             $_SESSION["quizId"] = $QuizService->GetRandomQuizId();
-            echo "ispis"; 
-            echo $_SESSION["quizId"]; 
             $questionsIds = $QuizService->GetQuestionsIdsByQuizId($_SESSION["quizId"]);
             $_SESSION["questionIds"] = $questionsIds;
             $_SESSION["numberOfQuestions"] = Count($questionsIds); 
