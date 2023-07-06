@@ -15,6 +15,16 @@ Web-stranica omogućava korisnicima rješavanje jednog od ponuđenih kvizova. Kv
 - Tako i ovdje uspješan login postavlja samo `$_SESSION['id']` i `$_SESSION['username']`, gdje je `id` korisnikov identifikator iz tablice `users`.
 
 ## TODO
+po prioritetima
+1. Testiraj ubacivanje rezultata pri zavrsetku kviza (lagano) (subota)
+2. Sprjeci refreshanje pri igranju kviza (izazovno) (subota)
+3. Random kviz mora biti random (Lagano) (subota)
+4. Prikazi sve kvizove na home stranici (izazovno) => sprjeci da igrac moze igrati isti kviz vise od jednom! (lagano) (subota)
+5. dodaj timere na pitanja (potencijalno izazovno) (subota)
+6. my profile neka prikazuje statistike po kategorijama pitanja (kruzni dijagrami?) (izazovno) (nedjelja)
+7. Dok se kviz igra, u question containere stavi koliko kviz ima pitanja (ned)
+8. Uljepsaj css, pocisti kod i dodaj komentare 
+
 - ~~(Filip) kreirati u bazi i popuniti tablicu s pitanjima, kategorijom, točnim odgovorom i eventualnim ponuđenim odgovorima~~
 - ~~(Filip) nadograditi datoteke `create_tables.php` i `seed_tables.php` tako da podržavaju kreiranje/punjenje i tablice `questions`~~
 -(Vilim) u play random kviz mora se stvarno odabrati random kviz kojeg korisnik jos nije igrao! -> TODO: vrsi ovo preko controllera, ne modela!
@@ -23,9 +33,9 @@ Web-stranica omogućava korisnicima rješavanje jednog od ponuđenih kvizova. Kv
   -(Vilim) DONE: Detekcija zavrsetka kviza 
   -(Vilim) DONE: Boje odgovarajucih kategorija pitanja
   -(Vilim) DONE: Detekcija tipa pitanja(abcd ili text odgovor) te implementacija text pitanja
-  -(Vilim) popratni insertovi rezultata u bazu podataka
+  -(Vilim) DONE:( Preostaje testirati) popratni insertovi rezultata u bazu podataka
 -(Vilim) DONE: EndQuiz stranica -> TODO: ako se stigne obogati
--(Vilim) Brinuti se za statistike po svakoj kategoriji za igraca
+-(Vilim) DONE: Brinuti se za statistike po svakoj kategoriji za igraca
 - napraviti "homepage" (homepage se prikazuje nakon uspješnog logina) s opcijama
   - singleplayer (**prioritet**)
   - multiplayer (nakon što implementiramo opciju singleplayer)
