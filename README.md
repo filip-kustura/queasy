@@ -37,6 +37,10 @@ Web-stranica omogućava korisnicima rješavanje jednog od ponuđenih kvizova. Kv
         - pregled pojedinog kviza
         - stvaranje kvizova
       - `Questions`
+        - prikaz ~~svih~~ i vlastitih pitanja
+        - brisanje pitanja
+        - uređivanje pitanja
+        - stvaranje pitanja
       - `Users`
   - ... TODO opcije koje mogu obogatiti aplikaciju (npr. settings za korisnika, korisnikova statistika, ...)
 - ~~(Filip) kreirati u bazi tablice:~~
