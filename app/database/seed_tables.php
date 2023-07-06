@@ -66,10 +66,16 @@ function seed_table_quizzes() {
 		$st = $db->prepare( 'INSERT INTO quizzes(name, author) VALUES (:name, :author)' );
 
 		$st->execute(array('name' => 'First Quiz', 'author' => 2));
-		$st->execute(array('name' => 'Second Quiz', 'author' => 2));
+		$st->execute(array('name' => 'Second Quiz', 'author' => 1));
 		$st->execute(array('name' => 'Third Quiz', 'author' => 1));
 		$st->execute(array('name' => 'Fourth Quiz', 'author' => 2));
 		$st->execute(array('name' => 'Fifth Quiz', 'author' => 1));
+		$st->execute(array('name' => 'Sixth Quiz', 'author' => 2));
+		$st->execute(array('name' => 'Seventh Quiz', 'author' => 2));
+		$st->execute(array('name' => 'Eighth Quiz', 'author' => 1));
+		$st->execute(array('name' => 'Ninth Quiz', 'author' => 1));
+		$st->execute(array('name' => 'Tenth Quiz', 'author' => 2));
+		$st->execute(array('name' => 'Eleventh Quiz', 'author' => 1));
 	} catch( PDOException $e ) { exit( "PDO error (seed_table_quizzes): " . $e->getMessage() ); }
 
 	echo "Ubacio kvizove u tablicu quizzes.<br>";
@@ -82,45 +88,90 @@ function seed_table_quizzes_questions() {
 	try {
 		$st = $db->prepare( 'INSERT INTO quizzes_questions(quiz_id, question_id) VALUES (:quiz_id, :question_id)' );
 
-		$st->execute(array('quiz_id' => '1', 'question_id' => 1));
-		$st->execute(array('quiz_id' => '1', 'question_id' => 2));
-		$st->execute(array('quiz_id' => '1', 'question_id' => 3));
-		$st->execute(array('quiz_id' => '1', 'question_id' => 4));
-		$st->execute(array('quiz_id' => '1', 'question_id' => 5));
-		$st->execute(array('quiz_id' => '1', 'question_id' => 6));
-		$st->execute(array('quiz_id' => '1', 'question_id' => 32));
-		$st->execute(array('quiz_id' => '1', 'question_id' => 33));
-		$st->execute(array('quiz_id' => '1', 'question_id' => 34));
-		$st->execute(array('quiz_id' => '1', 'question_id' => 35));
-		$st->execute(array('quiz_id' => '1', 'question_id' => 36));
+		$st->execute(array('quiz_id' => 1, 'question_id' => 1));
+		$st->execute(array('quiz_id' => 1, 'question_id' => 2));
+		$st->execute(array('quiz_id' => 1, 'question_id' => 3));
+		$st->execute(array('quiz_id' => 1, 'question_id' => 4));
+		$st->execute(array('quiz_id' => 1, 'question_id' => 5));
+		$st->execute(array('quiz_id' => 1, 'question_id' => 6));
+		$st->execute(array('quiz_id' => 1, 'question_id' => 32));
+		$st->execute(array('quiz_id' => 1, 'question_id' => 33));
+		$st->execute(array('quiz_id' => 1, 'question_id' => 34));
+		$st->execute(array('quiz_id' => 1, 'question_id' => 35));
+		$st->execute(array('quiz_id' => 1, 'question_id' => 36));
 
-		$st->execute(array('quiz_id' => '2', 'question_id' => 7));
-		$st->execute(array('quiz_id' => '2', 'question_id' => 8));
-		$st->execute(array('quiz_id' => '2', 'question_id' => 9));
-		$st->execute(array('quiz_id' => '2', 'question_id' => 4));
-		$st->execute(array('quiz_id' => '2', 'question_id' => 5));
-		$st->execute(array('quiz_id' => '2', 'question_id' => 6));
-		$st->execute(array('quiz_id' => '2', 'question_id' => 30));
-		$st->execute(array('quiz_id' => '2', 'question_id' => 31));
-		$st->execute(array('quiz_id' => '2', 'question_id' => 32));
+		$st->execute(array('quiz_id' => 2, 'question_id' => 7));
+		$st->execute(array('quiz_id' => 2, 'question_id' => 8));
+		$st->execute(array('quiz_id' => 2, 'question_id' => 9));
+		$st->execute(array('quiz_id' => 2, 'question_id' => 4));
+		$st->execute(array('quiz_id' => 2, 'question_id' => 5));
+		$st->execute(array('quiz_id' => 2, 'question_id' => 6));
+		$st->execute(array('quiz_id' => 2, 'question_id' => 30));
+		$st->execute(array('quiz_id' => 2, 'question_id' => 31));
+		$st->execute(array('quiz_id' => 2, 'question_id' => 32));
 
-		$st->execute(array('quiz_id' => '3', 'question_id' => 10));
-		$st->execute(array('quiz_id' => '3', 'question_id' => 11));
-		$st->execute(array('quiz_id' => '3', 'question_id' => 6));
-		$st->execute(array('quiz_id' => '3', 'question_id' => 30));
-		$st->execute(array('quiz_id' => '3', 'question_id' => 29));
+		$st->execute(array('quiz_id' => 3, 'question_id' => 10));
+		$st->execute(array('quiz_id' => 3, 'question_id' => 11));
+		$st->execute(array('quiz_id' => 3, 'question_id' => 6));
+		$st->execute(array('quiz_id' => 3, 'question_id' => 30));
+		$st->execute(array('quiz_id' => 3, 'question_id' => 29));
 
-		$st->execute(array('quiz_id' => '4', 'question_id' => 12));
-		$st->execute(array('quiz_id' => '4', 'question_id' => 13));
-		$st->execute(array('quiz_id' => '4', 'question_id' => 14));
-		$st->execute(array('quiz_id' => '4', 'question_id' => 28));
-		$st->execute(array('quiz_id' => '4', 'question_id' => 27));
-		$st->execute(array('quiz_id' => '4', 'question_id' => 26));
+		$st->execute(array('quiz_id' => 4, 'question_id' => 12));
+		$st->execute(array('quiz_id' => 4, 'question_id' => 13));
+		$st->execute(array('quiz_id' => 4, 'question_id' => 14));
+		$st->execute(array('quiz_id' => 4, 'question_id' => 28));
+		$st->execute(array('quiz_id' => 4, 'question_id' => 27));
+		$st->execute(array('quiz_id' => 4, 'question_id' => 26));
 
-		$st->execute(array('quiz_id' => '5', 'question_id' => 14));
-		$st->execute(array('quiz_id' => '5', 'question_id' => 25));
-		$st->execute(array('quiz_id' => '5', 'question_id' => 24));
-		$st->execute(array('quiz_id' => '5', 'question_id' => 23));
+		$st->execute(array('quiz_id' => 5, 'question_id' => 14));
+		$st->execute(array('quiz_id' => 5, 'question_id' => 25));
+		$st->execute(array('quiz_id' => 5, 'question_id' => 24));
+		$st->execute(array('quiz_id' => 5, 'question_id' => 23));
+
+		$st->execute(array('quiz_id' => 6, 'question_id' => 15));
+		$st->execute(array('quiz_id' => 6, 'question_id' => 23));
+		$st->execute(array('quiz_id' => 6, 'question_id' => 22));
+		$st->execute(array('quiz_id' => 6, 'question_id' => 21));
+		$st->execute(array('quiz_id' => 6, 'question_id' => 20));
+
+		$st->execute(array('quiz_id' => 7, 'question_id' => 16));
+		$st->execute(array('quiz_id' => 7, 'question_id' => 17));
+
+		$st->execute(array('quiz_id' => 8, 'question_id' => 18));
+		$st->execute(array('quiz_id' => 8, 'question_id' => 19));
+		$st->execute(array('quiz_id' => 8, 'question_id' => 20));
+		$st->execute(array('quiz_id' => 8, 'question_id' => 21));
+		$st->execute(array('quiz_id' => 8, 'question_id' => 22));
+		$st->execute(array('quiz_id' => 8, 'question_id' => 23));
+		$st->execute(array('quiz_id' => 8, 'question_id' => 24));
+		$st->execute(array('quiz_id' => 8, 'question_id' => 25));
+		$st->execute(array('quiz_id' => 8, 'question_id' => 26));
+		$st->execute(array('quiz_id' => 8, 'question_id' => 27));
+		$st->execute(array('quiz_id' => 8, 'question_id' => 28));
+		$st->execute(array('quiz_id' => 8, 'question_id' => 29));
+		$st->execute(array('quiz_id' => 8, 'question_id' => 30));
+
+		$st->execute(array('quiz_id' => 9, 'question_id' => 1));
+		$st->execute(array('quiz_id' => 9, 'question_id' => 10));
+		$st->execute(array('quiz_id' => 9, 'question_id' => 20));
+		$st->execute(array('quiz_id' => 9, 'question_id' => 30));
+		$st->execute(array('quiz_id' => 9, 'question_id' => 35));
+		$st->execute(array('quiz_id' => 9, 'question_id' => 36));
+
+		$st->execute(array('quiz_id' => 10, 'question_id' => 1));
+		$st->execute(array('quiz_id' => 10, 'question_id' => 10));
+		$st->execute(array('quiz_id' => 10, 'question_id' => 20));
+		$st->execute(array('quiz_id' => 10, 'question_id' => 30));
+		$st->execute(array('quiz_id' => 10, 'question_id' => 35));
+		$st->execute(array('quiz_id' => 10, 'question_id' => 36));
+
+		$st->execute(array('quiz_id' => 11, 'question_id' => 5));
+		$st->execute(array('quiz_id' => 11, 'question_id' => 25));
+		$st->execute(array('quiz_id' => 11, 'question_id' => 35));
+		$st->execute(array('quiz_id' => 11, 'question_id' => 15));
+		$st->execute(array('quiz_id' => 11, 'question_id' => 10));
+		$st->execute(array('quiz_id' => 11, 'question_id' => 19));
+		$st->execute(array('quiz_id' => 11, 'question_id' => 11));
 	} catch( PDOException $e ) { exit( "PDO error (seed_table_quizzes_questions): " . $e->getMessage() ); }
 
 	echo "Ubacio parove (kviz, pitanje) u tablicu quizzes_questions.<br>";
@@ -134,7 +185,7 @@ function seed_table_questions() {
 	
 	// Ubacimo pitanja s ponuđenim odgovorima
 	try {
-		$st = $db->prepare( 'INSERT INTO questions(category, question, answer, optionA, optionB, optionC) VALUES (:category, :question, :answer, :optionA, :optionB, :optionC)' );
+		$st = $db->prepare( 'INSERT INTO questions(category, question, answer, optionA, optionB, optionC, author) VALUES (:category, :question, :answer, :optionA, :optionB, :optionC, :author)' );
 
 		$st->execute(
 			array(
@@ -143,7 +194,8 @@ function seed_table_questions() {
 				'answer' => 'Italian',
 				'optionA' => 'Spanish',
 				'optionB' => 'French',
-				'optionC' => 'American'
+				'optionC' => 'American',
+				'author' => 1
 			)
 		);
 
@@ -154,7 +206,8 @@ function seed_table_questions() {
 				'answer' => 'Spain',
 				'optionA' => 'Japan',
 				'optionB' => 'Brazil',
-				'optionC' => 'Portugal'
+				'optionC' => 'Portugal',
+				'author' => 2
 			)
 		);
 		
@@ -165,7 +218,8 @@ function seed_table_questions() {
 				'answer' => 'Indianapolis Colts',
 				'optionA' => 'Cleveland Browns',
 				'optionB' => 'Cincinnati Bengals',
-				'optionC' => 'Pittsburgh Steelers'
+				'optionC' => 'Pittsburgh Steelers',
+				'author' => 2
 			)
 		);
 
@@ -176,7 +230,8 @@ function seed_table_questions() {
 				'answer' => 'Izaak Walton',
 				'optionA' => 'Lewis Carrol',
 				'optionB' => 'John Steinbeck',
-				'optionC' => 'Pearl S. Buck'
+				'optionC' => 'Pearl S. Buck',
+				'author' => 1
 			)
 		);
 
@@ -187,18 +242,20 @@ function seed_table_questions() {
 				'answer' => 'Transverse and Electromagnetic',
 				'optionA' => 'Transverse and Mechanical',
 				'optionB' => 'Longitudinal and Electromagnetic',
-				'optionC' => 'Longitudinal and Mechanical'
+				'optionC' => 'Longitudinal and Mechanical',
+				'author' => 2
 			)
 		);
 
 		$st->execute(
 			array(
 				'category' => 'entertainment',
-				'question' => 'What is Gru\'s goal at the beginning of Despicable me?',
+				'question' => 'What is Gru\\\'s goal at the beginning of Despicable me?',
 				'answer' => 'Steal the moon',
 				'optionA' => 'Steal the Egyptian pyramids',
-				'optionB' => 'Find Neptune\'s crown and save Mr. Krabs',
-				'optionC' => 'Teach himself how to fly'
+				'optionB' => 'Find Neptune\\\'s crown and save Mr. Krabs',
+				'optionC' => 'Teach himself how to fly',
+				'author' => 1
 			)
 		);
 
@@ -209,18 +266,20 @@ function seed_table_questions() {
 				'answer' => 'France',
 				'optionA' => 'United Kingdom',
 				'optionB' => 'Portugal',
-				'optionC' => 'The Netherlands'
+				'optionC' => 'The Netherlands',
+				'author' => 1
 			)
 		);
 
 		$st->execute(
 			array(
 				'category' => 'geography',
-				'question' => 'Which countrie\'s flag consisted only of a green rectangle from 1977 to 2011?',
+				'question' => 'From 1977 to 2011, which countrie\\\'s flag consisted only of a green rectangle?',
 				'answer' => 'Libya',
 				'optionA' => 'Liberia',
 				'optionB' => 'Lebanon',
-				'optionC' => 'Lesotho'
+				'optionC' => 'Lesotho',
+				'author' => 1
 			)
 		);
 		
@@ -231,7 +290,8 @@ function seed_table_questions() {
 				'answer' => 'Hungary',
 				'optionA' => 'Italy',
 				'optionB' => 'Spain',
-				'optionC' => 'Croatia'
+				'optionC' => 'Croatia',
+				'author' => 2
 			)
 		);
 
@@ -242,7 +302,8 @@ function seed_table_questions() {
 				'answer' => 'choreographies',
 				'optionA' => 'paintings',
 				'optionB' => 'fiction novels',
-				'optionC' => 'pottery'
+				'optionC' => 'pottery',
+				'author' => 2
 			)
 		);
 
@@ -252,8 +313,9 @@ function seed_table_questions() {
 				'question' => '1 meter per second equals how many kilometers per hour?',
 				'answer' => '3.6',
 				'optionA' => '7.2',
-				'optionB' => '6',
-				'optionC' => '10'
+				'optionB' => '6.3',
+				'optionC' => '2.7',
+				'author' => 2
 			)
 		);
 
@@ -264,7 +326,8 @@ function seed_table_questions() {
 				'answer' => 'The Yellow Brick Road',
 				'optionA' => 'The Blue Cobblestone Road',
 				'optionB' => 'The Green Asphalt Road',
-				'optionC' => 'The Red Crystal Brick Road'
+				'optionC' => 'The Red Crystal Brick Road',
+				'author' => 1
 			)
 		);
 
@@ -275,7 +338,8 @@ function seed_table_questions() {
 				'answer' => 'Japanese',
 				'optionA' => 'Italian',
 				'optionB' => 'American',
-				'optionC' => 'British'
+				'optionC' => 'British',
+				'author' => 2
 			)
 		);
 
@@ -286,7 +350,8 @@ function seed_table_questions() {
 				'answer' => 'Atlanta',
 				'optionA' => 'Los Angeles',
 				'optionB' => 'New York',
-				'optionC' => 'Dallas'
+				'optionC' => 'Dallas',
+				'author' => 1
 			)
 		);
 		
@@ -297,7 +362,8 @@ function seed_table_questions() {
 				'answer' => '110 metres hurdles',
 				'optionA' => '400 metres hurdles',
 				'optionB' => '200 metres',
-				'optionC' => '800 metres'
+				'optionC' => '800 metres',
+				'author' => 1
 			)
 		);
 
@@ -308,7 +374,8 @@ function seed_table_questions() {
 				'answer' => 'Vincent van Gogh',
 				'optionA' => 'Pablo Picasso',
 				'optionB' => 'Claude Monet',
-				'optionC' => 'Leonardo da Vinci'
+				'optionC' => 'Leonardo da Vinci',
+				'author' => 1
 			)
 		);
 
@@ -319,31 +386,34 @@ function seed_table_questions() {
 				'answer' => 'nanometres',
 				'optionA' => 'microometres',
 				'optionB' => 'picometres',
-				'optionC' => 'femtometres'
+				'optionC' => 'femtometres',
+				'author' => 2
 			)
 		);
 
 		$st->execute(
 			array(
 				'category' => 'entertainment',
-				'question' => '"Pump Up the Jam" is the opening track on which Belgian act\'s first album?',
+				'question' => '"Pump Up the Jam" is the opening track on which Belgian act\\\'s first album?',
 				'answer' => 'Technotronic',
 				'optionA' => 'Daisy Dee',
 				'optionB' => 'Foster The People',
-				'optionC' => 'Global Deejays'
+				'optionC' => 'Global Deejays',
+				'author' => 2
 			)
 		);
 	} catch( PDOException $e ) { exit( "PDO error (seed_table_questions): " . $e->getMessage() ); }
 
 	// Ubacimo pitanja gdje treba upisati odgovor
 	try {
-		$st = $db->prepare( 'INSERT INTO questions(category, question, answer) VALUES (:category, :question, :answer)' );
+		$st = $db->prepare( 'INSERT INTO questions(category, question, answer, author) VALUES (:category, :question, :answer, :author)' );
 
 		$st->execute(
 			array(
 				'category' => 'history',
 				'question' => 'In which century did the Western Roman Empire fall? Enter a number only.',
-				'answer' => '5'
+				'answer' => '5',
+				'author' => 2
 			)
 		);
 
@@ -351,7 +421,8 @@ function seed_table_questions() {
 			array(
 				'category' => 'geography',
 				'question' => 'What is the capital of Brasil?',
-				'answer' => 'brasilia'
+				'answer' => 'brasilia',
+				'author' => 1
 			)
 		);
 
@@ -359,7 +430,8 @@ function seed_table_questions() {
 			array(
 				'category' => 'sports',
 				'question' => 'In what sport should you "float like a butterfly and sting like a bee"?',
-				'answer' => 'boxing'
+				'answer' => 'boxing',
+				'author' => 1
 			)
 		);
 
@@ -367,7 +439,8 @@ function seed_table_questions() {
 			array(
 				'category' => 'art',
 				'question' => 'Who is the Roman god of freshwater and the sea in Roman religion?',
-				'answer' => 'neptune'
+				'answer' => 'neptune',
+				'author' => 1
 			)
 		);
 
@@ -375,15 +448,17 @@ function seed_table_questions() {
 			array(
 				'category' => 'science',
 				'question' => 'Approximately how long (in months) does the cow gestation period last? Enter a number only',
-				'answer' => '9'
+				'answer' => '9',
+				'author' => 2
 			)
 		);
 
 		$st->execute(
 			array(
 				'category' => 'entertainment',
-				'question' => 'What species is SpongeBob SquarePants\' employer? Enter a noun only, without "a/an/the".',
-				'answer' => 'crab'
+				'question' => 'What species is SpongeBob SquarePants\\\' employer? Enter a noun only, without "a/an/the".',
+				'answer' => 'crab',
+				'author' => 2
 			)
 		);
 
@@ -391,7 +466,8 @@ function seed_table_questions() {
 			array(
 				'category' => 'history',
 				'question' => 'In which century was the first Diesel engine built? Enter a number only.',
-				'answer' => '19'
+				'answer' => '19',
+				'author' => 2
 			)
 		);
 
@@ -399,7 +475,8 @@ function seed_table_questions() {
 			array(
 				'category' => 'geography',
 				'question' => 'What other island forms a nation with Trinidad?',
-				'answer' => 'tobago'
+				'answer' => 'tobago',
+				'author' => 2
 			)
 		);
 
@@ -407,15 +484,17 @@ function seed_table_questions() {
 			array(
 				'category' => 'sports',
 				'question' => 'Which country won the first ever FIFA World Cup in 1930?',
-				'answer' => 'uruguay'
+				'answer' => 'uruguay',
+				'author' => 1
 			)
 		);
 
 		$st->execute(
 			array(
 				'category' => 'art',
-				'question' => 'In the Marvel comics, what is the FIRST name of Luke Cage and Jessica Jones\' daughter?',
-				'answer' => 'danielle'
+				'question' => 'In the Marvel comics, what is the FIRST name of Luke Cage and Jessica Jones\\\' daughter?',
+				'answer' => 'danielle',
+				'author' => 1
 			)
 		);
 
@@ -423,15 +502,17 @@ function seed_table_questions() {
 			array(
 				'category' => 'science',
 				'question' => 'One of two main female sex hormones is estrogen. What is the other one called?',
-				'answer' => 'progesterone'
+				'answer' => 'progesterone',
+				'author' => 1
 			)
 		);
 
 		$st->execute(
 			array(
 				'category' => 'entertainment',
-				'question' => 'What Madonna\'s hit song is also a name of a magazine?',
-				'answer' => 'vogue'
+				'question' => 'What Madonna\\\'s hit song is also a name of a magazine?',
+				'answer' => 'vogue',
+				'author' => 2
 			)
 		);
 
@@ -439,7 +520,8 @@ function seed_table_questions() {
 			array(
 				'category' => 'history',
 				'question' => 'On July 4th of which year was the US Declaration of Independence issued? Enter a number only.',
-				'answer' => '1776'
+				'answer' => '1776',
+				'author' => 2
 			)
 		);
 
@@ -447,7 +529,8 @@ function seed_table_questions() {
 			array(
 				'category' => 'geography',
 				'question' => 'What Tennessee city on the Mississippi river is famous for its Pyramid Arena?',
-				'answer' => 'memphis'
+				'answer' => 'memphis',
+				'author' => 1
 			)
 		);
 
@@ -455,7 +538,8 @@ function seed_table_questions() {
 			array(
 				'category' => 'sports',
 				'question' => 'George Weah is the first African former professional footballer to become a president of their country. He was also voted as the best player in the world in 1995. Which country is he from?',
-				'answer' => 'liberia'
+				'answer' => 'liberia',
+				'author' => 1
 			)
 		);
 
@@ -463,7 +547,8 @@ function seed_table_questions() {
 			array(
 				'category' => 'art',
 				'question' => 'Jazz is a music genre that originated in the African-American communities of which American city?',
-				'answer' => 'new orleans'
+				'answer' => 'new orleans',
+				'author' => 1
 			)
 		);
 
@@ -471,15 +556,17 @@ function seed_table_questions() {
 			array(
 				'category' => 'science',
 				'question' => 'The International System of Units is internationally known by which abbreviation?',
-				'answer' => 'si'
+				'answer' => 'si',
+				'author' => 2
 			)
 		);
 
 		$st->execute(
 			array(
 				'category' => 'entertainment',
-				'question' => 'Situated in New York City\'s Greenwich Village, Central Perk is a coffeehouse frequently visited by the main protagonists in which TV show?',
-				'answer' => 'friends'
+				'question' => 'Situated in New York City\\\'s Greenwich Village, Central Perk is a coffeehouse frequently visited by the main protagonists in which TV show?',
+				'answer' => 'friends',
+				'author' => 2
 			)
 		);
 	} catch( PDOException $e ) { exit( "PDO error (seed_table_questions): " . $e->getMessage() ); }

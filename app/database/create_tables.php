@@ -83,7 +83,8 @@ function create_table_questions() {
 			'answer varchar(50) NOT NULL,' .
 			'optionA varchar(50),' .
 			'optionB varchar(50),' .
-			'optionC varchar(50));'
+			'optionC varchar(50),' .
+			'author int NOT NULL);'
 		);
 
 		$st->execute();
@@ -107,7 +108,7 @@ function create_table_quizzes() {
 		$st = $db->prepare(
 			'CREATE TABLE IF NOT EXISTS quizzes (' .
 			'id int NOT NULL PRIMARY KEY AUTO_INCREMENT,' .
-			'name varchar(30) NOT NULL,' .
+			'name varchar(30) NOT NULL UNIQUE,' .
 			'author int NOT NULL);'
 		);
 

@@ -1,7 +1,5 @@
 <?php
 
-require_once __DIR__ . '/../../model/quizzesdatabaseservice.class.php';
-
 class QuizzesController {
 	public function index() {
         session_start();

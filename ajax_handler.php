@@ -24,6 +24,11 @@ if ($action === 'delete_quiz') {
         sendJSONandExit($qds->getAllQuizzes());
     else
         sendJSONandExit($qds->getQuizzesByAuthorId($_GET['authorId']));
+} else if ($action === 'get_questions') {
+    if ($_GET['authorId'] === '0')
+        sendJSONandExit($qds->getAllQuestions());
+    else
+        sendJSONandExit($qds->getQuestionsByAuthorId($_GET['authorId']));
 }
 
 ?>
