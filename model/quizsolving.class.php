@@ -55,7 +55,6 @@ class QuizSolving {
             return null; 
         } 
         else{
-            //tu u nekom primjeru vraca klasu, ja cu zasad samo id-eve
             return $row[0][0]; 
         }
     }

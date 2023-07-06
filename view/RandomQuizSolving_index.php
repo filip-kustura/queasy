@@ -122,6 +122,15 @@ require_once __DIR__ . '/_header.php';
     var numberOfQuestions = 0; 
     var numberOfCorrectAnswers = 0; 
     var numberOfAnswers = 0; 
+    var curr_category = ""; 
+
+    //pamtimo tocne/netocne odgovore po kategorijama u ovim nizovima 
+    var historyArray = []; 
+    var sportsArray = [];
+    var entertainmentArray = []; 
+    var scienceArray = []; 
+    var artArray = []; 
+    var geographyArray = []; 
     
     $(document).ready(function () {
         //prvo pitanje
@@ -134,7 +143,7 @@ require_once __DIR__ . '/_header.php';
         var category = '<?php echo $_SESSION['questionCategory']; ?>';
         quizName = '<?php echo $_SESSION['quizName']; ?>';
         var question = '<?php echo $_SESSION['question']; ?>';
-
+        console.log("numberOfQuestions = " +numberOfQuestions);
         PresentWholeQuestionContainer(
             1,
             question,
@@ -149,6 +158,7 @@ require_once __DIR__ . '/_header.php';
     function PresentWholeQuestionContainer(number,question,answers,category,quizName,numOfCorrectlyAnswered,numOfAnswers){
         document.getElementById("info").innerHTML = quizName + "  \n  " + numOfCorrectlyAnswered + "/" + numOfAnswers;
         var isQuestionABCDType = IsQuestionABCDType(answers);  
+        curr_category = category; 
         PresentQuestion(number,question,category);
         correctAnswer = answers[0]; 
         if(isQuestionABCDType){
@@ -197,9 +207,13 @@ require_once __DIR__ . '/_header.php';
         orderNumberOfQuestion++;
         var indexOfNextQuestionId = orderNumberOfQuestion - 1;  
         numberOfAnswers++;
-        if(orderNumberOfQuestion - 1 === numberOfQuestions) SendEndQuizAjax();
-        if(answerText === correctAnswer) numberOfCorrectAnswers++;
-        SendNextQuestionAjax(orderNumberOfQuestion,numberOfCorrectAnswers,numberOfAnswers,indexOfNextQuestionId);
+        if(answerText === correctAnswer){
+            numberOfCorrectAnswers++;
+            UpdateCategoryArrays(true, curr_category); 
+        }
+        else UpdateCategoryArrays(false, curr_category);
+        if(orderNumberOfQuestion - 1 >= numberOfQuestions) SendEndQuizAjax();
+        else SendNextQuestionAjax(orderNumberOfQuestion,numberOfCorrectAnswers,numberOfAnswers,indexOfNextQuestionId);
     }
 
     function AnswerButtonClickHandler(){
@@ -207,14 +221,62 @@ require_once __DIR__ . '/_header.php';
         orderNumberOfQuestion++;
         var indexOfNextQuestionId = orderNumberOfQuestion - 1;  
         numberOfAnswers++;
-        if(orderNumberOfQuestion - 1 === numberOfQuestions) SendEndQuizAjax();
-        if(answerText === correctAnswer) numberOfCorrectAnswers++;
-        SendNextQuestionAjax(orderNumberOfQuestion,numberOfCorrectAnswers,numberOfAnswers,indexOfNextQuestionId);
+        if(answerText === correctAnswer){
+            numberOfCorrectAnswers++;
+            UpdateCategoryArrays(true, curr_category); 
+        }
+        else UpdateCategoryArrays(false, curr_category);        
+        if(orderNumberOfQuestion - 1 >= numberOfQuestions) SendEndQuizAjax();
+        else SendNextQuestionAjax(orderNumberOfQuestion,numberOfCorrectAnswers,numberOfAnswers,indexOfNextQuestionId);
     }
 
     //Pomocne funkcije
 
+    function UpdateCategoryArrays(isCorrect, category){
+        var nextElement = 0; 
+        if(isCorrect) nextElement = 1; 
+
+        if(category === "history") {
+            console.log("in history");
+            historyArray.push(nextElement);
+        }
+        else if(category === "sports") {
+            console.log("in sports");
+            sportsArray.push(nextElement);
+        }
+        else if(category === "science") {
+            console.log("in science");
+            scienceArray.push(nextElement);
+        }
+        else if(category === "entertainment") {
+            console.log("in enter");
+            entertainmentArray.push(nextElement);
+        }
+        else if(category === "geography") {
+            console.log("in geo");
+            geographyArray.push(nextElement);
+        }
+        else if(category === "art") {
+            console.log("in art");
+            artArray.push(nextElement);
+        }
+    }
+
+
     function SendEndQuizAjax(){
+        /*console.log("history");
+        PrintArray(historyArray);
+        console.log("science");
+        PrintArray(scienceArray);
+        console.log("sports");
+        PrintArray(sportsArray);
+        console.log("zabava");
+        PrintArray(entertainmentArray);
+        console.log("art");
+        PrintArray(artArray);
+        console.log("geo");
+        PrintArray(geographyArray);*/
+       
         $.ajax({
             url: 'AjaxEndQuiz.php',
             type: 'GET',
@@ -223,9 +285,16 @@ require_once __DIR__ . '/_header.php';
                 //posalji rezultate kviza da se spreme u bazu podataka
                 quizName: quizName,
                 numberOfCorrectAnswers: numberOfCorrectAnswers,
-                numberOfQuestions: numberOfQuestions 
+                numberOfQuestions: numberOfQuestions, 
+                historyArray: historyArray,
+                sportsArray: sportsArray,
+                entertainmentArray: entertainmentArray,
+                scienceArray: scienceArray,
+                artArray: artArray, 
+                geographyArray: geographyArray 
             },
             success: function(data) {
+                console.log("succes funkcija, data = " + data);
                 PresentEndQuizContainer(quizName,numberOfCorrectAnswers,numberOfQuestions); 
             },
             error: function( xhr, status, errorThrown ) { 
@@ -298,7 +367,7 @@ require_once __DIR__ . '/_header.php';
             const j = Math.floor(Math.random() * (i + 1));
             [array[i], array[j]] = [array[j], array[i]];
         }
-       return array;
+        return array;
     }
 
     function GetColorByQuestionCategory(category){
@@ -310,7 +379,11 @@ require_once __DIR__ . '/_header.php';
         else if(category === "geography") return "pink";
     }
       
-
+    PrintArray = function(array){
+        for(var i = 0; i < array.length; i++){
+            console.log("i = " + i + "vrijednost arr[i] = " + array[i]);
+        }
+    }
 </script>
 
 
