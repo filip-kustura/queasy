@@ -16,14 +16,14 @@ Web-stranica omogućava korisnicima rješavanje jednog od ponuđenih kvizova. Kv
 
 ## TODO
 po prioritetima
-1. Testiraj ubacivanje rezultata pri zavrsetku kviza (lagano) (subota)
-2. Sprjeci refreshanje pri igranju kviza (izazovno) (subota)
+1. Testirat ubacivanje rezultata pri zavrsetku kviza (lagano)
+2. Sprjecit refreshanje pri igranju kviza (izazovno) 
 3. Random kviz mora biti random (Lagano) (subota)
 4. Prikazi sve kvizove na home stranici (izazovno) => sprjeci da igrac moze igrati isti kviz vise od jednom! (lagano) (subota)
-5. dodaj timere na pitanja (potencijalno izazovno) (subota)
+5. dodat timere na pitanja (potencijalno izazovno) (subota)
 6. my profile neka prikazuje statistike po kategorijama pitanja (kruzni dijagrami?) (izazovno) (nedjelja)
 7. Dok se kviz igra, u question containere stavi koliko kviz ima pitanja (ned)
-8. Uljepsaj css, pocisti kod i dodaj komentare 
+8. Uljepsat css, pocistit kod i dodat komentare 
 
 - ~~(Filip) kreirati u bazi i popuniti tablicu s pitanjima, kategorijom, točnim odgovorom i eventualnim ponuđenim odgovorima~~
 - ~~(Filip) nadograditi datoteke `create_tables.php` i `seed_tables.php` tako da podržavaju kreiranje/punjenje i tablice `questions`~~
