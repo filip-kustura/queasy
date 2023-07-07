@@ -264,7 +264,7 @@ require_once __DIR__ . '/_header.php';
 
 
     function SendEndQuizAjax(){
-        /*console.log("history");
+        console.log("history");
         PrintArray(historyArray);
         console.log("science");
         PrintArray(scienceArray);
@@ -275,26 +275,76 @@ require_once __DIR__ . '/_header.php';
         console.log("art");
         PrintArray(artArray);
         console.log("geo");
-        PrintArray(geographyArray);*/
-       
+        PrintArray(geographyArray);
+        
+        var historyCorr = 0, historyAns = 0;
+        tmp = EvaluateResults(historyArray); 
+        historyCorr = tmp[0];
+        historyAns = tmp[1];
+        console.log("historyCorr = " + historyCorr);
+        console.log("historyAns = " + historyAns);
+        
+        var sportsCorr = 0, sportsAns = 0;
+        tmp = EvaluateResults(sportsArray); 
+        sportsCorr = tmp[0];
+        sportsAns = tmp[1];
+        console.log("sportsCorr = " + sportsCorr);
+        console.log("sportsAns = " + sportsAns);
+
+        var scienceCorr = 0, scienceAns = 0;
+        tmp = EvaluateResults(scienceArray); 
+        scienceCorr = tmp[0];
+        scienceAns = tmp[1];
+        console.log("scienceCorr = " + scienceCorr);
+        console.log("scienceAns = " + scienceAns);
+        
+        var artCorr = 0, artAns = 0;
+        tmp = EvaluateResults(artArray); 
+        artCorr = tmp[0];
+        artAns = tmp[1];
+        console.log("artCorr = " + artCorr);
+        console.log("artAns = " + artAns);
+        
+        var entertainmentCorr = 0, entertainmentAns = 0;
+        tmp = EvaluateResults(entertainmentArray); 
+        entertainmentCorr = tmp[0];
+        entertainmentAns = tmp[1];
+        console.log("entertainmentCorr = " + entertainmentCorr);
+        console.log("entertainmentAns = " + entertainmentAns);
+        
+        var geographyCorr = 0, geographyAns = 0;
+        tmp = EvaluateResults(geographyArray); 
+        geographyCorr = tmp[0];
+        geographyAns = tmp[1];
+        console.log("geographyCorr = " + geographyCorr);
+        console.log("geographyAns = " + geographyAns);
+        
         $.ajax({
             url: 'AjaxEndQuiz.php',
             type: 'GET',
             dataType: 'json',
             data: {
                 //posalji rezultate kviza da se spreme u bazu podataka
-                quizName: quizName,
-                numberOfCorrectAnswers: numberOfCorrectAnswers,
-                numberOfQuestions: numberOfQuestions, 
-                historyArray: historyArray,
-                sportsArray: sportsArray,
-                entertainmentArray: entertainmentArray,
-                scienceArray: scienceArray,
-                artArray: artArray, 
-                geographyArray: geographyArray 
+                quizName: quizName, 
+                historyCorr: historyCorr,
+                historyAns: historyAns,
+                sportsCorr: sportsCorr,
+                sportsAns: sportsAns,
+                artAns: artAns, 
+                artCorr: artCorr,
+                geographyAns: geographyAns,
+                geographyCorr: geographyCorr,
+                entertainmentAns: entertainmentAns,
+                entertainmentCorr: entertainmentCorr,
+                scienceAns: scienceAns,
+                scienceCorr: scienceCorr
+
             },
             success: function(data) {
-                console.log("succes funkcija, data = " + data);
+                console.log("succes funkcija! Slijede rezultati:");
+                for(let i = 0; i < data.length; i++){
+                    console.log(data[i]);
+                }
                 PresentEndQuizContainer(quizName,numberOfCorrectAnswers,numberOfQuestions); 
             },
             error: function( xhr, status, errorThrown ) { 
@@ -304,6 +354,19 @@ require_once __DIR__ . '/_header.php';
                 console.log(errorThrown);
             }
         });
+        
+    }
+
+    function EvaluateResults(array){
+        var ans = array.length;
+        var corr = 0;  
+        for(let i = 0; i < array.length; i++){
+            if(array[i] === 1) corr++; 
+        }
+        array = []; 
+        array[0] = corr; 
+        array[1] = ans; 
+        return array; 
     }
 
     function RemoveQuestionContainer(){
