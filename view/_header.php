@@ -15,9 +15,9 @@
             if (isset($_SESSION['id'])) {
                 echo '
         <nav>
-            <li><a id="my-profile-tab" href="index.php?rt=RandomQuizSolving">My profile</a></li>
-            <li><a id="play-random-quiz-tab" href="index.php?rt=RandomQuizSolving">Play random quiz</a></li>
-            <li><a id="answer-radnom-questions-tab" href="../controller/RandomQsController.php">Answer random questions</a></li>';
+        <li><a id="home-tab" href="index.php?rt=home">Home</a></li>
+        <li><a id="my-profile-tab" href="index.php?rt=myprofile">My profile</a></li>
+        <li><a id="play-random-quiz-tab" href="index.php?rt=RandomQuizSolving">Play random quiz</a></li>';
 
                 if (isset($_SESSION['admin'])) // Ulogirani korisnik je admin
                     echo '

@@ -20,7 +20,7 @@ $tmp = $_GET["indexOfNextQuestionId"];
 
 
 $quizId = $QuizService->GetQuizIdByQuizName($quizName); 
-$questionsIds = $QuizService->GetQuestionsIdsByQuizId($quizId[0]); 
+$questionsIds = $QuizService->GetQuestionsIdsByQuizId($quizId); 
 
 
 $message[0] = $QuizService->GetQuestionByQuestionId($questionsIds[$tmp][0]);

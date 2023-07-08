@@ -12,13 +12,17 @@ class QuizSolving {
 		}
 		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
 
-        $rows = $st -> fetch(); 
+        $rows = $st -> fetchAll(); 
         if($rows === false){
             return null; 
         } 
         else{
-            //tu u nekom primjeru vraca klasu, ja cu zasad samo id-eve
-            return $rows; 
+            //vraca u obliku row[redak][stupac = 0 uvijek 0 ]
+            $returnValue = []; 
+            for($i = 0; $i < Count($rows); $i++){
+                array_push($returnValue,$rows[$i][0]);
+            }
+            return $returnValue; 
         }
     }
 
@@ -31,13 +35,13 @@ class QuizSolving {
 		}
 		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
 
-        $row = $st -> fetch(); 
+        $row = $st -> fetchAll(); 
         if($row === false){
             return null; 
         } 
         else{
             //tu u nekom primjeru vraca klasu, ja cu zasad samo id-eve
-            return $row; 
+            return $row[0][0]; 
         }
     }
 
@@ -72,12 +76,7 @@ class QuizSolving {
 		}
 		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
 
-        while(1){
-            $randomQuizId = $this->GetRandomElement($allQuizIds);
-            //ako je igrac vec odigrao random odabrani kviz ponovo odaberi novi kviz, id cemo dohvatiti iz SESSION-a? 
-            if(true) break; // zasada ovako 
-        }
-        
+        $randomQuizId = $this->GetRandomElement($allQuizIds);
         return $randomQuizId;
     }
 
@@ -126,6 +125,22 @@ class QuizSolving {
 		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
         $questionIds = $st -> fetchAll();
         return $questionIds;        
+    }
+
+    function CheckIfUserIDPlayedQuizID($user_id, $quizId){
+        try
+		{
+			$db = DB::getConnection();
+			$st = $db->prepare('SELECT user_id,quiz_id FROM kustura.users_quizzes WHERE user_id=:user_id');
+			$st->execute(array('user_id' => $user_id));
+		}
+		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
+        $rows = $st -> fetchAll();
+        for($i = 0; $i < Count($rows); $i++){
+            if($rows[$i][0] === $user_id && $rows[$i][1] === $quizId) return true; 
+        }
+
+        return false;
     }
 };
 

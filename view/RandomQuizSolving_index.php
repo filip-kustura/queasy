@@ -133,26 +133,15 @@ require_once __DIR__ . '/_header.php';
     var geographyArray = []; 
     
     $(document).ready(function () {
-        //prvo pitanje
-        var answers = []; 
         numberOfQuestions =<?php echo $_SESSION['numberOfQuestions']; ?>;
-        answers[0] = '<?php echo $_SESSION['answers'][0]; ?>';
-        answers[1] = '<?php echo $_SESSION['answers'][1]; ?>';
-        answers[2] = '<?php echo $_SESSION['answers'][2]; ?>';
-        answers[3] = '<?php echo $_SESSION['answers'][3]; ?>';
-        var category = '<?php echo $_SESSION['questionCategory']; ?>';
         quizName = '<?php echo $_SESSION['quizName']; ?>';
-        var question = '<?php echo $_SESSION['question']; ?>';
-        console.log("numberOfQuestions = " +numberOfQuestions);
-        PresentWholeQuestionContainer(
-            1,
-            question,
-            answers,
-            category,
-            quizName,
-            0,
-            0
-        );
+        /*window.addEventListener('beforeunload', function(e) {
+            alert('Are you sure you want to leave this quiz? Unanswered questions will be consideren wrong and you will not be able to play this quiz again.');
+
+            e.returnValue = 'Are you sure you want to leave this quiz? Unanswered questions will be consideren wrong and you will not be able to play this quiz again.';
+        });*/
+
+        SendNextQuestionAjax(1,0,0,0);
     });
 
     function PresentWholeQuestionContainer(number,question,answers,category,quizName,numOfCorrectlyAnswered,numOfAnswers){
@@ -212,7 +201,7 @@ require_once __DIR__ . '/_header.php';
             UpdateCategoryArrays(true, curr_category); 
         }
         else UpdateCategoryArrays(false, curr_category);
-        if(orderNumberOfQuestion - 1 >= numberOfQuestions) SendEndQuizAjax();
+        if(orderNumberOfQuestion - 1 === numberOfQuestions) SendEndQuizAjax();
         else SendNextQuestionAjax(orderNumberOfQuestion,numberOfCorrectAnswers,numberOfAnswers,indexOfNextQuestionId);
     }
 
@@ -226,7 +215,7 @@ require_once __DIR__ . '/_header.php';
             UpdateCategoryArrays(true, curr_category); 
         }
         else UpdateCategoryArrays(false, curr_category);        
-        if(orderNumberOfQuestion - 1 >= numberOfQuestions) SendEndQuizAjax();
+        if(orderNumberOfQuestion - 1 === numberOfQuestions) SendEndQuizAjax();
         else SendNextQuestionAjax(orderNumberOfQuestion,numberOfCorrectAnswers,numberOfAnswers,indexOfNextQuestionId);
     }
 
@@ -237,88 +226,58 @@ require_once __DIR__ . '/_header.php';
         if(isCorrect) nextElement = 1; 
 
         if(category === "history") {
-            console.log("in history");
             historyArray.push(nextElement);
         }
         else if(category === "sports") {
-            console.log("in sports");
             sportsArray.push(nextElement);
         }
         else if(category === "science") {
-            console.log("in science");
             scienceArray.push(nextElement);
         }
         else if(category === "entertainment") {
-            console.log("in enter");
             entertainmentArray.push(nextElement);
         }
         else if(category === "geography") {
-            console.log("in geo");
             geographyArray.push(nextElement);
         }
         else if(category === "art") {
-            console.log("in art");
             artArray.push(nextElement);
         }
     }
 
 
     function SendEndQuizAjax(){
-        console.log("history");
-        PrintArray(historyArray);
-        console.log("science");
-        PrintArray(scienceArray);
-        console.log("sports");
-        PrintArray(sportsArray);
-        console.log("zabava");
-        PrintArray(entertainmentArray);
-        console.log("art");
-        PrintArray(artArray);
-        console.log("geo");
-        PrintArray(geographyArray);
-        
         var historyCorr = 0, historyAns = 0;
         tmp = EvaluateResults(historyArray); 
         historyCorr = tmp[0];
         historyAns = tmp[1];
-        console.log("historyCorr = " + historyCorr);
-        console.log("historyAns = " + historyAns);
-        
+
         var sportsCorr = 0, sportsAns = 0;
         tmp = EvaluateResults(sportsArray); 
         sportsCorr = tmp[0];
         sportsAns = tmp[1];
-        console.log("sportsCorr = " + sportsCorr);
-        console.log("sportsAns = " + sportsAns);
 
         var scienceCorr = 0, scienceAns = 0;
         tmp = EvaluateResults(scienceArray); 
         scienceCorr = tmp[0];
         scienceAns = tmp[1];
-        console.log("scienceCorr = " + scienceCorr);
-        console.log("scienceAns = " + scienceAns);
         
         var artCorr = 0, artAns = 0;
         tmp = EvaluateResults(artArray); 
         artCorr = tmp[0];
         artAns = tmp[1];
-        console.log("artCorr = " + artCorr);
-        console.log("artAns = " + artAns);
-        
+
         var entertainmentCorr = 0, entertainmentAns = 0;
         tmp = EvaluateResults(entertainmentArray); 
         entertainmentCorr = tmp[0];
         entertainmentAns = tmp[1];
-        console.log("entertainmentCorr = " + entertainmentCorr);
-        console.log("entertainmentAns = " + entertainmentAns);
         
         var geographyCorr = 0, geographyAns = 0;
         tmp = EvaluateResults(geographyArray); 
         geographyCorr = tmp[0];
         geographyAns = tmp[1];
-        console.log("geographyCorr = " + geographyCorr);
-        console.log("geographyAns = " + geographyAns);
-        
+
+        return; //privremeno treba dobro analizirat AjaxEndQuiz.php, uvjerit se da nema greške i pospremit rezultate
         $.ajax({
             url: 'AjaxEndQuiz.php',
             type: 'GET',
@@ -341,10 +300,6 @@ require_once __DIR__ . '/_header.php';
 
             },
             success: function(data) {
-                console.log("succes funkcija! Slijede rezultati:");
-                for(let i = 0; i < data.length; i++){
-                    console.log(data[i]);
-                }
                 PresentEndQuizContainer(quizName,numberOfCorrectAnswers,numberOfQuestions); 
             },
             error: function( xhr, status, errorThrown ) { 
@@ -417,8 +372,6 @@ require_once __DIR__ . '/_header.php';
             }
         });
     }
-
-
 
     function IsQuestionABCDType(answers){
         if(answers[1] === null && answers[2] === null && answers[3] === null) return false; 
