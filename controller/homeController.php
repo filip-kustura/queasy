@@ -5,13 +5,15 @@ require_once __DIR__ . '/../model/homeservice.class.php';
 class HomeController {
 	public function index() {
 		session_start();
+		unset($_SESSION['quizName']);
+		unset($_SESSION['quizId']);
 		if (!isset($_SESSION['username']))
 			header('Location: index.php?rt=login'); // Korisnik nije ulogiran -- preusmjeri na podstranicu za login
 
 		$HomeDB = new HomeService();
 		$quizIds = $HomeDB->GetAllQuizIds();
 		
-		$_SESSION["quizName"] = []; 
+		$_SESSION["quizNames"] = []; 
 		$_SESSION["quizAuthor"] = [];
 		$_SESSION["quizNumOfQuestions"] = []; 
 		
@@ -19,7 +21,7 @@ class HomeController {
 			$quizName = $HomeDB->GetQuizNameByQuizId($quizIds[$i]);
 			$authorName = $HomeDB->GetQuizAuthorByQuizId($quizIds[$i]);
 			$numOfQuestions = $HomeDB->GetNumberOfQuestionsInQuizById($quizIds[$i]);
-			array_push($_SESSION["quizName"], $quizName);
+			array_push($_SESSION["quizNames"], $quizName);
 			array_push($_SESSION["quizAuthor"], $authorName);
 			array_push($_SESSION["quizNumOfQuestions"], $numOfQuestions);				
 		}

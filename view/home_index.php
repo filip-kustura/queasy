@@ -74,7 +74,7 @@ function GenerateQuizContainers($names, $counts, $authors) {
 
 
 
-echo GenerateQuizContainers($_SESSION["quizName"],$_SESSION["quizNumOfQuestions"],$_SESSION["quizAuthor"]);
+echo GenerateQuizContainers($_SESSION["quizNames"],$_SESSION["quizNumOfQuestions"],$_SESSION["quizAuthor"]);
 
 echo "<br>";
 echo "<br>";

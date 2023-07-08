@@ -16,16 +16,15 @@ Web-stranica omogućava korisnicima rješavanje jednog od ponuđenih kvizova. Kv
 
 ## TODO
 po prioritetima
-1. Dodat dobar serverski dio kod ajaxa za pohranu rezultata kviza te pohranu odgovarajucih podata u users_quizzes tablicu (maksimalan prioritet kad se ovo obavi aplikacija je prakticki dovrsena)
-2. Sprjecit refreshanje pri igranju kviza (izazovno) => neznam kako ovo, google chrome ima svoje jake policy-e i tesko je njima manipulirat
-5. dodat timere na pitanja (potencijalno izazovno) => prezivit cemo i bez toga ali pozeljno
-6. my profile neka prikazuje statistike po kategorijama pitanja (DONE: samo poslozi view da lijepo izgleda zasad je rastrkano!)
-7. Dok se kviz igra, u question containere stavi koliko kviz ima pitanja (ned) => prezivit cemo i bez toga ali pozeljno
+1. Testirat ubacivanje rezultata pri zavrsetku kviza (lagano)
+2. Sprjecit refreshanje pri igranju kviza (izazovno) 
+3. Random kviz mora biti random (Lagano) (subota)
+4. Prikazi sve kvizove na home stranici (izazovno) => sprjeci da igrac moze igrati isti kviz vise od jednom! (lagano) (subota)
+5. dodat timere na pitanja (potencijalno izazovno) (subota)
+6. my profile neka prikazuje statistike po kategorijama pitanja (kruzni dijagrami?) (izazovno) (nedjelja)
+7. Dok se kviz igra, u question containere stavi koliko kviz ima pitanja (ned)
 8. Uljepsat css, pocistit kod i dodat komentare 
 
-DONE:
-4. Prikazi sve kvizove na home stranici (izazovno) => sprjeci da igrac moze igrati isti kviz vise od jednom! (lagano) (subota)
-3. Random kviz mora biti random (Lagano) (subota)
 - ~~(Filip) kreirati u bazi i popuniti tablicu s pitanjima, kategorijom, točnim odgovorom i eventualnim ponuđenim odgovorima~~
 - ~~(Filip) nadograditi datoteke `create_tables.php` i `seed_tables.php` tako da podržavaju kreiranje/punjenje i tablice `questions`~~
 -(Vilim) u play random kviz mora se stvarno odabrati random kviz kojeg korisnik jos nije igrao! -> TODO: vrsi ovo preko controllera, ne modela!

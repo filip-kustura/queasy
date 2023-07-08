@@ -8,12 +8,12 @@ class RandomQuizSolvingController{
         $QuizService = new QuizSolving();
     
         if (isset($_POST['quizName'])) {
+            echo "tu sam di netreba";
             $_SESSION['quizName'] = $_POST['quizName'];
         }
 
         if(!isset($_SESSION["quizName"])){
             //inicijalizacija random kviza
-            
             while(1){
                 $_SESSION["quizId"] = $QuizService->GetRandomQuizId();
                 if(!($QuizService->CheckIfUserIDPlayedQuizID($_SESSION["id"],$_SESSION["quizId"]))){
@@ -34,7 +34,6 @@ class RandomQuizSolvingController{
             require_once __DIR__ . '/../view/RandomQuizSolving_index.php';
         }
         else if(isset($_SESSION['quizName'])){
-
             //Odabrani kviz iz home page-a je selektiran
             $_SESSION["quizId"]= $QuizService->GetQuizIdByQuizName($_SESSION['quizName']);
             
