@@ -8,7 +8,7 @@
 } ?>
 
 <?php echo "<br>"; ?>
-<span>Welcome, <?php echo($_SESSION['username']); ?>.</span>
+<h1 style="margin-bottom: 0px;">Welcome, <?php echo($_SESSION['username']); ?>.</h1>
 <?php
 
 if(isset($_SESSION["sendMsg"])){
