@@ -16,13 +16,11 @@ Web-stranica omogućava korisnicima rješavanje jednog od ponuđenih kvizova. Kv
 
 ## TODO
 po prioritetima
-1. Testirat ubacivanje rezultata pri zavrsetku kviza (lagano)
-2. Sprjecit refreshanje pri igranju kviza (izazovno) 
-5. dodat timere na pitanja (potencijalno izazovno) => pozeljno, mozemo prezivit bez toga
-7. Dok se kviz igra, u question containere stavi koliko kviz ima pitanja => pozeljno, mozemo prezivit bez toga
+2. Sprjecit refreshanje pri igranju kviza (izazovno) => neznam kako??? 
 8. Uljepsat css, pocistit kod i dodat komentare 
 
 DONE: 
+1. Testirat ubacivanje rezultata pri zavrsetku kviza (lagano) rjeseno 
 4. Prikazi sve kvizove na home stranici (izazovno) => sprjeci da igrac moze igrati isti kviz vise od jednom! (lagano) (subota)
 3. Random kviz mora biti random (Lagano) (subota)
 6. my profile neka prikazuje statistike po kategorijama pitanja (kruzni dijagrami?) (izazovno) (nedjelja)
