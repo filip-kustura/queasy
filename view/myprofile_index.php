@@ -7,25 +7,71 @@ require_once __DIR__ . '/_header.php';
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <style>
-    #diagram-container {
+#diagrams-container {
         display: flex;
-        justify-content: space-between;
-        align-items: center;
         flex-wrap: wrap;
-        gap: 20px;
+        justify-content: center;
+        align-items: flex-start;
+      }
+
+      .diagram-container {
+        width: 200px;
+        height: 250px; 
+        margin: 5px;
+        border: 4px solid #baa414; 
+        padding: 10px; 
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        border-radius: 10px; 
+        background-color: #1f086c;
+
+      }
+
+      
+
+      .diagram-text {
+        text-align: center;
+        color: #dbc848; 
+        font-weight: bold; 
+        font-size: 20px;
+        font-family: Arial, sans-serif; 
     }
 
-    canvas {
-        width: 100px;
-        height: 100px;
-        max-width: 20%; 
-    }    
-
+    .diagram-percentage {
+        color: #dbc848;
+        font-weight: bold;
+        font-size: 20px;
+      }
 </style>
 
-<div id="diagram-container">
-  <!-- Dijagrami idu ovdje, dodaju se preko js -->
-</div>
+<div id="diagrams-container">
+    <div class="diagram-container" id="diagram-container-1">
+      <div class="diagram-text">History</div>
+      <div class="diagram-percentage"></div>
+    </div>
+    <div class="diagram-container" id="diagram-container-2">
+      <div class="diagram-text">Sports</div>
+      <div class="diagram-percentage"></div>
+    </div>
+    <div class="diagram-container" id="diagram-container-3">
+      <div class="diagram-text">Science</div>
+      <div class="diagram-percentage"></div>
+    </div>
+    <div class="diagram-container" id="diagram-container-4">
+      <div class="diagram-text">Entertainment</div>
+      <div class="diagram-percentage"></div>
+    </div>
+    <div class="diagram-container" id="diagram-container-5">
+      <div class="diagram-text">Art</div>
+      <div class="diagram-percentage"></div>
+    </div>
+    <div class="diagram-container" id="diagram-container-6">
+      <div class="diagram-text">Geography</div>
+      <div class="diagram-percentage"></div>
+    </div>
+  </div>
 
 
 <script>
@@ -48,54 +94,57 @@ $(document).ready(function () {
     var artAns = <?php echo $_SESSION['artAns']; ?>;
     
     //crtanje odgovarajucih dijagrama
-    CreateDiagram(historyCorr,historyAns,"history");
-    CreateDiagram(sportsCorr,sportsAns,"sports");
-    CreateDiagram(scienceCorr,scienceAns,"science");
-    CreateDiagram(entertainmentCorr,entertainmentAns,"entertainment");
-    CreateDiagram(artCorr,artAns,"art");
-    CreateDiagram(geographyCorr,geographyAns,"geography");
+    CreateDiagram(historyCorr,historyAns,"history","diagram-container-1");
+    CreateDiagram(sportsCorr,sportsAns,"sports","diagram-container-2");
+    CreateDiagram(scienceCorr,scienceAns,"science","diagram-container-3");
+    CreateDiagram(entertainmentCorr,entertainmentAns,"entertainment","diagram-container-4");
+    CreateDiagram(artCorr,artAns,"art","diagram-container-5");
+    CreateDiagram(geographyCorr,geographyAns,"geography","diagram-container-6");
 });
 
-    function CreateDiagram(numOfCorrect, numOfAnswered, category) {
-        var container = document.getElementById('diagram-container');
-        var canvas = document.createElement('canvas');
+function CreateDiagram(numOfCorrect, numOfAnswered, category, containerId) {
+        var container = document.getElementById(containerId);
+        var canvas = document.createElement("canvas");
         container.appendChild(canvas);
         var color = GetColorByQuestionCategory(category);
         new Chart(canvas, {
-            type: 'doughnut', 
-            data: {
-            datasets: [{
-                data: [numOfCorrect, numOfAnswered ],
-                backgroundColor: [
-                color,
-                'black' 
-                ]
-            }],
-            labels: ['Correct', 'Incorrect']
+          type: "doughnut",
+          data: {
+            datasets: [
+              {
+                data: [numOfCorrect, numOfAnswered - numOfCorrect],
+                backgroundColor: [color, "gray"],
+              },
+            ],
+            labels: ["Correct", "Incorrect"],
+          },
+          options: {
+            responsive: true,
+            cutout: "40%",
+            width: 50,
+            height: 50,
+            layout: {
+              padding: {
+                left: 0,
+                right: 0,
+                top: 5,
+                bottom: 0,
+              },
             },
-            options: {
-                responsive: true,
-                width: 50,
-                height: 50,
-                legend: {
-                    display: false
-                },
-                layout: {
-                    padding: {
-                    left: 0,
-                    right: 0,
-                    top: 5, 
-                    bottom: 0
-                    }
-                },
-                plugins: {
-                    legend: {
-                    position: 'top' 
-                    }
-                }
-            }
+            plugins: {
+              legend: {
+                display: false,
+              },
+            },
+          },
         });
-    }
+
+        var percentage = ((numOfCorrect * 100) / numOfAnswered).toFixed(0) + "%";
+        container.getElementsByClassName(
+          "diagram-percentage"
+        )[0].innerText = percentage;
+      }
+
 
     function GetColorByQuestionCategory(category){
         if(category === "history") return "lightblue";
