@@ -1,6 +1,5 @@
 function displayQuizzesTable(quizzes) {
     $('#tbody').html('');
-    $('#notification').html('');
 
     for (let quiz of quizzes) { // quizzes je array
         let deleteIcon = $('<img>')
@@ -45,7 +44,6 @@ function displayQuizzesTable(quizzes) {
 
 function displayQuestionsTable(questions) {
     $('#tbody').html('');
-    $('#notification').html('');
 
     for (let question of questions) { // questions je array
         let deleteIcon = $('<img>')
@@ -57,7 +55,7 @@ function displayQuestionsTable(questions) {
         let deleteButton = $('<button>')
             .addClass('delete-button')
             .on('click', function() {
-                confirmDeletion(question['id'], question['quiz_name'], question['author']);
+                confirmDeletion(question['id'], question['author']);
             })
             .append(deleteIcon);
         

@@ -6,8 +6,8 @@
 <script src="view/javascript-files/table-display.js"></script>
 
 <p id="notification" style="color: green; padding-left: 40px;"></p>
-<div style="position: absolute; top: 150px; padding-bottom: 100px;">
-    <p style="margin-bottom: 0px; padding-left: 40px;">
+<div style="position: absolute; top: 150px; padding-bottom: 100px; padding-left: 40px;">
+    <p style="margin-bottom: 0px;">
         <?php
         echo '<input type="checkbox" name="my-quizzes" id="my-quizzes-checkbox" onclick="myQuizzesCheckboxClickEventHandler(' . $_SESSION['id'] . ')">';
         ?>
@@ -60,10 +60,16 @@ function getQuizzesAndDisplayTable(authorId = 0) {
 function myQuizzesCheckboxClickEventHandler($id) {
     // Event handler za click na checkbox
 
+    // Onemogući klik na checkbox sve dok podaci ne budu dohvaćeni
+    $('#my-quizzes-checkbox').prop('disabled', true);
+
     if ($('#my-quizzes-checkbox').prop('checked'))
         getQuizzesAndDisplayTable($id); // Korisnik je označio checkbox pa prikaži samo njegove kvizove
     else
         getQuizzesAndDisplayTable(); // Korisnik je odznačio checkbox pa prikaži sve kvizove
+
+    // Ponovno omogući klik na checkbox nakon što su podaci dohvaćeni
+    $('#my-quizzes-checkbox').prop('disabled', false);
 }
 </script>
 

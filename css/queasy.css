@@ -247,3 +247,38 @@ td img {
     margin-right: 55px;
 }
 
+#add-question-form #form-last-row {
+    padding: 5px;
+}
+
+#form-last-row { text-align: right; }
+
+#add-question-form {
+    width: 620px;
+}
+
+#add-question-form dl dt {
+    display: inline-block;
+	width: 180px;
+	padding-left: 30px;
+
+	margin-top: 10px;
+}
+
+#add-question-form dl dd 
+{
+	vertical-align: top;
+	display: inline-block;
+	width: 370px;
+	margin-top: 10px;
+}
+
+#add-question-form dl dd label 
+{
+	display: block;
+}
+
+#add-question-form dl #form-last-row
+{
+	width: 600px;
+}

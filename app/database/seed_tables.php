@@ -190,11 +190,11 @@ function seed_table_questions() {
 		$st->execute(
 			array(
 				'category' => 'history',
-				'question' => 'What nationality was Benito Mussolini?',
-				'answer' => 'Italian',
-				'optionA' => 'Spanish',
-				'optionB' => 'French',
-				'optionC' => 'American',
+				'question' => 'What nationality was archduke Franz Ferdinand whose assassination was the most immediate cause of World War I?',
+				'answer' => 'Austrian',
+				'optionA' => 'German',
+				'optionB' => 'Swiss',
+				'optionC' => 'Belgian',
 				'author' => 1
 			)
 		);
