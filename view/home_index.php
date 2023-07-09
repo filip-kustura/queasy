@@ -8,7 +8,7 @@
 } ?>
 
 <?php echo "<br>"; ?>
-<h1 style="margin-bottom: 0px;">Welcome, <?php echo($_SESSION['username']); ?>.</h1>
+<span>Welcome, <?php echo($_SESSION['username']); ?>.</span>
 <?php
 
 if(isset($_SESSION["sendMsg"])){
@@ -16,7 +16,13 @@ if(isset($_SESSION["sendMsg"])){
         $_SESSION["sendMsg"] = false; 
         echo '<script> alert("You already played this quiz!"); </script>';
     }
+}
 
+if(isset($_SESSION["playedAll"])){
+    if($_SESSION["playedAll"] === true){
+        $_SESSION["playedAll"] = false; 
+        echo '<script> alert("Congratulations! You played all our quizzes!"); </script>';
+    }
 }
 ?>
 
@@ -66,8 +72,6 @@ function GenerateQuizContainers($names, $counts, $authors) {
         $container .= '</form>';
         $container .= '</div>';
     }
- 
-     
     return $container;
 }
 

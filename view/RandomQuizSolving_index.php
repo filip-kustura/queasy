@@ -86,6 +86,8 @@ require_once __DIR__ . '/_header.php';
         font-size: 16px;
         cursor: pointer;
     }
+    
+    
 
     .answer-button {
         display: inline-block;
@@ -98,6 +100,20 @@ require_once __DIR__ . '/_header.php';
         color: white;
         background-image: linear-gradient(to bottom, #00a8e8, #0077b5);
         transition: background-color 0.3s;
+    }
+
+    .finish-button {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin-top: 20px;
+        cursor: pointer;
+        border-radius: 5px;
     }
 
     .answer-button:hover {
@@ -123,25 +139,11 @@ require_once __DIR__ . '/_header.php';
     var numberOfCorrectAnswers = 0; 
     var numberOfAnswers = 0; 
     var curr_category = ""; 
-
-    //pamtimo tocne/netocne odgovore po kategorijama u ovim nizovima 
-    var historyArray = []; 
-    var sportsArray = [];
-    var entertainmentArray = []; 
-    var scienceArray = []; 
-    var artArray = []; 
-    var geographyArray = []; 
     
     $(document).ready(function () {
         numberOfQuestions =<?php echo $_SESSION['numberOfQuestions']; ?>;
         quizName = '<?php echo $_SESSION['quizName']; ?>';
-        /*window.addEventListener('beforeunload', function(e) {
-            alert('Are you sure you want to leave this quiz? Unanswered questions will be consideren wrong and you will not be able to play this quiz again.');
-
-            e.returnValue = 'Are you sure you want to leave this quiz? Unanswered questions will be consideren wrong and you will not be able to play this quiz again.';
-        });*/
-
-        SendNextQuestionAjax(1,0,0,0);
+        SendNextQuestionAjax(1,0,0,0,false,"none");
     });
 
     function PresentWholeQuestionContainer(number,question,answers,category,quizName,numOfCorrectlyAnswered,numOfAnswers){
@@ -194,142 +196,34 @@ require_once __DIR__ . '/_header.php';
         const textbox = document.getElementById('input-textbox');
         const answerText = textbox.value;
         orderNumberOfQuestion++;
+        var isCorrect = "yes";
         var indexOfNextQuestionId = orderNumberOfQuestion - 1;  
         numberOfAnswers++;
         if(answerText === correctAnswer){
             numberOfCorrectAnswers++;
-            UpdateCategoryArrays(true, curr_category); 
+            isCorrect = "yes"; 
         }
-        else UpdateCategoryArrays(false, curr_category);
-        if(orderNumberOfQuestion - 1 === numberOfQuestions) SendEndQuizAjax();
-        else SendNextQuestionAjax(orderNumberOfQuestion,numberOfCorrectAnswers,numberOfAnswers,indexOfNextQuestionId);
+        else isCorrect = "no";
+        SendNextQuestionAjax(orderNumberOfQuestion,numberOfCorrectAnswers,numberOfAnswers,indexOfNextQuestionId,isCorrect,curr_category);
     }
 
     function AnswerButtonClickHandler(){
         var answerText = $(event.target).text();
         orderNumberOfQuestion++;
+        var isCorrect = true; 
         var indexOfNextQuestionId = orderNumberOfQuestion - 1;  
         numberOfAnswers++;
         if(answerText === correctAnswer){
-            numberOfCorrectAnswers++;
-            UpdateCategoryArrays(true, curr_category); 
+            console.log("tocan");
+            numberOfCorrectAnswers++; 
+            isCorrect = "yes"; 
         }
-        else UpdateCategoryArrays(false, curr_category);        
-        if(orderNumberOfQuestion - 1 === numberOfQuestions) SendEndQuizAjax();
-        else SendNextQuestionAjax(orderNumberOfQuestion,numberOfCorrectAnswers,numberOfAnswers,indexOfNextQuestionId);
-    }
-
-    //Pomocne funkcije
-
-    function UpdateCategoryArrays(isCorrect, category){
-        var nextElement = 0; 
-        if(isCorrect) nextElement = 1; 
-
-        if(category === "history") {
-            historyArray.push(nextElement);
-        }
-        else if(category === "sports") {
-            sportsArray.push(nextElement);
-        }
-        else if(category === "science") {
-            scienceArray.push(nextElement);
-        }
-        else if(category === "entertainment") {
-            entertainmentArray.push(nextElement);
-        }
-        else if(category === "geography") {
-            geographyArray.push(nextElement);
-        }
-        else if(category === "art") {
-            artArray.push(nextElement);
-        }
+        else isCorrect = "no"; 
+        SendNextQuestionAjax(orderNumberOfQuestion,numberOfCorrectAnswers,numberOfAnswers,indexOfNextQuestionId,isCorrect,curr_category);
     }
 
 
-    function SendEndQuizAjax(){
-        var historyCorr = 0, historyAns = 0;
-        tmp = EvaluateResults(historyArray); 
-        historyCorr = tmp[0];
-        historyAns = tmp[1];
-
-        var sportsCorr = 0, sportsAns = 0;
-        tmp = EvaluateResults(sportsArray); 
-        sportsCorr = tmp[0];
-        sportsAns = tmp[1];
-
-        var scienceCorr = 0, scienceAns = 0;
-        tmp = EvaluateResults(scienceArray); 
-        scienceCorr = tmp[0];
-        scienceAns = tmp[1];
-        
-        var artCorr = 0, artAns = 0;
-        tmp = EvaluateResults(artArray); 
-        artCorr = tmp[0];
-        artAns = tmp[1];
-
-        var entertainmentCorr = 0, entertainmentAns = 0;
-        tmp = EvaluateResults(entertainmentArray); 
-        entertainmentCorr = tmp[0];
-        entertainmentAns = tmp[1];
-        
-        var geographyCorr = 0, geographyAns = 0;
-        tmp = EvaluateResults(geographyArray); 
-        geographyCorr = tmp[0];
-        geographyAns = tmp[1];
-
-        return; //privremeno treba dobro analizirat AjaxEndQuiz.php, uvjerit se da nema greške i pospremit rezultate
-        $.ajax({
-            url: 'AjaxEndQuiz.php',
-            type: 'GET',
-            dataType: 'json',
-            data: {
-                //posalji rezultate kviza da se spreme u bazu podataka
-                quizName: quizName, 
-                historyCorr: historyCorr,
-                historyAns: historyAns,
-                sportsCorr: sportsCorr,
-                sportsAns: sportsAns,
-                artAns: artAns, 
-                artCorr: artCorr,
-                geographyAns: geographyAns,
-                geographyCorr: geographyCorr,
-                entertainmentAns: entertainmentAns,
-                entertainmentCorr: entertainmentCorr,
-                scienceAns: scienceAns,
-                scienceCorr: scienceCorr
-
-            },
-            success: function(data) {
-                PresentEndQuizContainer(quizName,numberOfCorrectAnswers,numberOfQuestions); 
-            },
-            error: function( xhr, status, errorThrown ) { 
-                console.log("error?"); 
-                console.log(xhr);
-                console.log(status);
-                console.log(errorThrown);
-            }
-        });
-        
-    }
-
-    function EvaluateResults(array){
-        var ans = array.length;
-        var corr = 0;  
-        for(let i = 0; i < array.length; i++){
-            if(array[i] === 1) corr++; 
-        }
-        array = []; 
-        array[0] = corr; 
-        array[1] = ans; 
-        return array; 
-    }
-
-    function RemoveQuestionContainer(){
-        const container = document.getElementById('container');
-        if (container) container.remove();
-    }
-
-    function PresentEndQuizContainer(quizName, numberOfCorrectAnswers, numberOfAnswers){
+    function PresentEndQuizContainer(){        
         RemoveQuestionContainer();
         const container = document.createElement('div');
         container.classList.add('end-quiz-container');
@@ -341,28 +235,47 @@ require_once __DIR__ . '/_header.php';
         quizResultsElement.textContent = `Results: ${numberOfCorrectAnswers}/${numberOfAnswers}`;
         quizResultsElement.classList.add('quiz-results');
         container.appendChild(quizResultsElement);
+        const finishButton = document.createElement('a');
+        finishButton.textContent = 'Finish';
+        finishButton.classList.add('finish-button');
+        finishButton.href = 'index.php?rt=EndQuiz';
+        container.appendChild(finishButton);
         document.body.appendChild(container);
     }
 
-    function SendNextQuestionAjax(orderNumberOfQuestion,numberOfCorrectAnswers,numberOfAnswers,indexOfNextQuestionId){
+    function RemoveQuestionContainer(){
+        const container = document.getElementById('container');
+        if (container) container.remove();
+    }
+
+
+
+    function SendNextQuestionAjax(orderNumberOfQuestion,numberOfCorrectAnswers,numberOfAnswers,indexOfNextQuestionId,isCorrect,category){
         $.ajax({
             url: 'AjaxGetQuestionHandler.php',
             type: 'GET',
             dataType: 'json',
             data: {
+                isCorrect: isCorrect,
+                category: category,
                 indexOfNextQuestionId: indexOfNextQuestionId,
                 quizName: quizName 
             },
             success: function(data) {
-                PresentWholeQuestionContainer(
-                    orderNumberOfQuestion,
-                    data[0],
-                    data[1],
-                    data[2],
-                    quizName,
-                    numberOfCorrectAnswers,
-                    numberOfAnswers
-                );
+                if(data === true){
+                    PresentEndQuizContainer();
+                }   
+                else{
+                    PresentWholeQuestionContainer(
+                        orderNumberOfQuestion,
+                        data[0],
+                        data[1],
+                        data[2],
+                        quizName,
+                        numberOfCorrectAnswers,
+                        numberOfAnswers
+                    );
+                }
             },
             error: function( xhr, status, errorThrown ) { 
                 console.log("error?"); 

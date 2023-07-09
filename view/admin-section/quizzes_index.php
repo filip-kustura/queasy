@@ -6,8 +6,7 @@
 <script src="view/javascript-files/table-display.js"></script>
 
 <p id="notification" style="color: green; padding-left: 40px;"></p>
-<div style="position: absolute; top: 150px; padding-left: 40px; padding-bottom: 100px;">
-    <a href="index.php?subdir=admin-section&rt=quizAdding">Create a new quiz</a>
+<div style="position: absolute; top: 150px; padding-bottom: 100px; padding-left: 40px;">
     <p style="margin-bottom: 0px;">
         <?php
         echo '<input type="checkbox" name="my-quizzes" id="my-quizzes-checkbox" onclick="myQuizzesCheckboxClickEventHandler(' . $_SESSION['id'] . ')">';
@@ -22,7 +21,7 @@
                 <th>Quiz ID</th>
                 <th style="min-width: 160px;">Quiz Name</th>
                 <th style="min-width: 160px;">Author</th>
-                <th>Number of questions</th>
+                <th>No. of questions</th>
             </tr>
         </thead>
         <tbody id="tbody">

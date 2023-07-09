@@ -2,187 +2,158 @@
 
 require_once __DIR__ . '/../app/database/db.class.php';
 
-
 class UserService{
-    function GetHistoryResultsById($id){
+    function UpdateUserHistoryStats($id,$corr,$ans){
         try
 		{
 			$db = DB::getConnection();
-			$st = $db->prepare('SELECT history_corr, history_ans FROM kustura.users WHERE id=:id');
+			$st = $db->prepare('SELECT history_corr,history_ans FROM kustura.users WHERE id=:id');
 			$st->execute(array('id' => $id));
 		}
 		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
-        $row = $st -> fetchAll(); 
-        if($row === false){
-            return null; 
-        } 
-        else{
-            return $row; 
-        }
-    }
-
-    function GetSportsResultsById($id){
+        $rows = $st -> fetchAll();
+        $history_corr = $rows[0][0] + $corr;
+        $history_ans = $rows[0][1] + $ans;
         try
 		{
 			$db = DB::getConnection();
-			$st = $db->prepare('SELECT sports_corr, sports_ans FROM kustura.users WHERE id=:id');
+			$st = $db->prepare(
+            'UPDATE kustura.users 
+            SET history_corr=:history_corr, history_ans=:history_ans
+            WHERE id=:id');
+			$st->execute(array('id' => $id,'history_corr' => $history_corr,'history_ans' => $history_ans));
+		}
+		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
+    }
+
+    function UpdateUserSportsStats($id,$corr,$ans){
+        try
+		{
+			$db = DB::getConnection();
+			$st = $db->prepare('SELECT sports_corr,sports_ans FROM kustura.users WHERE id=:id');
 			$st->execute(array('id' => $id));
 		}
 		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
-        $row = $st -> fetchAll(); 
-        if($row === false){
-            return null; 
-        } 
-        else{
-            return $row; 
-        }
-    }
-
-    function GetArtResultsById($id){
+        $rows = $st -> fetchAll();
+        $sports_corr = $rows[0][0] + $corr;
+        $sports_ans = $rows[0][1] + $ans;
         try
 		{
 			$db = DB::getConnection();
-			$st = $db->prepare('SELECT art_corr, art_ans FROM kustura.users WHERE id=:id');
+			$st = $db->prepare(
+            'UPDATE kustura.users 
+            SET sports_corr=:sports_corr, sports_ans=:sports_ans
+            WHERE id=:id');
+			$st->execute(array('id' => $id,'sports_corr' => $sports_corr,'sports_ans' => $sports_ans));
+		}
+		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
+    }
+
+    function UpdateUserArtStats($id,$corr,$ans){
+        try
+		{
+			$db = DB::getConnection();
+			$st = $db->prepare('SELECT art_corr,art_ans FROM kustura.users WHERE id=:id');
 			$st->execute(array('id' => $id));
 		}
 		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
-        $row = $st -> fetchAll(); 
-        if($row === false){
-            return null; 
-        } 
-        else{
-            return $row; 
-        }
-    }
-
-    function GetScienceResultsById($id){
+        $rows = $st -> fetchAll();
+        $art_corr = $rows[0][0] + $corr;
+        $art_ans = $rows[0][1] + $ans;
         try
 		{
 			$db = DB::getConnection();
-			$st = $db->prepare('SELECT science_corr, science_ans FROM kustura.users WHERE id=:id');
+			$st = $db->prepare(
+            'UPDATE kustura.users 
+            SET art_corr=:art_corr, art_ans=:art_ans
+            WHERE id=:id');
+			$st->execute(array('id' => $id,'art_corr' => $art_corr,'art_ans' => $art_ans));
+		}
+		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
+    }
+
+    function UpdateUserScienceStats($id,$corr,$ans){
+        try
+		{
+			$db = DB::getConnection();
+			$st = $db->prepare('SELECT science_corr,science_ans FROM kustura.users WHERE id=:id');
 			$st->execute(array('id' => $id));
 		}
 		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
-        $row = $st -> fetchAll(); 
-        if($row === false){
-            return null; 
-        } 
-        else{
-            return $row; 
-        }
-    }
-
-    function GetGeographyResultsById($id){
+        $rows = $st -> fetchAll();
+        $science_corr = $rows[0][0] + $corr;
+        $science_ans = $rows[0][1] + $ans;
         try
 		{
 			$db = DB::getConnection();
-			$st = $db->prepare('SELECT geography_corr, geography_ans FROM kustura.users WHERE id=:id');
+			$st = $db->prepare(
+            'UPDATE kustura.users 
+            SET science_corr=:science_corr, science_ans=:science_ans
+            WHERE id=:id');
+			$st->execute(array('id' => $id,'science_corr' => $science_corr,'science_ans' => $science_ans));
+		}
+		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
+    }
+
+    function UpdateUserGeographyStats($id,$corr,$ans){
+        try
+		{
+			$db = DB::getConnection();
+			$st = $db->prepare('SELECT geography_corr,geography_ans FROM kustura.users WHERE id=:id');
 			$st->execute(array('id' => $id));
 		}
 		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
-        $row = $st -> fetchAll(); 
-        if($row === false){
-            return null; 
-        } 
-        else{
-            return $row; 
-        }
-    }
-
-    function GetEntertainmentResultsById($id){
+        $rows = $st -> fetchAll();
+        $geography_corr = $rows[0][0] + $corr;
+        $geography_ans = $rows[0][1] + $ans;
         try
 		{
 			$db = DB::getConnection();
-			$st = $db->prepare('SELECT entertainment_corr, entertainment_ans FROM kustura.users WHERE id=:id');
+			$st = $db->prepare(
+            'UPDATE kustura.users 
+            SET geography_corr=:geography_corr, geography_ans=:geography_ans
+            WHERE id=:id');
+			$st->execute(array('id' => $id,'geography_corr' => $geography_corr,'geography_ans' => $geography_ans));
+		}
+		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
+    }
+
+    function UpdateUserEntertainmentStats($id,$corr,$ans){
+        try
+		{
+			$db = DB::getConnection();
+			$st = $db->prepare('SELECT entertainment_corr,entertainment_ans FROM kustura.users WHERE id=:id');
 			$st->execute(array('id' => $id));
 		}
 		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
-        $row = $st -> fetchAll(); 
-        if($row === false){
-            return null; 
-        } 
-        else{
-            return $row; 
-        }
-    }
-    
-    function UpdateHistory($id,$corr,$ans){
-        $results = GetHistoryResultsById($id); 
-        $newCorr = $results[0][0] + $corr; 
-        $newAns = $results[0][1] + $ans; 
+        $rows = $st -> fetchAll();
+        $entertainment_corr = $rows[0][0] + $corr;
+        $entertainment_ans = $rows[0][1] + $ans;
         try
 		{
 			$db = DB::getConnection();
-			$st = $db->prepare('UPDATE kustura.users SET history_corr =: newCorr,history_ans =: newAns  WHERE id=:id');
-            $st->execute(array('id' => $id, 'newCorr' => $newCorr, 'newAns' => $newAns));
+			$st = $db->prepare(
+            'UPDATE kustura.users 
+            SET entertainment_corr=:entertainment_corr, entertainment_ans=:entertainment_ans
+            WHERE id=:id');
+			$st->execute(array('id' => $id,'entertainment_corr' => $entertainment_corr,'entertainment_ans' => $entertainment_ans));
 		}
 		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
     }
 
-    function UpdateSports($id,$corr,$ans){
-        $results = GetSportsResultsById($id); 
-        $newCorr = $results[0][0] + $corr; 
-        $newAns = $results[0][1] + $ans; 
-        try
+	function UserPlayedQuiz($user_id, $quiz_id){
+		try
 		{
 			$db = DB::getConnection();
-			$st = $db->prepare('UPDATE kustura.users SET sports_corr =: newCorr,sports_ans =: newAns  WHERE id=:id');
-            $st->execute(array('id' => $id, 'newCorr' => $newCorr, 'newAns' => $newAns));
+			$st = $db->prepare('INSERT INTO 
+			kustura.users_quizzes (user_id,quiz_id)
+			VALUES (:user_id,:quiz_id);');
+			$st->execute(array('user_id' => $user_id,'quiz_id' => $quiz_id));
 		}
 		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
-    }
+	}
 
-    function UpdateScience($id,$corr,$ans){
-        $results = GetScienceResultsById($id); 
-        $newCorr = $results[0][0] + $corr; 
-        $newAns = $results[0][1] + $ans; 
-        try
-		{
-			$db = DB::getConnection();
-			$st = $db->prepare('UPDATE kustura.users SET science_corr =: newCorr,science_ans =: newAns  WHERE id=:id');
-            $st->execute(array('id' => $id, 'newCorr' => $newCorr, 'newAns' => $newAns));
-		}
-		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
-    }
 
-    function UpdateArt($id,$corr,$ans){
-        $results = GetArtResultsById($id); 
-        $newCorr = $results[0][0] + $corr; 
-        $newAns = $results[0][1] + $ans; 
-        try
-		{
-			$db = DB::getConnection();
-			$st = $db->prepare('UPDATE kustura.users SET art_corr =: newCorr,art_ans =: newAns  WHERE id=:id');
-            $st->execute(array('id' => $id, 'newCorr' => $newCorr, 'newAns' => $newAns));
-		}
-		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
-    }
-
-    function UpdateEntertainment($id,$corr,$ans){
-        $results = GetEntertainmentResultsById($id); 
-        $newCorr = $results[0][0] + $corr; 
-        $newAns = $results[0][1] + $ans; 
-        try
-		{
-			$db = DB::getConnection();
-			$st = $db->prepare('UPDATE kustura.users SET entertainment_corr =: newCorr,entertainment_ans =: newAns  WHERE id=:id');
-            $st->execute(array('id' => $id, 'newCorr' => $newCorr, 'newAns' => $newAns));
-		}
-		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
-    }
-
-    function UpdateGeography($id,$corr,$ans){
-        $results = GetGeographyResultsById($id); 
-        $newCorr = $results[0][0] + $corr; 
-        $newAns = $results[0][1] + $ans; 
-        try
-		{
-			$db = DB::getConnection();
-			$st = $db->prepare('UPDATE kustura.users SET geography_corr =: newCorr,geography_ans =: newAns  WHERE id=:id');
-            $st->execute(array('id' => $id, 'newCorr' => $newCorr, 'newAns' => $newAns));
-		}
-		catch( PDOException $e ) { exit( 'PDO error ' . $e->getMessage() ); }
-    }
 }; 
 
 

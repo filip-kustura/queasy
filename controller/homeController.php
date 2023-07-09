@@ -7,6 +7,10 @@ class HomeController {
 		session_start();
 		unset($_SESSION['quizName']);
 		unset($_SESSION['quizId']);
+
+		//potrebno kako bi refreshanje kvizova normalno radilo 
+		if(isset($_SESSION['orderNumberOfQuestion'])) $_SESSION['orderNumberOfQuestion'] = 1;
+
 		if (!isset($_SESSION['username']))
 			header('Location: index.php?rt=login'); // Korisnik nije ulogiran -- preusmjeri na podstranicu za login
 

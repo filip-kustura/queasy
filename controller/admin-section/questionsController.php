@@ -59,7 +59,7 @@ class QuestionsController {
 				$wrong_answer_3,
 				$_SESSION['id']
 			);
-			$_SESSION['notification'] = 'Multiple-choice question added to category ' . $category . '.';
+			$_SESSION['notification'] = 'Question added to category ' . $category . '.';
 			header('Location: index.php?subdir=admin-section&rt=questions');
 		} else { // Open cloze pitanje			
 			session_start();
@@ -69,7 +69,7 @@ class QuestionsController {
 				$answer,
 				$_SESSION['id']
 			);
-			$_SESSION['notification'] = 'Open cloze question added to category ' . $category . '.';
+			$_SESSION['notification'] = 'Question added to category ' . $category . '.';
 			header('Location: index.php?subdir=admin-section&rt=questions');
 		}
 	}

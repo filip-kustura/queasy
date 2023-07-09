@@ -28,7 +28,7 @@ function displayQuizzesTable(quizzes) {
 
         let tdQuizName = $('<td>')
             .append($('<a>')
-                //.attr('href', 'index.php?subdir=admin-section&rt=quiz&id=' + quiz['id'])
+                .attr('href', 'index.php?subdir=admin-section&rt=quiz&id=' + quiz['id'])
                 .html(quiz['quiz_name']));
         tr.append(tdQuizName);
 
@@ -42,35 +42,27 @@ function displayQuizzesTable(quizzes) {
     }
 }
 
-function displayQuestionsTable(questions, checkboxes = false) {
+function displayQuestionsTable(questions) {
     $('#tbody').html('');
 
     for (let question of questions) { // questions je array
-        let tdEmptyCell;
-        if (checkboxes === false) {
-            let deleteIcon = $('<img>')
+        let deleteIcon = $('<img>')
             .attr({
                 'src': 'imgs/delete-icon.png',
                 'alt': 'delete-icon'
             });
         
-            let deleteButton = $('<button>')
-                .addClass('delete-button')
-                .on('click', function() {
-                    confirmDeletion(question['id'], question['author']);
-                })
-                .append(deleteIcon);
-            
-            tdEmptyCell = $('<td>')
-                .addClass('empty-cell')
-                .append(deleteButton);
-        } else {
-            let checkbox = $('<input type="checkbox" name="questions" id="question' + question['id'] + '">');
-            tdEmptyCell = $('<td>')
-                .addClass('empty-cell')
-                .append(checkbox);
-        }
+        let deleteButton = $('<button>')
+            .addClass('delete-button')
+            .on('click', function() {
+                confirmDeletion(question['id'], question['author']);
+            })
+            .append(deleteIcon);
         
+        let tdEmptyCell = $('<td>')
+            .addClass('empty-cell')
+            .append(deleteButton);
+
         let tr = $('<tr>')
             .attr('id', 'row' + question['id'])
             .append(tdEmptyCell);
