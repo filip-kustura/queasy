@@ -46,13 +46,13 @@ DONE:
       - `Quizzes`
         - ~~prikaz svih i vlastitih kvizova~~
         - ~~brisanje kvizova~~
-        - pregled pojedinog kviza
+        - pregled/uređivanje postojećeg kviza
         - stvaranje kvizova
       - `Questions`
         - ~~prikaz ~~svih~~ i vlastitih pitanja~~
         - ~~brisanje pitanja~~
-        - uređivanje pitanja
-        - stvaranje pitanja
+        - uređivanje postojećih pitanja
+        - ~~stvaranje pitanja~~
       - `Users`
   - ... TODO opcije koje mogu obogatiti aplikaciju (npr. settings za korisnika, korisnikova statistika, ...)
 - ~~(Filip) kreirati u bazi tablice:~~
