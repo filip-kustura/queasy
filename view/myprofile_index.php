@@ -29,8 +29,6 @@ require_once __DIR__ . '/_header.php';
 
       }
 
-      
-
       .diagram-text {
         text-align: center;
         color: #dbc848; 
@@ -138,13 +136,13 @@ function CreateDiagram(numOfCorrect, numOfAnswered, category, containerId) {
             },
           },
         });
-
-        var percentage = ((numOfCorrect * 100) / numOfAnswered).toFixed(0) + "%";
+        var percentage;
+        if(numOfAnswered === 0) percentage = "Answer some " + category +  " questions! :)";
+        else percentage = ((numOfCorrect * 100) / numOfAnswered).toFixed(0) + "%";
         container.getElementsByClassName(
           "diagram-percentage"
         )[0].innerText = percentage;
-      }
-
+}
 
     function GetColorByQuestionCategory(category){
         if(category === "history") return "lightblue";

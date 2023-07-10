@@ -25,12 +25,12 @@ class EndQuizController{
         $artCorr = $_SESSION["artCorr"];
 
         //spremanje rezultata po kategorijama
-        $UserDB->UpdateUserHistoryStats($id,$historyCorr,$historyCorr);
-        $UserDB->UpdateUserSportsStats($id,$sportsCorr,$sportsCorr);
-        $UserDB->UpdateUserGeographyStats($id,$geographyCorr,$geographyCorr);
-        $UserDB->UpdateUserArtStats($id,$artCorr,$artCorr);
-        $UserDB->UpdateUserScienceStats($id,$scienceCorr,$scienceCorr);
-        $UserDB->UpdateUserEntertainmentStats($id,$entertainmentCorr,$entertainmentCorr);
+        $UserDB->UpdateUserHistoryStats($id,$historyCorr,$historyAns);
+        $UserDB->UpdateUserSportsStats($id,$sportsCorr,$sportsAns);
+        $UserDB->UpdateUserGeographyStats($id,$geographyCorr,$geographyAns);
+        $UserDB->UpdateUserArtStats($id,$artCorr,$artAns);
+        $UserDB->UpdateUserScienceStats($id,$scienceCorr,$scienceAns);
+        $UserDB->UpdateUserEntertainmentStats($id,$entertainmentCorr,$entertainmentAns);
 
         //korinik nakon sljedece naredbe nece vise moci igrati ovaj kviz
         $UserDB->UserPlayedQuiz($id,$quizId);
