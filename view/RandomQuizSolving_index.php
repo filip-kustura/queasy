@@ -130,7 +130,7 @@ require_once __DIR__ . '/_header.php';
         <div id="info"></div>
     </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
-<script src="QuizSolving.js"></script>
+<script src="view/QuizSolving.js"></script>
 
 <script> 
     
@@ -201,7 +201,8 @@ require_once __DIR__ . '/_header.php';
     
     async function TextAnswerButtonClickHandler(){
         const textbox = document.getElementById('input-textbox');
-        const answerText = textbox.value;
+        var answerText = textbox.value;
+        answerText = convertToLowerCase(answerText);
         orderNumberOfQuestion++;
         var isCorrect = "yes";
         var indexOfNextQuestionId = orderNumberOfQuestion - 1;  

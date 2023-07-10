@@ -40,7 +40,8 @@ class RandomQuizSolvingController{
             $_SESSION["numberOfQuestions"] = Count($questionsIds); 
             $_SESSION["quizName"] = $QuizService->GetQuizNameByQuizId($_SESSION["quizId"]);
             $_SESSION["orderNumberOfQuestion"] = 1;
-
+            $_SESSION["numberOfAnswers"] = 0;
+            $_SESSION["numberOfCorrectAnswers"] = 0; 
             //odlazak u view 
             require_once __DIR__ . '/../view/RandomQuizSolving_index.php';
         }
@@ -60,7 +61,9 @@ class RandomQuizSolvingController{
             $questionsIds = $QuizService->GetQuestionsIdsByQuizId($_SESSION["quizId"]);
             $_SESSION["numberOfQuestions"] = Count($questionsIds); 
             $_SESSION["orderNumberOfQuestion"] = 1;
-            $_SESSION["isCorrect"] = false; 
+            $_SESSION["isCorrect"] = false;
+            $_SESSION["numberOfAnswers"] = 0;
+            $_SESSION["numberOfCorrectAnswers"] = 0; 
             //odlazak u view 
             require_once __DIR__ . '/../view/RandomQuizSolving_index.php';
         }

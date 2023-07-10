@@ -1,3 +1,7 @@
+
+src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.js"
+
+
 function RemoveQuestionContainer(){
     const container = document.getElementById('container');
     if (container) container.remove();
@@ -95,3 +99,18 @@ function PresentEndQuizContainer(){
 function removeEscChars(string) {
     return string.replace(/\\'/g, "'");
   }
+
+
+function convertToLowerCase(inputString) {
+    var outputString = "";
+    for (var i = 0; i < inputString.length; i++) {
+        var char = inputString.charAt(i);
+
+        if (char >= 'A' && char <= 'Z') {
+            char = String.fromCharCode(char.charCodeAt(0) + 32);
+        }
+
+        outputString += char;
+    }
+    return outputString;
+}
