@@ -130,6 +130,8 @@ require_once __DIR__ . '/_header.php';
         <div id="info"></div>
     </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+<script src="QuizSolving.js"></script>
+
 <script> 
     
     var correctAnswer = ""; 
@@ -143,13 +145,18 @@ require_once __DIR__ . '/_header.php';
     $(document).ready(function () {
         numberOfQuestions =<?php echo $_SESSION['numberOfQuestions']; ?>;
         quizName = '<?php echo $_SESSION['quizName']; ?>';
-        SendNextQuestionAjax(1,0,0,0,false,"none");
+        SendNextQuestionAjax(quizName,1,0,0,0,false,"none");
     });
 
     function PresentWholeQuestionContainer(number,question,answers,category,quizName,numOfCorrectlyAnswered,numOfAnswers){
         document.getElementById("info").innerHTML = quizName + "  \n  " + numOfCorrectlyAnswered + "/" + numOfAnswers;
         var isQuestionABCDType = IsQuestionABCDType(answers);  
         curr_category = category; 
+        removeEscChars(question);
+        for(let i = 0; i < answers.length; i++){
+            if(answers[i] === null) continue; 
+            removeEscChars(answers[i]);
+        }
         PresentQuestion(number,question,category);
         correctAnswer = answers[0]; 
         if(isQuestionABCDType){
@@ -204,7 +211,7 @@ require_once __DIR__ . '/_header.php';
             isCorrect = "yes"; 
         }
         else isCorrect = "no";
-        await SendNextQuestionAjax(orderNumberOfQuestion,numberOfCorrectAnswers,numberOfAnswers,indexOfNextQuestionId,isCorrect,curr_category);
+        await SendNextQuestionAjax(quizName,orderNumberOfQuestion,numberOfCorrectAnswers,numberOfAnswers,indexOfNextQuestionId,isCorrect,curr_category);
     }
 
     async function AnswerButtonClickHandler(){
@@ -219,103 +226,9 @@ require_once __DIR__ . '/_header.php';
             isCorrect = "yes"; 
         }
         else isCorrect = "no"; 
-        await SendNextQuestionAjax(orderNumberOfQuestion,numberOfCorrectAnswers,numberOfAnswers,indexOfNextQuestionId,isCorrect,curr_category);
+        await SendNextQuestionAjax(quizName,orderNumberOfQuestion,numberOfCorrectAnswers,numberOfAnswers,indexOfNextQuestionId,isCorrect,curr_category);
     }
 
-
-    function PresentEndQuizContainer(){        
-        RemoveQuestionContainer();
-        const container = document.createElement('div');
-        container.classList.add('end-quiz-container');
-        const quizNameElement = document.createElement('h2');
-        quizNameElement.textContent = quizName;
-        quizNameElement.classList.add('quiz-name');
-        container.appendChild(quizNameElement);
-        const quizResultsElement = document.createElement('p');
-        quizResultsElement.textContent = `Results: ${numberOfCorrectAnswers}/${numberOfAnswers}`;
-        quizResultsElement.classList.add('quiz-results');
-        container.appendChild(quizResultsElement);
-        const finishButton = document.createElement('a');
-        finishButton.textContent = 'Finish';
-        finishButton.classList.add('finish-button');
-        finishButton.href = 'index.php?rt=EndQuiz';
-        container.appendChild(finishButton);
-        document.body.appendChild(container);
-    }
-
-    function RemoveQuestionContainer(){
-        const container = document.getElementById('container');
-        if (container) container.remove();
-    }
-
-
-
-    function SendNextQuestionAjax(orderNumberOfQuestion,numberOfCorrectAnswers,numberOfAnswers,indexOfNextQuestionId,isCorrect,category){
-        return new Promise(function (resolve, reject) {
-        $.ajax({
-            url: 'AjaxGetQuestionHandler.php',
-            type: 'GET',
-            dataType: 'json',
-            data: {
-                isCorrect: isCorrect,
-                category: category,
-                indexOfNextQuestionId: indexOfNextQuestionId,
-                quizName: quizName
-            },
-            success: function (data) {
-                if (data === true) {
-                    PresentEndQuizContainer();
-                } else {
-                    PresentWholeQuestionContainer(
-                        orderNumberOfQuestion,
-                        data[0],
-                        data[1],
-                        data[2],
-                        quizName,
-                        numberOfCorrectAnswers,
-                        numberOfAnswers
-                    );
-                }
-                resolve();
-            },
-            error: function (xhr, status, errorThrown) {
-                console.log("error?");
-                console.log(xhr);
-                console.log(status);
-                console.log(errorThrown);
-                reject(errorThrown); 
-            }
-        });
-    });
-    }
-
-    function IsQuestionABCDType(answers){
-        if(answers[1] === null && answers[2] === null && answers[3] === null) return false; 
-        else return true; 
-    }
-
-    function ShuffleArray(array) {
-        for (let i = array.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [array[i], array[j]] = [array[j], array[i]];
-        }
-        return array;
-    }
-
-    function GetColorByQuestionCategory(category){
-        if(category === "history") return "lightblue";
-        else if(category === "sports") return "orange";
-        else if(category === "art") return "yellow"; 
-        else if(category === "science") return "green";
-        else if(category === "entertainment") return "red";
-        else if(category === "geography") return "pink";
-    }
-      
-    PrintArray = function(array){
-        for(var i = 0; i < array.length; i++){
-            console.log("i = " + i + "vrijednost arr[i] = " + array[i]);
-        }
-    }
 </script>
 
 
