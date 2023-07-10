@@ -222,7 +222,6 @@ require_once __DIR__ . '/_header.php';
         var indexOfNextQuestionId = orderNumberOfQuestion - 1;  
         numberOfAnswers++;
         if(answerText === correctAnswer){
-            console.log("tocan");
             numberOfCorrectAnswers++; 
             isCorrect = "yes"; 
         }
