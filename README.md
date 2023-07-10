@@ -67,6 +67,7 @@ DONE:
 - ~~(Filip) kreirati u bazi tablicu `users_quizzes` koja povezuje korisnike s _custom_ kvizovima koje su riješili.~~
   - ~~kolone: `user_id`, `quiz_id`~~
   - ~~nadograditi dattoeku `create_tables.php`~~
+- ~~(Filip) nadograditi datoteke `create_tables.php` i `seed_tables.php` radi tablice `users` i korisnikove statistike~~
 - CSS (nizak prioritet)
 - ~~možda u JavaScript kodu, gdje bude prilika, koristiti Ajax~~
 - (?) gdje je već potrebno dodati napomenu za pitanja gdje treba upisati odgovor:
