@@ -96,9 +96,9 @@ class LoginService {
 		try {
 			$statement = $database->prepare(
 				'INSERT INTO users
-				(username, password, admin)
+				(username, password, admin, history_corr, history_ans, sports_corr, sports_ans, art_corr, art_ans, entertainment_corr, entertainment_ans, science_corr, science_ans, geography_corr, geography_ans)
 				VALUES
-				(:username, :password, 0);'
+				(:username, :password, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);'
 			);
 
 			$statement->execute(

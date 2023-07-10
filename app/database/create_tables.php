@@ -51,7 +51,19 @@ function create_table_users()
 			'id int NOT NULL PRIMARY KEY AUTO_INCREMENT,' .
 			'username varchar(20) NOT NULL UNIQUE,' .
 			'password varchar(255) NOT NULL,' .
-			'admin boolean NOT NULL)'
+			'admin boolean NOT NULL,' .
+			'history_corr int NOT NULL,' .
+			'history_ans int NOT NULL,' .
+			'sports_corr int NOT NULL,' .
+			'sports_ans int NOT NULL,' .
+			'art_corr int NOT NULL,' .
+			'art_ans int NOT NULL,' .
+			'entertainment_corr int NOT NULL,' .
+			'entertainment_ans int NOT NULL,' .
+			'science_corr int NOT NULL,' .
+			'science_ans int NOT NULL,' .
+			'geography_corr int NOT NULL,' .
+			'geography_ans int NOT NULL);'
 		);
 
 		$st->execute();

@@ -44,9 +44,36 @@ function seed_table_users()
 	// Uočimo da ne treba specificirati id koji se automatski poveća kod svakog ubacivanja.
 	try
 	{
-		$st = $db->prepare( 'INSERT INTO users(username, password, admin) VALUES (:username, :password, :admin)' );
+		$st = $db->prepare(
+			'INSERT INTO users(username, password, admin, history_corr, history_ans, sports_corr, sports_ans, art_corr, art_ans, entertainment_corr, entertainment_ans, science_corr, science_ans, geography_corr, geography_ans)
+			VALUES (:username, :password, :admin,  :history_corr, :history_ans, :sports_corr, :sports_ans, :art_corr, :art_ans, :entertainment_corr, :entertainment_ans, :science_corr, :science_ans, :geography_corr, :geography_ans)'
+		);
+	
+		$st->execute(
+			array(
+				'username' => 'Vilim',
+				'password' => password_hash( 'vilimovasifra', PASSWORD_DEFAULT ),
+				'admin' => 1,
+				'history_corr' => 2,
+				'history_ans' => 5,
+				'sports_corr' => 2,
+				'sports_ans' => 5,
+				'art_corr' => 6,
+				'art_ans' => 9,
+				'entertainment_corr' => 10,
+				'entertainment_ans' => 10,
+				'science_corr' => 0,
+				'science_ans' => 2,
+				'geography_corr' => 5,
+				'geography_ans' => 6
+			)
+		);
+		
+		$st = $db->prepare(
+			'INSERT INTO users(username, password, admin, history_corr, history_ans, sports_corr, sports_ans, art_corr, art_ans, entertainment_corr, entertainment_ans, science_corr, science_ans, geography_corr, geography_ans)
+			VALUES (:username, :password, :admin, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)'
+		);
 
-		$st->execute( array( 'username' => 'Vilim', 'password' => password_hash( 'vilimovasifra', PASSWORD_DEFAULT ), 'admin' => 1 ) );
 		$st->execute( array( 'username' => 'Filip', 'password' => password_hash( 'filipovasifra', PASSWORD_DEFAULT ), 'admin' => 1 ) );
 		$st->execute( array( 'username' => 'Slavko', 'password' => password_hash( 'slavkovasifra', PASSWORD_DEFAULT ), 'admin' => 0 ) );
 		$st->execute( array( 'username' => 'Ana', 'password' => password_hash( 'aninasifra', PASSWORD_DEFAULT ), 'admin' => 0 ) );
