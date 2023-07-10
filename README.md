@@ -12,7 +12,6 @@ Web-stranica omogućava korisnicima rješavanje jednog od ponuđenih kvizova. Kv
 - Inače nije dobra ideja spremati puno podataka u `$_SESSION`.
 - U `$_SESSION` se obično samo spremi nekakav identifikator `$_SESSION['id']` koji serveru jednoznačno određuje korisnika/session.
 - Svi ostali podaci se tada spremaju u bazu podataka pomoću identifikatora.
-- Tako i ovdje uspješan login postavlja samo `$_SESSION['id']` i `$_SESSION['username']`, gdje je `id` korisnikov identifikator iz tablice `users`.
 
 ## TODO
 po prioritetima
@@ -37,15 +36,15 @@ DONE:
 -(Vilim) DONE: EndQuiz stranica -> TODO: ako se stigne obogati
 -(Vilim) DONE: Brinuti se za statistike po svakoj kategoriji za igraca
 - napraviti "homepage" (homepage se prikazuje nakon uspješnog logina) s opcijama
-  - singleplayer (**prioritet**)
+  - ~~singleplayer (**prioritet**)~~
   - multiplayer (nakon što implementiramo opciju singleplayer)
   - (Filip) admin sekcija (~~ukoliko je ulogirani korisnik admin~~)
     - dodati podsekcije:
       - `Quizzes`
         - ~~prikaz svih i vlastitih kvizova~~
         - ~~brisanje kvizova~~
-        - pregled/uređivanje postojećeg kviza
-        - stvaranje kvizova
+        - pregled/uređivanje postojećih kvizova
+        - ~~stvaranje kvizova~~
       - `Questions`
         - ~~prikaz ~~svih~~ i vlastitih pitanja~~
         - ~~brisanje pitanja~~
@@ -69,7 +68,7 @@ DONE:
   - ~~kolone: `user_id`, `quiz_id`~~
   - ~~nadograditi dattoeku `create_tables.php`~~
 - CSS (nizak prioritet)
-- možda u JavaScript kodu, gdje bude prilika, koristiti Ajax
+- ~~možda u JavaScript kodu, gdje bude prilika, koristiti Ajax~~
 - (?) gdje je već potrebno dodati napomenu za pitanja gdje treba upisati odgovor:
   - ako se traži broj, potrebno ga je upisati brojkama a ne riječima
   - svaki odgovor potrebno je upisati bez "a/an/the" člana
