@@ -192,7 +192,7 @@ require_once __DIR__ . '/_header.php';
         parentContainer.appendChild(container);
     }
     
-    function TextAnswerButtonClickHandler(){
+    async function TextAnswerButtonClickHandler(){
         const textbox = document.getElementById('input-textbox');
         const answerText = textbox.value;
         orderNumberOfQuestion++;
@@ -204,10 +204,10 @@ require_once __DIR__ . '/_header.php';
             isCorrect = "yes"; 
         }
         else isCorrect = "no";
-        SendNextQuestionAjax(orderNumberOfQuestion,numberOfCorrectAnswers,numberOfAnswers,indexOfNextQuestionId,isCorrect,curr_category);
+        await SendNextQuestionAjax(orderNumberOfQuestion,numberOfCorrectAnswers,numberOfAnswers,indexOfNextQuestionId,isCorrect,curr_category);
     }
 
-    function AnswerButtonClickHandler(){
+    async function AnswerButtonClickHandler(){
         var answerText = $(event.target).text();
         orderNumberOfQuestion++;
         var isCorrect = true; 
@@ -219,7 +219,7 @@ require_once __DIR__ . '/_header.php';
             isCorrect = "yes"; 
         }
         else isCorrect = "no"; 
-        SendNextQuestionAjax(orderNumberOfQuestion,numberOfCorrectAnswers,numberOfAnswers,indexOfNextQuestionId,isCorrect,curr_category);
+        await SendNextQuestionAjax(orderNumberOfQuestion,numberOfCorrectAnswers,numberOfAnswers,indexOfNextQuestionId,isCorrect,curr_category);
     }
 
 
@@ -251,6 +251,7 @@ require_once __DIR__ . '/_header.php';
 
 
     function SendNextQuestionAjax(orderNumberOfQuestion,numberOfCorrectAnswers,numberOfAnswers,indexOfNextQuestionId,isCorrect,category){
+        return new Promise(function (resolve, reject) {
         $.ajax({
             url: 'AjaxGetQuestionHandler.php',
             type: 'GET',
@@ -259,13 +260,12 @@ require_once __DIR__ . '/_header.php';
                 isCorrect: isCorrect,
                 category: category,
                 indexOfNextQuestionId: indexOfNextQuestionId,
-                quizName: quizName 
+                quizName: quizName
             },
-            success: function(data) {
-                if(data === true){
+            success: function (data) {
+                if (data === true) {
                     PresentEndQuizContainer();
-                }   
-                else{
+                } else {
                     PresentWholeQuestionContainer(
                         orderNumberOfQuestion,
                         data[0],
@@ -276,14 +276,17 @@ require_once __DIR__ . '/_header.php';
                         numberOfAnswers
                     );
                 }
+                resolve();
             },
-            error: function( xhr, status, errorThrown ) { 
-                console.log("error?"); 
+            error: function (xhr, status, errorThrown) {
+                console.log("error?");
                 console.log(xhr);
                 console.log(status);
                 console.log(errorThrown);
+                reject(errorThrown); 
             }
         });
+    });
     }
 
     function IsQuestionABCDType(answers){
