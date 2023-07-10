@@ -152,10 +152,10 @@ require_once __DIR__ . '/_header.php';
         document.getElementById("info").innerHTML = quizName + "  \n  " + numOfCorrectlyAnswered + "/" + numOfAnswers;
         var isQuestionABCDType = IsQuestionABCDType(answers);  
         curr_category = category; 
-        removeEscChars(question);
+        question = removeEscChars(question);
         for(let i = 0; i < answers.length; i++){
             if(answers[i] === null) continue; 
-            removeEscChars(answers[i]);
+            answers[i] = removeEscChars(answers[i]);
         }
         PresentQuestion(number,question,category);
         correctAnswer = answers[0]; 
