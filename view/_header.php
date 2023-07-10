@@ -26,7 +26,6 @@
                 <div class="dropdown-content">
                     <a href="index.php?subdir=admin-section&rt=quizzes">Quizzes</a>
                     <a href="index.php?subdir=admin-section&rt=questions">Questions</a>
-                    <a href="index.php?subdir=admin-section&rt=users">Users</a>
                 </div>
             </li>';
 
@@ -36,3 +35,4 @@
             }
         ?>
     </header>
+    

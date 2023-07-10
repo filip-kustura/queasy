@@ -59,12 +59,6 @@ class LoginService {
 		// Ukoliko je sign-up neuspješan, postavlja warning za ispis korisniku i vraća false
 		// Inače vraća true
 
-		if (strlen($username_input) > $this->getMaximumAllowedUsernameLength()) {
-			session_start();
-			$_SESSION['warning'] = 'Username length can consist of 20 characters at most.';
-			return false;
-		}
-
 		$database = DB::getConnection();
 
         try {

@@ -30,6 +30,7 @@ class LoginController {
 			session_start();
 			$_SESSION['warning'] = 'Please enter the login/sign-up credentials.';
 			header('Location: index.php?rt=login');
+			return;
 		} else {
 			if (isset($_POST['login'])) {
 				$attempt_successful = $ls->handleLoginAttempt($username_input, $password_input);
@@ -39,6 +40,13 @@ class LoginController {
 				else
 					header('Location: index.php?rt=login');
 			} else if (isset($_POST['sign-up'])) {
+				if (strlen($username_input) > $ls->getMaximumAllowedUsernameLength()) {
+					session_start();
+					$_SESSION['warning'] = 'Username length can consist of 20 characters at most.';
+					header('Location: index.php?rt=login');
+					return;
+				}
+
 				$attempt_successful = $ls->handleSignUpAttempt($username_input, $password_input);
 	
 				if ($attempt_successful)

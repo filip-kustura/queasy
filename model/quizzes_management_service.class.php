@@ -170,6 +170,84 @@ class QuizzesManagementService {
             return false;
         }
     }
+
+    public function addNewQuiz($quiz_name, $selected_questions) {
+        // Ubacuje novi kviz u bazu podataka
+        // Vraća true ako je ubacivanje uspješno, inače vraća false
+
+        $database = DB::getConnection();
+
+        try {
+            $statement = $database->prepare(
+				'INSERT INTO quizzes
+				(name, author)
+				VALUES
+				(:name, :author);'
+            );
+
+            session_start();
+            $statement->execute(
+                array(
+                    'name' => $quiz_name,
+                    'author' => $_SESSION['id']
+                )
+            );
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+
+        // Dohvati ID novog kviza
+        $quiz_id = $this->getQuizIdByName($quiz_name);
+        
+        // Ubaci pitanja u novi kviz
+        foreach ($selected_questions as $question_id) {
+            try {
+                $statement = $database->prepare(
+                    'INSERT INTO quizzes_questions
+                    (quiz_id, question_id)
+                    VALUES
+                    (:quiz_id, :question_id);'
+                );
+
+                $statement->execute(
+                    array(
+                        'quiz_id' => $quiz_id,
+                        'question_id' => $question_id
+                    )
+                );
+            } catch (PDOException $e) {
+                echo $e->getMessage();
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public function getQuizIdByName($quiz_name) {
+        // Dohvaća ID kviza s danim imenom
+        $database = DB::getConnection();
+
+        try {
+            $statement = $database->prepare(
+                'SELECT id
+                FROM quizzes
+                WHERE name = :name;'
+            );
+
+            $statement->execute(
+                array(
+                    'name' => $quiz_name
+                )
+            );
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+        $row = $statement->fetch();
+        return $row['id'];
+    }
 }
 
 ?>

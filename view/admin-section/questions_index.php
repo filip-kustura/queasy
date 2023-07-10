@@ -44,7 +44,7 @@
                     <th>Option</th>
                     <th>Option</th>
                     <th>Author</th>
-                    <th>No. of occurrences</th>
+                    <th>Number of occurrences</th>
                 </tr>
             </thead>
             <tbody id="tbody">

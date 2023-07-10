@@ -17,8 +17,6 @@ class QuizAddingController {
 	}
 
     public function processQuizAdding() {
-		$qms = new QuizzesManagementService();
-
         if ($_POST['quiz-name'] === '') {
             session_start();
 			$_SESSION['warning'] = 'Please enter the quiz name.';
@@ -26,7 +24,22 @@ class QuizAddingController {
 			return;
         }
 
-        header('Location: index.php?subdir=admin-section&rt=quizAdding');
+        if (!isset($_POST['questions'])) {
+            session_start();
+			$_SESSION['warning'] = 'Please select at least one question.';
+			header('Location: index.php?subdir=admin-section&rt=quizAdding');
+			return;
+        }
+
+        $qms = new QuizzesManagementService();
+        $attempt_successful = $qms->addNewQuiz($_POST['quiz-name'], $_POST['questions']);
+        if ($attempt_successful) {
+            $quiz_id = $qms->getQuizIdByName($_POST['quiz-name']);
+            session_start();
+            $_SESSION['notification'] = 'Quiz (ID = ' . $quiz_id . ') added.';
+			header('Location: index.php?subdir=admin-section&rt=quizAdding');
+            return;
+        }
     }
 }; 
 
