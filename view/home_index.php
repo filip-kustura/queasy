@@ -85,4 +85,12 @@ echo "<br>";
 echo "<br>"; 
 ?>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+<script src="view/javascript-files/emphasize-active-tab.js"></script>
+<script>
+    $(document).ready(function () {
+        emphasizeActiveTab('home-tab');
+    });
+</script>
+
 <?php require_once __DIR__ . '/_footer.php'; ?>

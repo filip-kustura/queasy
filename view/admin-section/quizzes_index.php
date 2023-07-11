@@ -32,10 +32,10 @@
 </div>
 
 <script>
-// Istakni aktivni tab
-emphasizeActiveTab('admin-section-tab');
-
 $(document).ready(function() {
+    // Istakni aktivni tab
+    emphasizeActiveTab('admin-section-tab');
+    
     getQuizzesAndDisplayTable();
 });
 

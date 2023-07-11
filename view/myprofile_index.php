@@ -72,12 +72,11 @@ require_once __DIR__ . '/_header.php';
   </div>
 
 
+<script src="view/javascript-files/emphasize-active-tab.js"></script>
 <script>
-
-
-
 $(document).ready(function () {
-    
+    emphasizeActiveTab('my-profile-tab');
+
     var historyCorr =<?php echo $_SESSION['historyCorr']; ?>;
     var historyAns = <?php echo $_SESSION['historyAns']; ?>;
     var sportsCorr = <?php echo $_SESSION['sportsCorr']; ?>;

@@ -28,7 +28,7 @@ class QuestionsController {
 
 		$category = $_POST['category'];
 		$question = $_POST['question'];
-		$answer = $_POST['answer'];
+		$answer = strtolower($_POST['answer']);
 
 		if ($question === '' || $answer === '') {
 			session_start();

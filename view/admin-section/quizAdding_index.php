@@ -53,10 +53,10 @@
 </div>
 
 <script>
-// Istakni aktivni tab
-emphasizeActiveTab('admin-section-tab')
-
 $(document).ready(function() {
+    // Istakni aktivni tab
+    emphasizeActiveTab('admin-section-tab');
+    
     $('#my-questions-checkbox').prop('checked', false);
     $('input[name="question-type"]').prop('checked', false);
 
@@ -73,14 +73,14 @@ $(document).ready(function() {
         }
     });
 
-    getQuestionsAndDisplayTables();
+    getQuestionsAndDisplayTable();
 });
 
-function getQuestionsAndDisplayTables(authorId = 0) {
+function getQuestionsAndDisplayTable(authorId = 0) {
     // Kroz ajax request dohvaća podatke o željenim pitanjima
     // authorId predstavlja ID admina čija je pitanja potrebno prikazati
     // Ako je potrebno prikazati sva pitanja, authorId je 0
-    // Po uspješnom requestu, prikazuje podatke o željenim pitanjima u dvije tablice
+    // Po uspješnom requestu, prikazuje podatke o željenim pitanjima
     $.ajax({
         url: 'ajax_handler.php',
         type: 'GET',
@@ -102,9 +102,9 @@ function myQuestionsCheckboxClickEventHandler($id) {
     $('#my-questions-checkbox').prop('disabled', true);
 
     if ($('#my-questions-checkbox').prop('checked'))
-        getQuestionsAndDisplayTables($id); // Korisnik je označio checkbox pa prikaži samo njegova pitanja
+        getQuestionsAndDisplayTable($id); // Korisnik je označio checkbox pa prikaži samo njegova pitanja
     else
-        getQuestionsAndDisplayTables(); // Korisnik je odznačio checkbox pa prikaži sva pitanja
+        getQuestionsAndDisplayTable(); // Korisnik je odznačio checkbox pa prikaži sva pitanja
 
     // Ponovno omogući klik na checkbox nakon što su podaci dohvaćeni
     $('#my-questions-checkbox').prop('disabled', false);

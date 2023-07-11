@@ -49,6 +49,7 @@ nav li a:hover {
     color: #1f086c;
     font-weight: bold;
     font-family: "Arial", sans-serif;
+    border-radius: 10px;
 }
 
 nav li a.active {

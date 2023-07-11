@@ -54,11 +54,11 @@
     </div>
 </div>
 
-<script>
-// Istakni aktivni tab
-emphasizeActiveTab('admin-section-tab')
-
+<script>    
 $(document).ready(function() {
+    // Istakni aktivni tab
+    emphasizeActiveTab('admin-section-tab');
+    
     $('#my-questions-checkbox').prop('checked', false);
     $('input[name="question-type"]').prop('checked', false);
 

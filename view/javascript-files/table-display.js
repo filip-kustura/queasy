@@ -65,7 +65,7 @@ function displayQuestionsTable(questions, checkboxes = false) {
                 .addClass('empty-cell')
                 .append(deleteButton);
         } else {
-            let checkbox = $('<input type="checkbox" name="questions" id="question' + question['id'] + '">');
+            let checkbox = $('<input type="checkbox" name="questions[]" value="' + question['id'] + '">');
             tdEmptyCell = $('<td>')
                 .addClass('empty-cell')
                 .append(checkbox);

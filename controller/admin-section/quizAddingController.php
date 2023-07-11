@@ -35,7 +35,6 @@ class QuizAddingController {
         $attempt_successful = $qms->addNewQuiz($_POST['quiz-name'], $_POST['questions']);
         if ($attempt_successful) {
             $quiz_id = $qms->getQuizIdByName($_POST['quiz-name']);
-            session_start();
             $_SESSION['notification'] = 'Quiz (ID = ' . $quiz_id . ') added.';
 			header('Location: index.php?subdir=admin-section&rt=quizAdding');
             return;
