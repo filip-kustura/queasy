@@ -1,9 +1,9 @@
 
 ![Queasy](screenshot.png)
 
-# Queasy: A Quiz Web Application
+# Queasy: A Web-Based Quiz Application
 
-This repository contains a PHP-based web application for solving quizzes. It involves both client-side and server-side aspects of web programming. The project follows the **MVC pattern** and provides a user-friendly interface for playing quizzes, managing quizzes and questions, and tracking player performance.
+**Queasy** is a PHP-based web application developed as part of the "Computer Lab II" university course. The application involves both client-side and server-side aspects of web programming, following the **MVC pattern**. It provides a user-friendly interface for solving interactive quizzes, managing quizzes and questions, and tracking player performance. Built using PHP, MySQL, and JavaScript, this project allows users to explore various question types and monitor their quiz results.
 
 ## Acknowledgements
 
