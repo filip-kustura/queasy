@@ -1,81 +1,65 @@
-# Queasy
-Projekt iz kolegija Računarski praktikum 2
 
-### Zadatak
-Web-stranica omogućava korisnicima rješavanje jednog od ponuđenih kvizova. Kvizovi se sastoje od pitanja raznih tipova (npr. pitanja s ponuđenim odgovorima, pitanja gdje treba upisati odgovor i slično). Administrator može stvoriti novi kviz, dodavati pitanja u njega i definirati točne odgovore. (Tipove pitanja možete unaprijed definirati, tj. administrator ne treba biti u stanju definirati nove tipove pitanja.)
+![Queasy](screenshot.png)
 
----
-- Link na bazu podataka preko phpmyadmin: https://rp2.studenti.math.hr/phpmyadmin/index.php?route=/database/structure&db=kustura
-  - Za korisnika s korisničkim imenom _username_, odgovarajući password je pridjev(_username_) + "sifra", npr. username: "Vilim", password: "vilimovasifra"
+# Queasy: A Quiz Web Application
 
-## Napomena preuzeta iz zadatka s vježbi
-- Inače nije dobra ideja spremati puno podataka u `$_SESSION`.
-- U `$_SESSION` se obično samo spremi nekakav identifikator `$_SESSION['id']` koji serveru jednoznačno određuje korisnika/session.
-- Svi ostali podaci se tada spremaju u bazu podataka pomoću identifikatora.
+This repository contains a PHP-based web application for solving quizzes. It involves both client-side and server-side aspects of web programming. The project follows the **MVC pattern** and provides a user-friendly interface for playing quizzes, managing quizzes and questions, and tracking player performance.
 
-## TODO
-po prioritetima
-2. Sprjecit refreshanje pri igranju kviza (izazovno) => neznam kako??? 
-8. Uljepsat css, pocistit kod i dodat komentare 
+## Acknowledgements
 
-DONE: 
-1. Testirat ubacivanje rezultata pri zavrsetku kviza (lagano) rjeseno 
-4. Prikazi sve kvizove na home stranici (izazovno) => sprjeci da igrac moze igrati isti kviz vise od jednom! (lagano) (subota)
-3. Random kviz mora biti random (Lagano) (subota)
-6. my profile neka prikazuje statistike po kategorijama pitanja (kruzni dijagrami?) (izazovno) (nedjelja)
+- Vilim Kinderman
+- Filip Kustura
 
-- ~~(Filip) kreirati u bazi i popuniti tablicu s pitanjima, kategorijom, točnim odgovorom i eventualnim ponuđenim odgovorima~~
-- ~~(Filip) nadograditi datoteke `create_tables.php` i `seed_tables.php` tako da podržavaju kreiranje/punjenje i tablice `questions`~~
--(Vilim) u play random kviz mora se stvarno odabrati random kviz kojeg korisnik jos nije igrao! -> TODO: vrsi ovo preko controllera, ne modela!
-- (Vilim) DONE:odgovaranje na pitanja u js - klijentski dio obavljen, potrebna integracija u view-u php, sa pravim pitanjima 
-  -(Vilim) DONE: Odgovaranje pitanje za pitanjem 
-  -(Vilim) DONE: Detekcija zavrsetka kviza 
-  -(Vilim) DONE: Boje odgovarajucih kategorija pitanja
-  -(Vilim) DONE: Detekcija tipa pitanja(abcd ili text odgovor) te implementacija text pitanja
-  -(Vilim) DONE:( Preostaje testirati) popratni insertovi rezultata u bazu podataka
--(Vilim) DONE: EndQuiz stranica -> TODO: ako se stigne obogati
--(Vilim) DONE: Brinuti se za statistike po svakoj kategoriji za igraca
-- napraviti "homepage" (homepage se prikazuje nakon uspješnog logina) s opcijama
-  - ~~singleplayer (**prioritet**)~~
-  - multiplayer (nakon što implementiramo opciju singleplayer)
-  - (Filip) admin sekcija (~~ukoliko je ulogirani korisnik admin~~)
-    - dodati podsekcije:
-      - `Quizzes`
-        - ~~prikaz svih i vlastitih kvizova~~
-        - ~~brisanje kvizova~~
-        - pregled/uređivanje postojećih kvizova
-        - ~~stvaranje kvizova~~
-      - `Questions`
-        - ~~prikaz ~~svih~~ i vlastitih pitanja~~
-        - ~~brisanje pitanja~~
-        - uređivanje postojećih pitanja
-        - ~~stvaranje pitanja~~
-      - `Users`
-  - ... TODO opcije koje mogu obogatiti aplikaciju (npr. settings za korisnika, korisnikova statistika, ...)
-- ~~(Filip) kreirati u bazi tablice:~~
-  - ~~`quizzes`~~
-    - ~~sadrži _custom_ kvizove stvorene od strane administratora~~
-    - ~~kolone: `id`, `name`, `author`~~
-  - ~~`quizzes_questions`~~
-    - ~~kolone: `quiz_id`, `question_id`, bez primarnog ključa~~
-    - ~~svaki redak predstavlja pripadnost pitanja kvizu~~
-- (Filip) dodati još pitanja u tablicu `questions`
-- ~~(Filip) dovršiti `Log In` opciju (handleati neuspješan login, odnosno nepostojeći username i/ili netočnu lozinku)~~
-  - ~~po uspješnom loginu onemogućiti povratak na unos korisničkog imena i lozinke bilo pritiskom na strelicu "back" u browseru, bilo upisivanjem url-a za unos korisničkog imena i lozinke~~
-  - ~~(Filip) realizirati logout opciju~~
-- ~~(Filip) implementirati mogućnost `Sign Up` (gumb već postoji)~~
-- ~~(Filip) kreirati u bazi tablicu `users_quizzes` koja povezuje korisnike s _custom_ kvizovima koje su riješili.~~
-  - ~~kolone: `user_id`, `quiz_id`~~
-  - ~~nadograditi dattoeku `create_tables.php`~~
-- ~~(Filip) nadograditi datoteke `create_tables.php` i `seed_tables.php` radi tablice `users` i korisnikove statistike~~
-- CSS (nizak prioritet)
-- ~~možda u JavaScript kodu, gdje bude prilika, koristiti Ajax~~
-- (?) gdje je već potrebno dodati napomenu za pitanja gdje treba upisati odgovor:
-  - ako se traži broj, potrebno ga je upisati brojkama a ne riječima
-  - svaki odgovor potrebno je upisati bez "a/an/the" člana
-- popraviti animacije u footeru
-- dodati timer za pitanja
-- dodati kolonu creation_date u tablicu `quizzes` koja će se automatski popunjavati prilikom stvaranja novog kviza
-- ograničiti duljinu usernamea/passworda prilikom sign-upa i odozdo i odozgo
-- nakon što odredimo koje ćemo opcije imati u headeru, obogatiti header/footer nekim informacijama, npr. datum/vrijeme, korisnikov username i sl.
-- profiniti login/signup da obrađuje više raznih slučajeva i reagira na njih na odgovarajući način, 
+## Features
+
+- **User Functionality**:
+  - Solve quizzes consisting of various types of questions (e.g., multiple choice, short answer).
+  - Users can view quizzes available to them and track their progress.
+  - Players can take quizzes, view results, and see statistics for questions and quiz categories.
+  
+- **Admin Functionality**:
+  - Admins can create new quizzes, add questions, and define correct answers.
+  - Admins can manage (edit, delete) quizzes and questions.
+  - Admins have the ability to manage users and monitor their statistics.
+
+- **Database Integration**:
+  - Utilizes a MySQL database to store user data, quizzes, questions, answers, and statistics.
+  - Features prepared statements for secure interaction with the database.
+
+- **MVC Architecture**:
+  - The application follows the MVC (Model-View-Controller) pattern to ensure clean separation of concerns.
+
+## Application Structure
+
+- **Home Page**: After logging in, users are directed to the homepage where they can view available quizzes and select the quiz to take.
+- **Quiz Pages**: After selecting a quiz, the user can view the questions and answer them. Questions can be of different types: multiple choice, text input, etc.
+- **Admin Panel**: Admins have access to an admin panel where they can create, edit, and delete quizzes and questions.
+
+## Technologies Used
+
+- **PHP:** The backend is built using PHP for server-side logic and database interactions.
+- **HTML, CSS, JavaScript:** The frontend is developed using these core web technologies to create the user interface.
+- **MySQL:** The application uses MySQL to store quiz data, user information, and results.
+- **MVC architecture:** The application is built using the MVC architecture for better organization and maintainability.
+
+## How to Use
+
+1. **Log In**: 
+   - Users log in with their username and password.
+
+2. **Take a Quiz**:
+   - Select a quiz from the list, solve questions, and submit your answers.
+   - View your results and statistics after completing a quiz.
+
+3. **Admin Actions**:
+   - Admins can manage quizzes, questions, and users from the admin panel.
+   - Admins can also track user statistics.
+
+## Future Improvements
+
+- **Mobile Responsiveness**: Enhance the layout to make the application fully responsive.
+- **Enhanced User Profile**: Allow users to customize their profiles and track performance history.
+
+## License
+
+This project is for educational purposes and is not associated with any formal licensing.
